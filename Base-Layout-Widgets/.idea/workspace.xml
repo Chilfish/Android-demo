@@ -73,6 +73,12 @@
       </list>
     </option>
   </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="D:\Chilling\Android\key.jks" />
+    <option name="KEY_ALIAS" value="key0" />
+    <option name="REMEMBER_PASSWORDS" value="true" />
+    <option name="BUILD_TARGET_KEY" value="apk" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -90,6 +96,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ApkExportedModule": "Learn.app",
+    "ExportApk.ApkPathForLearn.app": "D:\\Chilling\\Android\\Android-demo\\Base-Layout-Widgets\\app",
     "ResourceManagerPrefKey.ResourceType": "LAYOUT",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -108,6 +116,9 @@
     "show.do.not.copy.http.proxy.settings.to.gradle": "true"
   },
   "keyToStringList": {
+    "ExportApk.BuildVariants": [
+      "release"
+    ],
     "android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Weiget/app/src/main/java/com/chill/learn/views/LoginInput.java_LoginInput_DIMENSIONS": [
       "1080",
       "1920"
