@@ -5,7 +5,9 @@
   </component>
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <target>android-32</target>
+      </config>
     </shared>
   </component>
   <component name="AutoImportSettings">
@@ -66,8 +68,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
-        <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -98,11 +100,11 @@
     "android-custom-viewD:/Chilling/Android/Learn/app/src/main/java/com/chill/learn/views/MyCustomView.java_SELECTED": "MyCustomView",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
-    "last_opened_file_path": "D:/Chilling/Android/Android-demo/Base-Layout-Weiget",
+    "last_opened_file_path": "D:/Chilling/Android/android-demos-master",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "Errors",
+    "settings.editor.selected.configurable": "experimental",
     "show.do.not.copy.http.proxy.settings.to.gradle": "true"
   },
   "keyToStringList": {
