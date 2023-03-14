@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">实验2 布局设计</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_register">Register</string>
+    <string name="sex_male">Male</string>
+    <string name="sex_female">Female</string>
+</resources>
