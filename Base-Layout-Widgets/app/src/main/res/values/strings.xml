@@ -3,6 +3,8 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
 
+    <string name="error_password">Error Password</string>
+
     <string name="btn_cancel">Cancel</string>
     <string name="btn_confirm">Confirm</string>
 
