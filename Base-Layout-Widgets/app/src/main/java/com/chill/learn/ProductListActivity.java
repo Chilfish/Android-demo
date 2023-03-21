@@ -38,6 +38,21 @@ public class ProductListActivity extends AppCompatActivity {
     listView = findViewById(R.id.product_list);
     var arrAdapter = new ListViewAdapter(this, productList);
     listView.setAdapter(arrAdapter);
+
+    stringList();
+  }
+
+  void stringList() {
+    var stringList = new ArrayList<String>();
+    stringList.add("Product 1");
+    stringList.add("Product 2");
+    stringList.add("Product 3");
+    stringList.add("Product 4");
+    stringList.add("Product 5");
+
+    ListView listView = findViewById(R.id.string_list);
+    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stringList);
+    listView.setAdapter(arrayAdapter);
   }
 
 }
