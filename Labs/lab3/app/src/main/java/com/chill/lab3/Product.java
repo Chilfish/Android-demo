@@ -1,9 +1,9 @@
 package com.chill.lab3;
 
 public class Product {
-  private int image;
-  private String name;
-  private double price;
+  private int image; // image resource id
+  private String name; // product name
+  private double price; // product price
 
   public Product(int image, String name, double price) {
     this.image = image;

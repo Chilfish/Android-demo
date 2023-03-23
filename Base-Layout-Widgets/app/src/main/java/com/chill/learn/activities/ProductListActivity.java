@@ -1,5 +1,6 @@
 package com.chill.learn.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -10,52 +11,52 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chill.learn.adapter.ListViewAdapter;
 import com.chill.learn.Product;
-import com.chill.learn.adapter.ProductAdapter;
+import com.chill.learn.adapter.RecyclerAdapter;
 import com.chill.learn.R;
 
 import java.util.ArrayList;
 
-public class ProductListActivity extends AppCompatActivity {
 
+public class ProductListActivity extends AppCompatActivity {
   private RecyclerView recyclerView;
   private ListView listView;
-  private ProductAdapter productAdapter;
+  private RecyclerAdapter recyclerAdapter;
+  private ArrayList<Product> products;
+
+  // temp data
+  // TODO: fetch from database or local json
+  final String[] imgs = {"iphone", "fans", "orange", "paper", "bluemoon"};
+  final String[] names = {"Iphone 11", "Fan", "Orange", "Tissue", "Blue Moon Laundry Detergent"};
+  final double[] prices = {1067.5, 3.99, 1.99, 0.99, 4, 98};
+
+  void init() {
+    products = new ArrayList<>();
+    for (int i = 0; i < imgs.length; ++i) {
+      @SuppressLint("DiscouragedApi") int imgId = getResources().getIdentifier(imgs[i], "drawable", getPackageName());
+      products.add(new Product(imgId, names[i], prices[i]));
+    }
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.product_view);
 
-    var productList = new ArrayList<Product>();
-    productList.add(new Product(R.drawable.avatar, "Product 1", 9.99));
-    productList.add(new Product(R.drawable.avatar, "Product 2", 19.99));
-    productList.add(new Product(R.drawable.avatar, "Product 3", 29.99));
-    productList.add(new Product(R.drawable.avatar, "Product 4", 29.99));
-    productList.add(new Product(R.drawable.avatar, "Product 5", 29.99));
-
+    init();
+    // for recycler view
     recyclerView = findViewById(R.id.product_recycler);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    productAdapter = new ProductAdapter(productList);
-    recyclerView.setAdapter(productAdapter);
+    recyclerAdapter = new RecyclerAdapter(products);
+    recyclerView.setAdapter(recyclerAdapter);
 
+    // for list view
     listView = findViewById(R.id.product_list);
-    var arrAdapter = new ListViewAdapter(this, productList);
+    var arrAdapter = new ListViewAdapter(this, products);
     listView.setAdapter(arrAdapter);
 
-    stringList();
-  }
-
-  void stringList() {
-    var stringList = new ArrayList<String>();
-    stringList.add("Product 1");
-    stringList.add("Product 2");
-    stringList.add("Product 3");
-    stringList.add("Product 4");
-    stringList.add("Product 5");
-
+    // for string list view
     ListView listView = findViewById(R.id.string_list);
-    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, stringList);
+    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, names);
     listView.setAdapter(arrayAdapter);
   }
-
 }

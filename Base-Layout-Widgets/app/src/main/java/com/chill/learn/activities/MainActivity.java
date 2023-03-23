@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     loginCheck();
   }
 
+  // TODO: more case on validating password
   private boolean isPasswordValid(String password) {
     return password != null && password.length() >= 8;
   }
@@ -39,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         return;
       }
       Intent intent = new Intent(this, ProductListActivity.class);
-      Toast toast = Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT);
+      Toast toast = Toast.makeText(getApplicationContext(),
+          "Login Successful", Toast.LENGTH_SHORT);
       toast.show();
       startActivity(intent);
     });

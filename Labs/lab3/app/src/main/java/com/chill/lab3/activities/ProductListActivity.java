@@ -10,19 +10,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chill.lab3.adapter.ListViewAdapter;
 import com.chill.lab3.Product;
-import com.chill.lab3.adapter.ProductAdapter;
+import com.chill.lab3.adapter.RecyclerAdapter;
 import com.chill.lab3.R;
 
 
 import java.util.ArrayList;
 
 public class ProductListActivity extends AppCompatActivity {
-
   private RecyclerView recyclerView;
   private ListView listView;
-  private ProductAdapter productAdapter;
+  private RecyclerAdapter recyclerAdapter;
   private ArrayList<Product> products;
-
 
   void init() {
     products = new ArrayList<>();
@@ -46,8 +44,8 @@ public class ProductListActivity extends AppCompatActivity {
     // for recycler view
     recyclerView = findViewById(R.id.product_recycler);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    productAdapter = new ProductAdapter(products);
-    recyclerView.setAdapter(productAdapter);
+    recyclerAdapter = new RecyclerAdapter(products);
+    recyclerView.setAdapter(recyclerAdapter);
 
     // for list view
     listView = findViewById(R.id.product_list);

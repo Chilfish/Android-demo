@@ -16,6 +16,20 @@
   <component name="ChangeListManager">
     <list default="true" id="64385b1e-1c92-4c36-975d-469909dac4f0" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/activities/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/activities/ProductListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/activities/ProductListActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/ListViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/ListViewAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/ProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/RecyclerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/product_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/product_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/ids.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/refs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labs/lab3/app/src/main/java/com/chill/lab3/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Labs/lab3/app/src/main/java/com/chill/lab3/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labs/lab3/app/src/main/java/com/chill/lab3/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Labs/lab3/app/src/main/java/com/chill/lab3/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labs/lab3/app/src/main/java/com/chill/lab3/activities/ProductListActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Labs/lab3/app/src/main/java/com/chill/lab3/activities/ProductListActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Labs/lab3/app/src/main/java/com/chill/lab3/adapter/ProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Labs/lab3/app/src/main/java/com/chill/lab3/adapter/RecyclerAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +119,7 @@
     "com.google.services.firebase.aqiPopupShown": "true",
     "com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable": "ALL",
     "last_directory_selection": "D:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/res/drawable",
-    "last_opened_file_path": "D:/Chilling/Android/Wave",
+    "last_opened_file_path": "D:/Chilling/Android/Android-demo/Base-Layout-Widgets",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",

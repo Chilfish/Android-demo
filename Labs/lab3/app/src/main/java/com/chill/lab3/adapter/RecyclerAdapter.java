@@ -18,10 +18,10 @@ import java.util.List;
 /*
  * Adapter for RecyclerView
  */
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
   private List<Product> productList;
 
-  public ProductAdapter(List<Product> productList) {
+  public RecyclerAdapter(List<Product> productList) {
     this.productList = productList;
   }
 

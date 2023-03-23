@@ -41,6 +41,7 @@ public class ListViewAdapter extends ArrayAdapter<Product> {
     productImage.setImageResource(product.getImage());
     productName.setText(product.getName());
 
+    // Format price to $xx.xx
     @SuppressLint("DefaultLocale") String price = String.format("$%.2f", product.getPrice());
     productPrice.setText(price);
     return rowView;

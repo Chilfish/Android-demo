@@ -15,27 +15,32 @@ import com.chill.learn.R;
 
 import java.util.List;
 
-
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+/*
+ * Adapter for RecyclerView
+ */
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
   private List<Product> productList;
 
-  public ProductAdapter(List<Product> productList) {
+  public RecyclerAdapter(List<Product> productList) {
     this.productList = productList;
   }
 
   @NonNull
   @Override
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_item, parent, false);
+    View view = LayoutInflater.from(parent.getContext())
+        .inflate(R.layout.product_item, parent, false);
     return new ViewHolder(view);
   }
 
+  // Bind data to ViewHolder
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     Product product = productList.get(position);
     holder.productImage.setImageResource(product.getImage());
     holder.productName.setText(product.getName());
 
+    // Format price to $xx.xx
     @SuppressLint("DefaultLocale") String price = String.format("$%.2f", product.getPrice());
     holder.productPrice.setText(price);
   }
@@ -45,6 +50,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     return productList.size();
   }
 
+  /*
+   * ViewHolder for RecyclerView
+   */
   public static class ViewHolder extends RecyclerView.ViewHolder {
     ImageView productImage;
     TextView productName;
