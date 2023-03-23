@@ -1,4 +1,4 @@
-package com.chill.learn;
+package com.chill.learn.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.chill.learn.Product;
+import com.chill.learn.R;
 
 import java.util.List;
 

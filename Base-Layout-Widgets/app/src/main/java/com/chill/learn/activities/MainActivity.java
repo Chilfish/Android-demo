@@ -1,4 +1,4 @@
-package com.chill.learn;
+package com.chill.learn.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +8,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.chill.learn.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
 
     loginCheck();
-
   }
 
   private boolean isPasswordValid(String password) {

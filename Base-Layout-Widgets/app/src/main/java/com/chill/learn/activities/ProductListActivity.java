@@ -1,6 +1,5 @@
-package com.chill.learn;
+package com.chill.learn.activities;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -9,8 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chill.learn.adapter.ListViewAdapter;
+import com.chill.learn.Product;
+import com.chill.learn.adapter.ProductAdapter;
+import com.chill.learn.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class ProductListActivity extends AppCompatActivity {
 
