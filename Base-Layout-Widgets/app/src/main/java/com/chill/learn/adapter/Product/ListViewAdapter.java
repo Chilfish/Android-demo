@@ -22,7 +22,7 @@ public class ListViewAdapter extends ArrayAdapter<Product> {
   private List<Product> products;
 
   public ListViewAdapter(Context context, List<Product> products) {
-    super(context, R.layout.product_item, products);
+    super(context, R.layout.item_product, products);
     this.context = context;
     this.products = products;
   }
@@ -31,7 +31,7 @@ public class ListViewAdapter extends ArrayAdapter<Product> {
   @Override
   public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
     LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    @SuppressLint("ViewHolder") View rowView = inflater.inflate(R.layout.product_item, parent, false);
+    @SuppressLint("ViewHolder") View rowView = inflater.inflate(R.layout.item_product, parent, false);
 
     ImageView productImage = rowView.findViewById(R.id.product_image);
     TextView productName = rowView.findViewById(R.id.product_name);
