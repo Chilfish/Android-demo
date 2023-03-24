@@ -17,7 +17,7 @@ public class MD3Activity extends AppCompatActivity {
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.md3_test);
+    setContentView(R.layout.activity_md3);
 
     iconChange();
 

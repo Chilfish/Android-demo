@@ -1,4 +1,4 @@
-package com.chill.learn;
+package com.chill.learn.entity;
 
 public class Product {
   private int image; // image resource id

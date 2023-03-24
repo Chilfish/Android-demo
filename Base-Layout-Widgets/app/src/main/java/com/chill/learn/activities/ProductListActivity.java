@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chill.learn.adapter.ListViewAdapter;
-import com.chill.learn.Product;
-import com.chill.learn.adapter.RecyclerAdapter;
+import com.chill.learn.adapter.Product.ListViewAdapter;
+import com.chill.learn.entity.Product;
+import com.chill.learn.adapter.Product.RecyclerAdapter;
 import com.chill.learn.R;
 
 import java.util.ArrayList;

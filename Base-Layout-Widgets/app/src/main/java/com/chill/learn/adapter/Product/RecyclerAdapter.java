@@ -1,4 +1,4 @@
-package com.chill.learn.adapter;
+package com.chill.learn.adapter.Product;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chill.learn.Product;
+import com.chill.learn.entity.Product;
 import com.chill.learn.R;
 
 import java.util.List;
