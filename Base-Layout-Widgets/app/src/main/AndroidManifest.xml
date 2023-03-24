@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Learn"
         tools:targetApi="31">
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ProductListActivity"
+            android:name=".ui.activities.ProductListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,10 +31,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MD3Activity"
+            android:name=".ui.activities.MD3Activity"
             android:exported="true" />
-        <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.IntentActivity" />
+        <activity android:name=".ui.activities.LoginActivity" />
+        <activity android:name=".ui.activities.IntentActivity" />
     </application>
 
 </manifest>

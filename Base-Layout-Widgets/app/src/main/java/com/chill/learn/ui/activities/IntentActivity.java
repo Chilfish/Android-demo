@@ -1,4 +1,4 @@
-package com.chill.learn.activities;
+package com.chill.learn.ui.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

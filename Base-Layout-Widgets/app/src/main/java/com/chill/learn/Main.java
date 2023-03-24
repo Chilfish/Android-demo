@@ -4,8 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.util.Log;
 
-import com.chill.learn.activities.LoginActivity;
-import com.chill.learn.activities.MainActivity;
+import com.chill.learn.ui.activities.LoginActivity;
 
 public class Main extends Application {
   @Override
