@@ -76,23 +76,22 @@
         android:paddingHorizontal="26dp">
 
         <Button
-            android:id="@+id/btn_login"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="100dp"
+            android:id="@+id/btn_register"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="120dp"
             android:layout_height="48dp"
             android:layout_marginEnd="26dp"
-            android:backgroundTint="@color/primary"
-            android:text="@string/btn_login"
+            android:text="@string/btn_register"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/btn_register"
-            style="@style/Widget.MaterialComponents.Button"
+            android:id="@+id/btn_login"
+            style="@style/Widget.Material3.Button.ElevatedButton"
             android:layout_width="100dp"
             android:layout_height="48dp"
-            android:backgroundTint="@color/primary"
-            android:text="@string/btn_register"
-            android:textAllCaps="false" />
+            android:text="@string/btn_login"
+            android:textAllCaps="false"
+            app:cornerRadius="12dp" />
 
     </LinearLayout>
 

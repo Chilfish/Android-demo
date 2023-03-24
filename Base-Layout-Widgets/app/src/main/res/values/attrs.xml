@@ -3,4 +3,8 @@
     <declare-styleable name="LoginInput">
         <attr name="hintText" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="colorSurface">
+        <attr name="colorSurface" format="color" />
+    </declare-styleable>
 </resources>

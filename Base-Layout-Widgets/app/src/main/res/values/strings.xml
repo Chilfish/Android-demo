@@ -17,4 +17,19 @@
     <string name="sex_female">Female</string>
 
     <string name="avatar">avatar</string>
+    <string name="name">Chilfish</string>
+    <string name="email">chill4fish@gmail.com</string>
+    <string name="phone">+84 123 456 789</string>
+    <string name="address">Hanoi, Vietnam</string>
+
+    <string name="title">Title</string>
+    <string name="subtitle">Subtitle</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+
+
+    <!--  btn navigation bar  -->
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="favorites">Favorites</string>
 </resources>

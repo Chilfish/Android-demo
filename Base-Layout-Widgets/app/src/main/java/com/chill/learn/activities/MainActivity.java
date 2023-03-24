@@ -45,5 +45,11 @@ public class MainActivity extends AppCompatActivity {
       toast.show();
       startActivity(intent);
     });
+
+    Button registerButton = findViewById(R.id.btn_register);
+    registerButton.setOnClickListener(view -> {
+      Intent intent = new Intent(this, MD3Activity.class);
+      startActivity(intent);
+    });
   }
 }
