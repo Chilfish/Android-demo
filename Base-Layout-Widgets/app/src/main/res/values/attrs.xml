@@ -7,4 +7,9 @@
     <declare-styleable name="colorSurface">
         <attr name="colorSurface" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="UserInfo">
+        <attr name="hint" format="string" />
+        <attr name="value" format="string" />
+    </declare-styleable>
 </resources>

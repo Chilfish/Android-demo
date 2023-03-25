@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,13 +41,17 @@ public class ProductListActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.product_view);
+    setContentView(R.layout.activity_product);
 
     init();
     // for recycler view
     recyclerView = findViewById(R.id.product_recycler);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
     recyclerAdapter = new RecyclerAdapter(products);
+
+    recyclerAdapter.setOnCardClickListener(product -> {
+      Toast.makeText(this, product.getName(), Toast.LENGTH_SHORT).show();
+    });
     recyclerView.setAdapter(recyclerAdapter);
 
     // for list view

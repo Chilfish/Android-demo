@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         new ActivityCard("MD3", MD3Activity.class),
         new ActivityCard("Product List", ProductListActivity.class),
         new ActivityCard("Login", LoginActivity.class),
+        new ActivityCard("Activity Intent", IntentActivity.class),
     };
   }
 

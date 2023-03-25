@@ -30,24 +30,36 @@ public class LoginActivity extends AppCompatActivity {
 
   void loginCheck() {
     Button loginButton = findViewById(R.id.btn_login);
+    Button registerBtn = findViewById(R.id.btn_register);
+
     TextInputEditText passwordInput = findViewById(R.id.password_input),
         usernameInput = findViewById(R.id.username_input);
 
 
     loginButton.setOnClickListener(view -> {
-      String password = Objects.requireNonNull(passwordInput.getText()).toString();
-      String username = Objects.requireNonNull(usernameInput.getText()).toString();
-
-      Log.d("Login!", String.format("%s, %s", username, password));
-
-      if (!isPasswordValid(password)) {
-        return;
-      }
       Toast toast = Toast.makeText(getApplicationContext(),
           "Login Successful", Toast.LENGTH_SHORT);
       toast.show();
 
       Intent intent = new Intent(this, MainActivity.class);
+      startActivity(intent);
+    });
+
+    registerBtn.setOnClickListener(view -> {
+      String password = Objects.requireNonNull(passwordInput.getText()).toString();
+      String username = Objects.requireNonNull(usernameInput.getText()).toString();
+      Log.d("Login!", String.format("%s, %s", username, password));
+
+      if (!isPasswordValid(password)) {
+        return;
+      }
+
+      Bundle data = new Bundle();
+      data.putString("username", username);
+      data.putString("password", password);
+
+      Intent intent = new Intent(this, IntentActivity.class);
+      intent.putExtras(data);
       startActivity(intent);
     });
   }

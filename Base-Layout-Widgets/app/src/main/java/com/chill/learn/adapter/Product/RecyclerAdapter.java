@@ -21,6 +21,8 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
   private List<Product> productList;
 
+  private OnCardClickListener cardClickListener;
+
   public RecyclerAdapter(List<Product> productList) {
     this.productList = productList;
   }
@@ -43,6 +45,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     // Format price to $xx.xx
     @SuppressLint("DefaultLocale") String price = String.format("$%.2f", product.getPrice());
     holder.productPrice.setText(price);
+
+    holder.itemView.setOnClickListener(v -> {
+      if (cardClickListener != null) {
+        cardClickListener.onCardClick(product);
+      }
+    });
   }
 
   @Override
@@ -64,6 +72,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
       productName = itemView.findViewById(R.id.product_name);
       productPrice = itemView.findViewById(R.id.product_price);
     }
+  }
+
+  public void setOnCardClickListener(OnCardClickListener onCardClickListener) {
+    this.cardClickListener = onCardClickListener;
+  }
+
+  public interface OnCardClickListener {
+    void onCardClick(Product card);
   }
 }
 
