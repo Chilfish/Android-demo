@@ -1,7 +1,12 @@
 package com.chill.learn.ui.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
     });
 
     activitiesView.setAdapter(adapter);
+
+    checkNet();
   }
 
+  // check if network is Tethering or hotspot, and API level is 30 or higher
+  void checkNet() {
+    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+    Log.d("Network", networkInfo.getExtraInfo());
+  }
 }
