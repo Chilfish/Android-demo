@@ -2,9 +2,12 @@
 
 package com.chill.learn.adapter;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chill.learn.R;
@@ -21,25 +24,28 @@ public class ActivitiesAdapter extends BaseAdapter<ActivityCard> {
     this.card = data;
   }
 
+  @NonNull
   @Override
-  protected int getViewType(int position) {
-    return 0;
-  }
-
-  @Override
-  protected int getLayoutId(int viewType) {
-    return R.layout.item_activity;
-  }
-
-  @Override
-  protected RecyclerView.ViewHolder getViewHolder(View view, int viewType) {
+  public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutId(), parent, false);
     return new CardViewHolder(view);
   }
 
   @Override
-  protected void bindData(RecyclerView.ViewHolder holder, ActivityCard data, int position) {
-    CardViewHolder viewHolder = (CardViewHolder) holder;
-    viewHolder.title.setText(data.getTitle());
+  protected int getLayoutId() {
+    return R.layout.item_activity;
+  }
+
+  @Override
+  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    ActivityCard card = this.card.get(position);
+    ((CardViewHolder) holder).bindData(card);
+
+    holder.itemView.setOnClickListener(v -> {
+      if (cardListener != null) {
+        cardListener.onCardClick(card);
+      }
+    });
   }
 
   public static class CardViewHolder extends RecyclerView.ViewHolder {
@@ -49,18 +55,12 @@ public class ActivitiesAdapter extends BaseAdapter<ActivityCard> {
       super(itemView);
       title = itemView.findViewById(R.id.activity_name);
     }
+
+    public void bindData(ActivityCard data) {
+      title.setText(data.getTitle());
+    }
   }
 
-  @Override
-  public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-    ActivityCard card = this.card.get(position);
-    ((CardViewHolder) holder).title.setText(card.getTitle());
-    holder.itemView.setOnClickListener(v -> {
-      if (cardListener != null) {
-        cardListener.onCardClick(card);
-      }
-    });
-  }
 
   public void setOnCardClickListener(OnCardClickListener listener) {
     cardListener = listener;

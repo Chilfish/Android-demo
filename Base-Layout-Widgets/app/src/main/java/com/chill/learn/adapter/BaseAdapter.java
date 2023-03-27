@@ -1,8 +1,6 @@
 package com.chill.learn.adapter;
 
 import android.annotation.SuppressLint;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,70 +9,39 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-  protected List<T> mData;
-  private OnItemClickListener mOnItemClickListener;
 
-  public BaseAdapter(List<T> data) {
-    mData = data;
+  private List<T> mDataList;
+
+  public BaseAdapter(List<T> dataList) {
+    mDataList = dataList;
+  }
+
+  @SuppressLint("NotifyDataSetChanged")
+  public void setDataList(List<T> dataList) {
+    mDataList = dataList;
+    notifyDataSetChanged();
+  }
+
+  public List<T> getDataList() {
+    return mDataList;
+  }
+
+  public T getItem(int position) {
+    if (mDataList == null || position < 0 || position >= mDataList.size()) {
+      return null;
+    }
+    return mDataList.get(position);
   }
 
   @Override
   public int getItemCount() {
-    return mData.size();
-  }
-
-  @Override
-  public int getItemViewType(int position) {
-    return getViewType(position);
+    return mDataList == null ? 0 : mDataList.size();
   }
 
   @NonNull
-  @Override
-  public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutId(viewType), parent, false);
-    return getViewHolder(view, viewType);
-  }
+  public abstract RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
 
-  @Override
-  public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-    bindData(holder, mData.get(position), position);
-    holder.itemView.setOnClickListener(v -> {
-      if (mOnItemClickListener != null) {
-        mOnItemClickListener.onItemClick(position);
-      }
-    });
-  }
+  public abstract void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position);
 
-  @SuppressLint("NotifyDataSetChanged")
-  public void setData(List<T> data) {
-    mData = data;
-    notifyDataSetChanged();
-  }
-
-  public void addData(T data) {
-    mData.add(data);
-    notifyItemInserted(mData.size() - 1);
-  }
-
-  @SuppressLint("NotifyDataSetChanged")
-  public void clearData() {
-    mData.clear();
-    notifyDataSetChanged();
-  }
-
-  public void setOnItemClickListener(OnItemClickListener listener) {
-    mOnItemClickListener = listener;
-  }
-
-  protected abstract int getViewType(int position);
-
-  protected abstract int getLayoutId(int viewType);
-
-  protected abstract RecyclerView.ViewHolder getViewHolder(View view, int viewType);
-
-  protected abstract void bindData(RecyclerView.ViewHolder holder, T data, int position);
-
-  public interface OnItemClickListener {
-    void onItemClick(int position);
-  }
+  protected abstract int getLayoutId();
 }

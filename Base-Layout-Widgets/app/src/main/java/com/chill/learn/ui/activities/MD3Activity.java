@@ -37,15 +37,15 @@ public class MD3Activity extends AppCompatActivity {
   @SuppressLint("NonConstantResourceId")
   void iconChange() {
     BottomNavigationView BtnNav = findViewById(R.id.bottom_navigation);
-    BadgeDrawable badge = BtnNav.getOrCreateBadge(R.id.nav_favorites);
+    BadgeDrawable badge = BtnNav.getOrCreateBadge(R.id.nav_chat);
     badge.setVisible(true);
     badge.setNumber(10);
 
     // remove badge and change to filled icon while navigation item is selected
     BtnNav.setOnItemSelectedListener(item -> {
       switch (item.getItemId()) {
-        case R.id.nav_favorites:
-          BtnNav.getMenu().findItem(R.id.nav_favorites).setIcon(R.drawable.baseline_star_24);
+        case R.id.nav_chat:
+          BtnNav.getMenu().findItem(R.id.nav_chat).setIcon(R.drawable.baseline_chat_24);
           break;
         case R.id.nav_home:
           BtnNav.getMenu().findItem(R.id.nav_home).setIcon(R.drawable.baseline_home_24);
@@ -57,22 +57,5 @@ public class MD3Activity extends AppCompatActivity {
       badge.setVisible(false);
       return true;
     });
-
-    // change to outlined icon when navigation item is not selected
-    BtnNav.setOnItemReselectedListener(item -> {
-      switch (item.getItemId()) {
-        case R.id.nav_favorites:
-          BtnNav.getMenu().findItem(R.id.nav_favorites).setIcon(R.drawable.baseline_star_border_24);
-          break;
-        case R.id.nav_home:
-          BtnNav.getMenu().findItem(R.id.nav_home).setIcon(R.drawable.baseline_home_24);
-          break;
-        case R.id.nav_settings:
-          BtnNav.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.baseline_settings_24);
-          break;
-      }
-      badge.setVisible(true);
-    });
-
   }
 }

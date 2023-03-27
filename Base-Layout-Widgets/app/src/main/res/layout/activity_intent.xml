@@ -28,11 +28,16 @@
     </LinearLayout>
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/frag_chat"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toTopOf="@id/nav_btn" />
+
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/frag_nav"
-        android:name="com.chill.learn.ui.fragments.HomeFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/nav_btn" />
+        app:layout_constraintBottom_toTopOf="@id/nav_btn" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_btn"

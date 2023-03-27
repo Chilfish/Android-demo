@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.fragment.app.Fragment;
 
 import com.chill.learn.R;
+import com.chill.learn.ui.fragments.ChatFragment;
 import com.chill.learn.ui.fragments.HomeFragment;
 import com.chill.learn.ui.fragments.TextFragment;
 import com.chill.learn.ui.views.UserInfo;
@@ -20,8 +21,8 @@ public class IntentActivity extends LifeCycleActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_intent);
 
-    setInfo();
     navChange();
+    setInfo();
   }
 
   private void setInfo() {
@@ -36,8 +37,6 @@ public class IntentActivity extends LifeCycleActivity {
     String username = loginBundle.getString("username");
     String password = loginBundle.getString("password");
 
-    Log.d("IntentActivity", "Username: " + username + " Password: " + password);
-
     UserInfo res_name = findViewById(R.id.res_name);
     UserInfo res_password = findViewById(R.id.res_password);
 
@@ -48,24 +47,29 @@ public class IntentActivity extends LifeCycleActivity {
   @SuppressLint("NonConstantResourceId")
   void navChange() {
     BottomNavigationView BtnNav = findViewById(R.id.nav_btn);
+    final int id = R.id.frag_nav;
+
     BtnNav.setOnItemSelectedListener(item -> {
       switch (item.getItemId()) {
         case R.id.nav_home:
-          replaceFragment(new HomeFragment());
+          replaceFragment(new HomeFragment(), id);
+          break;
+        case R.id.nav_chat:
+          replaceFragment(new ChatFragment(), id);
           break;
         case R.id.nav_settings:
-          replaceFragment(new TextFragment());
+          replaceFragment(new TextFragment(), id);
           break;
       }
       return true;
     });
-    replaceFragment(new HomeFragment());
+    replaceFragment(new HomeFragment(), id);
   }
 
-  private void replaceFragment(Fragment fragment) {
+  private void replaceFragment(Fragment fragment, int id) {
     getSupportFragmentManager()
         .beginTransaction()
-        .replace(R.id.frag_nav, fragment)
+        .replace(id, fragment)
         .commit();
   }
 }

@@ -26,7 +26,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-    buildToolsVersion '32.0.0'
+    buildToolsVersion '33.0.2'
     ndkVersion '23.1.7779620'
     buildFeatures {
         viewBinding true
