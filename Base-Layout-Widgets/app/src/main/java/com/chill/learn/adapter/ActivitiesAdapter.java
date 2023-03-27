@@ -61,7 +61,6 @@ public class ActivitiesAdapter extends BaseAdapter<ActivityCard> {
     }
   }
 
-
   public void setOnCardClickListener(OnCardClickListener listener) {
     cardListener = listener;
   }

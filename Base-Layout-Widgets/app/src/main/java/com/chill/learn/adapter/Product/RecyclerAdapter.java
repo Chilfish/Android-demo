@@ -39,12 +39,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     Product product = productList.get(position);
-    holder.productImage.setImageResource(product.getImage());
-    holder.productName.setText(product.getName());
-
-    // Format price to $xx.xx
-    @SuppressLint("DefaultLocale") String price = String.format("$%.2f", product.getPrice());
-    holder.productPrice.setText(price);
+    holder.bindData(product);
 
     holder.itemView.setOnClickListener(v -> {
       if (cardClickListener != null) {
@@ -58,9 +53,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     return productList.size();
   }
 
-  /*
-   * ViewHolder for RecyclerView
-   */
   public static class ViewHolder extends RecyclerView.ViewHolder {
     ImageView productImage;
     TextView productName;
@@ -71,6 +63,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
       productImage = itemView.findViewById(R.id.product_image);
       productName = itemView.findViewById(R.id.product_name);
       productPrice = itemView.findViewById(R.id.product_price);
+    }
+
+    public void bindData(Product product) {
+      productImage.setImageResource(product.getImage());
+      productName.setText(product.getName());
+
+      // Format price to $xx.xx
+      @SuppressLint("DefaultLocale") String price = String.format("$%.2f", product.getPrice());
+      productPrice.setText(price);
     }
   }
 

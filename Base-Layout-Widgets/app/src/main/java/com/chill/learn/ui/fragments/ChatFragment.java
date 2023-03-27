@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.chill.learn.R;
 import com.chill.learn.adapter.ChatListAdapter;
-import com.chill.learn.ui.fragments.placeholder.Chatters;
+import com.chill.learn.entity.ChatItem;
+
+import java.util.List;
 
 public class ChatFragment extends Fragment {
+  private List<ChatItem> mChats;
 
-  public ChatFragment() {
-  }
-
-  public static ChatFragment newInstance() {
-    return new ChatFragment();
+  public ChatFragment(List<ChatItem> data) {
+    mChats = data;
   }
 
   @Override
@@ -36,7 +36,7 @@ public class ChatFragment extends Fragment {
     Context context = view.getContext();
     RecyclerView recyclerView = (RecyclerView) view;
     recyclerView.setLayoutManager(new LinearLayoutManager(context));
-    recyclerView.setAdapter(new ChatListAdapter(Chatters.CHAT_ITEMS));
+    recyclerView.setAdapter(new ChatListAdapter(mChats));
 
     return view;
   }

@@ -4,20 +4,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.chill.learn.R;
 
 public class TextFragment extends Fragment {
+  private String mText;
 
-  public TextFragment() {
-    // Required empty public constructor
-  }
-
-  public static TextFragment newInstance() {
-    TextFragment fragment = new TextFragment();
-    return fragment;
+  public TextFragment(String text) {
+    mText = text;
   }
 
   @Override
@@ -28,7 +25,10 @@ public class TextFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_text, container, false);
+    View view = inflater.inflate(R.layout.fragment_text, container, false);
+
+    TextView textView = view.findViewById(R.id.frag_text);
+    textView.setText(mText);
+    return view;
   }
 }

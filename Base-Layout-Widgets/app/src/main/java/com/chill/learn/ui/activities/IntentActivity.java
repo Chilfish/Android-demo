@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment;
 
 import com.chill.learn.R;
 import com.chill.learn.ui.fragments.ChatFragment;
-import com.chill.learn.ui.fragments.HomeFragment;
 import com.chill.learn.ui.fragments.TextFragment;
+import com.chill.learn.ui.fragments.placeholder.Chatters;
 import com.chill.learn.ui.views.UserInfo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -52,18 +52,18 @@ public class IntentActivity extends LifeCycleActivity {
     BtnNav.setOnItemSelectedListener(item -> {
       switch (item.getItemId()) {
         case R.id.nav_home:
-          replaceFragment(new HomeFragment(), id);
+          replaceFragment(new TextFragment("Home"), id);
           break;
         case R.id.nav_chat:
-          replaceFragment(new ChatFragment(), id);
+          replaceFragment(new ChatFragment(Chatters.CHAT_ITEMS), id);
           break;
         case R.id.nav_settings:
-          replaceFragment(new TextFragment(), id);
+          replaceFragment(new TextFragment("Settings"), id);
           break;
       }
       return true;
     });
-    replaceFragment(new HomeFragment(), id);
+    replaceFragment(new TextFragment("Home"), id);
   }
 
   private void replaceFragment(Fragment fragment, int id) {

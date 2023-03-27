@@ -38,6 +38,11 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     return mDataList == null ? 0 : mDataList.size();
   }
 
+  @Override
+  public int getItemViewType(int position) {
+    return super.getItemViewType(position);
+  }
+
   @NonNull
   public abstract RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
 
