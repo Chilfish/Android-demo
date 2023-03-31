@@ -30,18 +30,11 @@ public class ChatListAdapter extends BaseAdapter<ChatItem> {
   }
 
   @Override
-  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder Holder, int position) {
-    ChatListViewHolder holder = (ChatListViewHolder) Holder;
-    ChatItem chatItem = mChatList.get(position);
-    holder.bindData(chatItem);
-  }
-
-  @Override
   protected int getLayoutId() {
     return R.layout.item_chat_list;
   }
 
-  public static class ChatListViewHolder extends RecyclerView.ViewHolder {
+  public class ChatListViewHolder extends BaseAdapter<ChatItem>.ViewHolder {
     private ImageView mAvatar;
     private TextView mName;
     private TextView mContent;
@@ -55,6 +48,7 @@ public class ChatListAdapter extends BaseAdapter<ChatItem> {
       mTime = itemView.findViewById(R.id.chat_time);
     }
 
+    @Override
     public void bindData(ChatItem data) {
       mAvatar.setImageResource(data.getAvatarId());
       mName.setText(data.getName());

@@ -2,6 +2,7 @@ package com.chill.learn.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +37,16 @@ public class ChatFragment extends Fragment {
     Context context = view.getContext();
     RecyclerView recyclerView = (RecyclerView) view;
     recyclerView.setLayoutManager(new LinearLayoutManager(context));
-    recyclerView.setAdapter(new ChatListAdapter(mChats));
+    var adapter = new ChatListAdapter(mChats);
 
+    adapter.setOnItemClickListener(chatItem -> {
+      String name = chatItem.getName();
+      Bundle bundle = new Bundle();
+      bundle.putString("name", name);
+
+    });
+
+    recyclerView.setAdapter(adapter);
     return view;
   }
 }

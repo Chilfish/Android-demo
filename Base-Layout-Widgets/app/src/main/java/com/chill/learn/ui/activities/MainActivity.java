@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     activitiesView.setLayoutManager(new LinearLayoutManager(this));
 
     adapter = new ActivitiesAdapter(List.of(activityCards));
-    adapter.setOnCardClickListener(card -> {
+    adapter.setOnItemClickListener(card -> {
       startActivity(new Intent(this, card.getActivity()));
     });
 

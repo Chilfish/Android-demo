@@ -1,7 +1,7 @@
 package com.chill.learn.adapter;
 
 import android.annotation.SuppressLint;
-import android.view.ViewGroup;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +11,7 @@ import java.util.List;
 public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
   private List<T> mDataList;
+  private OnItemClickListener<T> mOnItemClickListener;
 
   public BaseAdapter(List<T> dataList) {
     mDataList = dataList;
@@ -43,10 +44,35 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     return super.getItemViewType(position);
   }
 
-  @NonNull
-  public abstract RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType);
-
-  public abstract void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position);
-
   protected abstract int getLayoutId();
+
+  @Override
+  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder Holder, int position) {
+    ViewHolder holder = (ViewHolder) Holder;
+    T chatItem = getItem(position);
+    holder.bindData(chatItem);
+
+    holder.itemView.setOnClickListener(v -> {
+      if (mOnItemClickListener != null) {
+        mOnItemClickListener.onItemClick(chatItem);
+      }
+    });
+  }
+
+  public class ViewHolder extends RecyclerView.ViewHolder {
+    public ViewHolder(@NonNull View itemView) {
+      super(itemView);
+    }
+
+    public void bindData(T data) {
+    }
+  }
+
+  public void setOnItemClickListener(OnItemClickListener<T> listener) {
+    mOnItemClickListener = listener;
+  }
+
+  public interface OnItemClickListener<T> {
+    void onItemClick(T item);
+  }
 }

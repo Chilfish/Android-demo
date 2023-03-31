@@ -1,5 +1,3 @@
-// a recyclerView adapter for the activities list
-
 package com.chill.learn.adapter;
 
 import android.view.LayoutInflater;
@@ -17,7 +15,6 @@ import java.util.List;
 
 public class ActivitiesAdapter extends BaseAdapter<ActivityCard> {
   private List<ActivityCard> card;
-  private OnCardClickListener cardListener;
 
   public ActivitiesAdapter(List<ActivityCard> data) {
     super(data);
@@ -36,19 +33,7 @@ public class ActivitiesAdapter extends BaseAdapter<ActivityCard> {
     return R.layout.item_activity;
   }
 
-  @Override
-  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-    ActivityCard card = this.card.get(position);
-    ((CardViewHolder) holder).bindData(card);
-
-    holder.itemView.setOnClickListener(v -> {
-      if (cardListener != null) {
-        cardListener.onCardClick(card);
-      }
-    });
-  }
-
-  public static class CardViewHolder extends RecyclerView.ViewHolder {
+  public class CardViewHolder extends BaseAdapter<ActivityCard>.ViewHolder {
     private TextView title;
 
     public CardViewHolder(View itemView) {
@@ -56,16 +41,9 @@ public class ActivitiesAdapter extends BaseAdapter<ActivityCard> {
       title = itemView.findViewById(R.id.activity_name);
     }
 
+    @Override
     public void bindData(ActivityCard data) {
       title.setText(data.getTitle());
     }
-  }
-
-  public void setOnCardClickListener(OnCardClickListener listener) {
-    cardListener = listener;
-  }
-
-  public interface OnCardClickListener {
-    void onCardClick(ActivityCard card);
   }
 }

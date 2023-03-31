@@ -67,8 +67,7 @@ public class IntentActivity extends LifeCycleActivity {
   }
 
   private void replaceFragment(Fragment fragment, int id) {
-    getSupportFragmentManager()
-        .beginTransaction()
+    getSupportFragmentManager().beginTransaction()
         .replace(id, fragment)
         .commit();
   }
