@@ -17,12 +17,10 @@
     <list default="true" id="64385b1e-1c92-4c36-975d-469909dac4f0" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/ActivitiesAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/ActivitiesAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/BaseAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/BaseAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/ChatListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/ChatListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/IntentActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/IntentActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/ChatMainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/ChatMainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/ChatFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/ChatFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_chat_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_chat_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,10 +75,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="resourceFile" />
-        <option value="layoutResourceFile_vertical" />
         <option value="layoutResourceFile" />
-        <option value="Class" />
         <option value="valueResourceFile" />
+        <option value="layoutResourceFile_vertical" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -136,7 +134,7 @@
     "com.google.services.firebase.aqiPopupShown": "true",
     "com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable": "ALL",
     "last_directory_selection": "D:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/res/drawable",
-    "last_opened_file_path": "D:/Chilling/Android/Android-demo/Labs/lab3",
+    "last_opened_file_path": "D:/Chilling/Android/mqtt-chat-android-demo-master",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
@@ -164,6 +162,9 @@
     </key>
     <key name="android.template.535764347">
       <recent name="com.chill.learn.ui.fragments" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Chilling\Android\Android-demo\Base-Layout-Widgets\app\src\main\res\drawable" />
     </key>
     <key name="android.template.-1111793742">
       <recent name="com.chill.learn.activities" />

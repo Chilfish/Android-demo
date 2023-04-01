@@ -1,6 +1,7 @@
 package com.chill.learn.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chill.learn.R;
 import com.chill.learn.adapter.ChatListAdapter;
 import com.chill.learn.entity.ChatItem;
+import com.chill.learn.ui.activities.ChatMainActivity;
 
 import java.util.List;
 
@@ -42,8 +44,11 @@ public class ChatFragment extends Fragment {
     adapter.setOnItemClickListener(chatItem -> {
       String name = chatItem.getName();
       Bundle bundle = new Bundle();
-      bundle.putString("name", name);
+      bundle.putString("chatName", name);
 
+      Intent intent = new Intent(getActivity(), ChatMainActivity.class);
+      intent.putExtras(bundle);
+      startActivity(intent);
     });
 
     recyclerView.setAdapter(adapter);
