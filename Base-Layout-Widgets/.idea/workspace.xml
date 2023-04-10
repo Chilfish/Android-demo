@@ -15,19 +15,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64385b1e-1c92-4c36-975d-469909dac4f0" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/MessageAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/entity/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/PropsActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/MessageFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/PropsFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/placeholder/Messages.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/message_l.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/message_r.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/time_bubble.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_props.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_message_list.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_props.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_message_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/ChatMainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/ChatMainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/ChatFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/ChatFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/LifeCycleActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/LifeCycleActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_chat_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_chat_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Organic_Fish\.android\avd\Pixel_6_API_30.avd]" />
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="module" />
+    </option>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[wk8tofsgw45xem4p]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -74,10 +95,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
-        <option value="layoutResourceFile" />
         <option value="valueResourceFile" />
+        <option value="resourceFile" />
         <option value="layoutResourceFile_vertical" />
+        <option value="layoutResourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -134,7 +155,7 @@
     "com.google.services.firebase.aqiPopupShown": "true",
     "com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable": "ALL",
     "last_directory_selection": "D:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/res/drawable",
-    "last_opened_file_path": "D:/Chilling/Android/mqtt-chat-android-demo-master",
+    "last_opened_file_path": "D:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/res/drawable",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
@@ -171,6 +192,9 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Chilling\Android\Android-demo\Base-Layout-Widgets\app\src\main\res\layout" />
+    </key>
+    <key name="android.template.-1025277829">
+      <recent name="com.chill.learn.ui.activities" />
     </key>
     <key name="android.template.897064149">
       <recent name="com.chill.learn.ui.fragments" />

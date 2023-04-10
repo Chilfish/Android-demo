@@ -9,6 +9,8 @@ import android.util.Log;
 
 import com.chill.learn.R;
 import com.chill.learn.ui.fragments.ChatBarFragment;
+import com.chill.learn.ui.fragments.MessageFragment;
+import com.chill.learn.ui.fragments.placeholder.Messages;
 
 public class ChatMainActivity extends AppCompatActivity {
 
@@ -30,7 +32,7 @@ public class ChatMainActivity extends AppCompatActivity {
     String name = chatBundle.getString("chatName");
 
     replaceFragment(new ChatBarFragment(name), R.id.frag_chat_bar);
-
+    replaceFragment(new MessageFragment(Messages.MESSAGE_ITEMS), R.id.frag_messages);
   }
 
   private void replaceFragment(Fragment fragment, int id) {

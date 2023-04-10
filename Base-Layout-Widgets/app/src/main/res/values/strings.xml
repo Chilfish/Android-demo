@@ -31,6 +31,7 @@
     <string name="description">Description</string>
     <string name="price">Price</string>
 
+    <string name="mes_hint">Type a message</string>
 
     <!--  btn navigation bar  -->
     <string name="home">Home</string>

@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         new ActivityCard("Product List", ProductListActivity.class),
         new ActivityCard("Login", LoginActivity.class),
         new ActivityCard("Activity Intent", IntentActivity.class),
+        new ActivityCard("Props", PropsActivity.class),
     };
   }
 
