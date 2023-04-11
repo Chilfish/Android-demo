@@ -14,7 +14,11 @@
 
     <color name="dark_bg">#1E1E1E</color>
     <color name="dark_bg_1">#242426</color>
+    <color name="dark_bg_2">#181818</color>
+
     <color name="dark_text">#707070</color>
     <color name="dark_mes_l">#1F2426</color>
     <color name="dark_mes_r">#477360</color>
+
+    <color name="dark_secondary">#84A4E9</color>
 </resources>

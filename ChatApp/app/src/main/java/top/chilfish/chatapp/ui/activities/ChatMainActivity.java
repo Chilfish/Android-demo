@@ -1,21 +1,13 @@
 package top.chilfish.chatapp.ui.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import top.chilfish.chatapp.R;
-import top.chilfish.chatapp.entity.Message;
-import top.chilfish.chatapp.helper.JsonParser;
-import top.chilfish.chatapp.ui.fragments.ChatBarFragment;
-import top.chilfish.chatapp.ui.fragments.MessageFragment;
+import androidx.fragment.app.Fragment;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -23,7 +15,13 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ChatMainActivity extends AppCompatActivity {
+import top.chilfish.chatapp.R;
+import top.chilfish.chatapp.entity.Message;
+import top.chilfish.chatapp.helper.JsonParser;
+import top.chilfish.chatapp.ui.fragments.ChatBarFragment;
+import top.chilfish.chatapp.ui.fragments.MessageFragment;
+
+public class ChatMainActivity extends BaseActivity {
 
   private final String Tag = "ChatMainActivity";
   private static List<Message> MESSAGE_ITEMS;

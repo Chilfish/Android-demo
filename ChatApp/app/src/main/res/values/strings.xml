@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">Chat App</string>
+
     <string name="username">Username</string>
     <string name="password">Password</string>
+    <string name="account">Account</string>
 
     <string name="default_string">Default String</string>
     <string name="default_time">Mon 12:00</string>
+    <string name="default_uid">uid: 233</string>
 
     <string name="error_password">Error Password</string>
 
@@ -14,6 +17,7 @@
 
     <string name="btn_login">Login</string>
     <string name="btn_register">Register</string>
+    <string name="back">Back</string>
 
     <string name="helper_name">Phone number, email or name</string>
 
@@ -25,13 +29,24 @@
     <string name="email">chill4fish@gmail.com</string>
     <string name="phone">+84 123 456 789</string>
     <string name="address">Hanoi, Vietnam</string>
+    <string name="bio">Hi there~</string>
 
     <string name="title">Title</string>
     <string name="subtitle">Subtitle</string>
     <string name="description">Description</string>
     <string name="price">Price</string>
 
-    <string name="mes_hint">Type a message</string>
+    <string name="hint_mess_input">Type a message</string>
+    <string name="hint_email">email</string>
+    <string name="hint_bio">Bio</string>
+    <string name="hint_password">password</string>
+    <string name="hint_name">name</string>
+    <string name="hint_phone">phone</string>
+    <string name="hint_address">address</string>
+    <string name="hint_title">title</string>
+    <string name="hint_subtitle">subtitle</string>
+    <string name="hint_description">description</string>
+
 
     <!--  btn navigation bar  -->
     <string name="home">Home</string>
@@ -39,6 +54,7 @@
     <string name="favorites">Favorites</string>
     <string name="notifications">Notifications</string>
     <string name="profile">Profile</string>
+    <string name="friends">Friends</string>
     <string name="search">Search</string>
     <string name="chat">Chat</string>
 </resources>

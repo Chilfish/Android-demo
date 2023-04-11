@@ -6,20 +6,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
 
 import top.chilfish.chatapp.R;
+import top.chilfish.chatapp.entity.Profile;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
   private Button loginButton;
   private Button registerBtn;
 
-  TextInputEditText passwordInput;
-  TextInputEditText usernameInput;
+  private TextInputEditText passwordInput;
+  private TextInputEditText usernameInput;
+
+  private Profile mProfile;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
 
     loginButton.setOnClickListener(this::loginCheck);
     registerBtn.setOnClickListener(this::loginCheck);
+
+    fetchProfile();
   }
 
   // TODO: more case on validating password
@@ -43,10 +46,9 @@ public class LoginActivity extends AppCompatActivity {
   }
 
   void loginCheck(View view) {
-
     String password = Objects.requireNonNull(passwordInput.getText()).toString();
     String username = Objects.requireNonNull(usernameInput.getText()).toString();
-    Log.d("Login!", String.format("%s, %s", username, password));
+    Log.d("Login", String.format("%s, %s", username, password));
 
     if (!isPasswordValid(password)) {
       return;
@@ -61,4 +63,15 @@ public class LoginActivity extends AppCompatActivity {
     startActivity(intent);
   }
 
+  //  TODO: fetch profile from server
+  private void fetchProfile() {
+    String avatar = "https://p.chilfish.top/avatar.webp";
+    String name = "Chilfish";
+    String bio = "hi, I'm Chilfish.";
+    String email = "chill4fish@gmail.com";
+    String uid = "0";
+
+    mProfile = new Profile(uid, name, avatar, email, bio);
+    mProfile.save(this);
+  }
 }

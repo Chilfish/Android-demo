@@ -13,6 +13,7 @@ import top.chilfish.chatapp.entity.Message;
 
 public class JsonParser {
   public List<Message> Messages(String json, String curUid) throws Exception {
+
     ObjectMapper objectMapper = new ObjectMapper();
     JsonNode rootNode = objectMapper.readTree(json);
     List<Message> messages = new ArrayList<>();
