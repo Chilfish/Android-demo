@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LoginInput">
+        <attr name="hintText" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="colorSurface">
+        <attr name="colorSurface" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="UserInfo">
+        <attr name="hint" format="string" />
+        <attr name="value" format="string" />
+    </declare-styleable>
+</resources>

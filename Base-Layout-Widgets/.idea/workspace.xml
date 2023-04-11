@@ -14,21 +14,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64385b1e-1c92-4c36-975d-469909dac4f0" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/assets/messages.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/helper/JsonParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/MessageAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/adapter/MessageAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/entity/ChatItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/entity/ChatItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/entity/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/ChatMainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/ChatMainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/ChatFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/ChatFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/placeholder/Chatters.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/placeholder/Chatters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/placeholder/Messages.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/ui/fragments/placeholder/Messages.java" afterDir="false" />
-    </list>
+    <list default="true" id="64385b1e-1c92-4c36-975d-469909dac4f0" name="变更" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

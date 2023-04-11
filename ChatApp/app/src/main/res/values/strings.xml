@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Chat App</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
+    <string name="default_string">Default String</string>
+    <string name="default_time">Mon 12:00</string>
+
+    <string name="error_password">Error Password</string>
+
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="submit">Submit</string>
+
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
+
+    <string name="helper_name">Phone number, email or name</string>
+
+    <string name="sex_male">Male</string>
+    <string name="sex_female">Female</string>
+
+    <string name="avatar">avatar</string>
+    <string name="name">Chilfish</string>
+    <string name="email">chill4fish@gmail.com</string>
+    <string name="phone">+84 123 456 789</string>
+    <string name="address">Hanoi, Vietnam</string>
+
+    <string name="title">Title</string>
+    <string name="subtitle">Subtitle</string>
+    <string name="description">Description</string>
+    <string name="price">Price</string>
+
+    <string name="mes_hint">Type a message</string>
+
+    <!--  btn navigation bar  -->
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="favorites">Favorites</string>
+    <string name="notifications">Notifications</string>
+    <string name="profile">Profile</string>
+    <string name="search">Search</string>
+    <string name="chat">Chat</string>
+</resources>
