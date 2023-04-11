@@ -44,10 +44,12 @@ public class ChatFragment extends Fragment {
     adapter.setOnItemClickListener(chatItem -> {
       String name = chatItem.getName();
       String uid = chatItem.getUid();
+      String avatar = chatItem.getAvatar();
 
       Bundle bundle = new Bundle();
       bundle.putString("chatName", name);
       bundle.putString("chatUid", uid);
+      bundle.putString("chatAvatar", avatar);
 
       Intent intent = new Intent(getActivity(), ChatMainActivity.class);
       intent.putExtras(bundle);

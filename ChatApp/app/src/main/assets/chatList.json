@@ -1,0 +1,30 @@
+[
+  {
+    "uid": "1",
+    "name": "Chilfish",
+    "avatar": "https://p.chilfish.top/avatar.webp",
+    "lastMessage": "ha haha",
+    "lastTime": "1681142224000"
+  },
+  {
+    "uid": "2",
+    "name": "Alice",
+    "avatar": "https://p.chilfish.top/avatar0.webp",
+    "lastMessage": "I'm doing great!",
+    "lastTime": "1645123456789"
+  },
+  {
+    "uid": "3",
+    "name": "Bob",
+    "avatar": "https://p.chilfish.top/avatar1.webp",
+    "lastMessage": "Can we meet tomorrow?",
+    "lastTime": "1645123456790"
+  },
+  {
+    "uid": "4",
+    "name": "Charlie",
+    "avatar": "https://p.chilfish.top/avatar2.webp",
+    "lastMessage": "What's your favorite color?",
+    "lastTime": "1645123456791"
+  }
+]

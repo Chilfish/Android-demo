@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.entity.ChatItem;
 
@@ -50,7 +52,10 @@ public class ChatListAdapter extends BaseAdapter<ChatItem> {
 
     @Override
     public void bindData(ChatItem data) {
-      mAvatar.setImageResource(data.getAvatarId());
+      Glide.with(itemView.getContext())
+          .load(data.getAvatar())
+          .into(mAvatar);
+
       mName.setText(data.getName());
       mContent.setText(data.getContent());
       mTime.setText(data.getTime());

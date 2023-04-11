@@ -2,12 +2,14 @@ package top.chilfish.chatapp.helper;
 
 import android.util.Log;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import top.chilfish.chatapp.entity.ChatItem;
 import top.chilfish.chatapp.entity.Message;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonParser {
   public List<Message> Messages(String json, String curUid) throws Exception {
@@ -24,7 +26,27 @@ public class JsonParser {
       Message message = new Message(content, receiverId, senderId, timestamp, senderId.equals(curUid));
       messages.add(message);
     }
-    Log.d("UID", curUid);
+    Log.d("UID", curUid + " " + messages.get(0).getSenderId());
     return messages;
+  }
+
+  public List<ChatItem> ChatList(String json) throws Exception {
+    ObjectMapper objectMapper = new ObjectMapper();
+    JsonNode rootNode = objectMapper.readTree(json);
+    List<ChatItem> chatItems = new ArrayList<>();
+
+    for (JsonNode node : rootNode) {
+      String uid = node.get("uid").asText();
+      String name = node.get("name").asText();
+      String avatar = node.get("avatar").asText();
+      String lastMessage = node.get("lastMessage").asText();
+
+      String lastMessageTime = TimeFormat.toString(Long.parseLong(node.get("lastTime").asText()),
+          "MM-dd");
+
+      ChatItem chatItem = new ChatItem(uid, name, avatar, lastMessage, lastMessageTime);
+      chatItems.add(chatItem);
+    }
+    return chatItems;
   }
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.entity.Message;
+import top.chilfish.chatapp.helper.TimeFormat;
 
 import java.util.List;
 
@@ -54,16 +55,16 @@ public class MessageAdapter extends BaseAdapter<Message> {
     @Override
     public void bindData(Message data) {
       mContent.setText(data.getContent());
-      mTime.setText(data.getShotTime());
-      mTimeBubble.setText(data.getLongTime());
+      mTime.setText(TimeFormat.toString(data.getTime(), "HH:mm"));
+      mTimeBubble.setText(TimeFormat.toString(data.getTime(), "MM-dd HH:mm"));
 
       LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mBody.getLayoutParams();
       if (data.isRight()) {
         layoutParams.gravity = Gravity.END;
-        mBody.setBackgroundResource(R.drawable.message_l);
+        mBody.setBackgroundResource(R.drawable.message_r);
       } else {
         layoutParams.gravity = Gravity.START;
-        mBody.setBackgroundResource(R.drawable.message_r);
+        mBody.setBackgroundResource(R.drawable.message_l);
       }
 
       // 时间泡泡：第一条消息要加、否则与上一条消息的时间间隔大于5分钟才加

@@ -6,14 +6,14 @@ public class ChatItem {
   private String mContent;
   private String mTime;
 
-  private int mAvatarId;
+  private String mAvatar;
 
-  public ChatItem(String uid, String name, String content, String time, int avatarId) {
+  public ChatItem(String uid, String name, String avatar, String content, String time) {
     mUid = uid;
     mName = name;
     mContent = content;
     mTime = time;
-    mAvatarId = avatarId;
+    mAvatar = avatar;
   }
 
   public String getUid() {
@@ -48,11 +48,11 @@ public class ChatItem {
     mTime = time;
   }
 
-  public int getAvatarId() {
-    return mAvatarId;
+  public String getAvatar() {
+    return mAvatar;
   }
 
-  public void setAvatarId(int avatarId) {
-    mAvatarId = avatarId;
+  public void setAvatarId(String avatar) {
+    mAvatar = avatar;
   }
 }

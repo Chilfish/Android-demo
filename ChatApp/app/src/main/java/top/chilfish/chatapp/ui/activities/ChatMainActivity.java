@@ -51,19 +51,21 @@ public class ChatMainActivity extends AppCompatActivity {
     }
 
     String name = chatBundle.getString("chatName");
+    String chatAvatar = chatBundle.getString("chatAvatar");
+
     chatUid = chatBundle.getString("chatUid");
     curUid = getSharedPreferences("UserData", Context.MODE_PRIVATE)
         .getString("uid", "");
 
-    generateMessage();
+    fetchMessage();
     mMessageFragment = new MessageFragment(MESSAGE_ITEMS);
     mSendButton = findViewById(R.id.btn_send);
     mMessageInput = findViewById(R.id.chat_input);
 
-    replaceFragment(new ChatBarFragment(name), R.id.frag_chat_bar);
+    replaceFragment(new ChatBarFragment(name, chatAvatar), R.id.frag_chat_bar);
     replaceFragment(mMessageFragment, R.id.frag_messages);
 
-    //  TODO: add send message to server and local storage
+    //  TODO: add send message to server and local storage, meanwhile update the chat list
     mSendButton.setOnClickListener(v -> {
       String message = mMessageInput.getText().toString();
       if (message.isEmpty()) {
@@ -83,8 +85,8 @@ public class ChatMainActivity extends AppCompatActivity {
 
   // get messages from json file
   // TODO: get json messages from server, and check the local storage if it is new
-  void generateMessage() {
-    JsonParser messageParser = new JsonParser();
+  void fetchMessage() {
+    JsonParser jsonParser = new JsonParser();
     StringBuilder json = new StringBuilder();
 
     try (InputStream inputStream = getApplicationContext().getAssets().open("messages.json")) {
@@ -94,7 +96,7 @@ public class ChatMainActivity extends AppCompatActivity {
         json.append(line);
       }
 
-      MESSAGE_ITEMS = messageParser.Messages(json.toString(), curUid)
+      MESSAGE_ITEMS = jsonParser.Messages(json.toString(), curUid)
           .stream()
           .filter(this::messagesFilter)
           .collect(Collectors.toList());
