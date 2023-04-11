@@ -15,12 +15,20 @@ public class Message {
 
   private final boolean isRight; // 是否是左边的消息
 
-  public Message(String content, String receiverId, String senderId, String time, boolean isLeft) {
+  public Message(String content, String receiverId, String senderId, String time, boolean isRight) {
     mContent = content;
     mReceiverId = receiverId;
     mSenderId = senderId;
     mTime = time;
-    this.isRight = isLeft;
+    this.isRight = isRight;
+  }
+
+  public Message(String content, String receiverId, String senderId) {
+    mContent = content;
+    mReceiverId = receiverId;
+    mSenderId = senderId;
+    mTime = String.valueOf(System.currentTimeMillis());
+    this.isRight = true;
   }
 
   public String getContent() {

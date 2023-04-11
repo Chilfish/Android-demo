@@ -13,11 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chill.learn.R;
 import com.chill.learn.adapter.MessageAdapter;
 import com.chill.learn.entity.Message;
+import com.chill.learn.ui.activities.ChatMainActivity;
 
 import java.util.List;
 
-public class MessageFragment extends Fragment {
+public class MessageFragment extends Fragment implements ChatMainActivity.SendMessage {
   private List<Message> mMessages;
+  private RecyclerView recyclerView;
+  private MessageAdapter adapter;
 
   public MessageFragment(List<Message> data) {
     mMessages = data;
@@ -35,10 +38,19 @@ public class MessageFragment extends Fragment {
 
     Context context = view.getContext();
 
-    RecyclerView recyclerView = (RecyclerView) view;
+    recyclerView = (RecyclerView) view;
     recyclerView.setLayoutManager(new LinearLayoutManager(context));
-    var adapter = new MessageAdapter(mMessages);
+    adapter = new MessageAdapter(mMessages);
+
     recyclerView.setAdapter(adapter);
+    recyclerView.scrollToPosition(mMessages.size() - 1);
     return view;
+  }
+
+  @Override
+  public void onSendMessage(Message message) {
+    mMessages.add(message);
+    adapter.notifyItemChanged(mMessages.size() - 1);
+    recyclerView.scrollToPosition(mMessages.size() - 1);
   }
 }

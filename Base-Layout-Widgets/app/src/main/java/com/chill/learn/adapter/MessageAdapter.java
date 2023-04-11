@@ -19,6 +19,8 @@ import java.util.List;
 public class MessageAdapter extends BaseAdapter<Message> {
   private List<Message> mMessageList;
 
+  private static final String TAG = "MessageAdapter";
+
   public MessageAdapter(List<Message> dataList) {
     super(dataList);
     mMessageList = dataList;
@@ -58,10 +60,10 @@ public class MessageAdapter extends BaseAdapter<Message> {
 
       LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mBody.getLayoutParams();
       if (data.isRight()) {
-        layoutParams.gravity = Gravity.START;
+        layoutParams.gravity = Gravity.END;
         mBody.setBackgroundResource(R.drawable.message_l);
       } else {
-        layoutParams.gravity = Gravity.END;
+        layoutParams.gravity = Gravity.START;
         mBody.setBackgroundResource(R.drawable.message_r);
       }
 
@@ -72,8 +74,11 @@ public class MessageAdapter extends BaseAdapter<Message> {
       }
       int index = mMessageList.indexOf(data);
       Message lastMessage = mMessageList.get(index - 1);
-      if (data.getTime() - lastMessage.getTime() > 5 * 60 * 1000) {
+
+      if (data.getTime() - lastMessage.getTime() >= 5 * 60 * 1000) {
         mTimeBubble.setVisibility(View.VISIBLE);
+      } else {
+        mTimeBubble.setVisibility(View.GONE);
       }
     }
   }

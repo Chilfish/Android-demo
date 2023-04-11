@@ -63,7 +63,6 @@ public class IntentActivity extends LifeCycleActivity {
       }
       return true;
     });
-    replaceFragment(new TextFragment("Home"), id);
   }
 
   private void replaceFragment(Fragment fragment, int id) {

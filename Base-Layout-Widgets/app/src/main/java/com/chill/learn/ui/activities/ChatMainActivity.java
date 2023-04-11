@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.chill.learn.R;
+import com.chill.learn.entity.Message;
 import com.chill.learn.ui.fragments.ChatBarFragment;
 import com.chill.learn.ui.fragments.MessageFragment;
 import com.chill.learn.ui.fragments.placeholder.Messages;
@@ -15,6 +18,12 @@ import com.chill.learn.ui.fragments.placeholder.Messages;
 public class ChatMainActivity extends AppCompatActivity {
 
   private final String Tag = "ChatMainActivity";
+
+  private EditText mMessageInput;
+  private ImageButton mSendButton;
+
+  private MessageFragment mMessageFragment;
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +40,31 @@ public class ChatMainActivity extends AppCompatActivity {
 
     String name = chatBundle.getString("chatName");
 
+    mMessageFragment = new MessageFragment(Messages.MESSAGE_ITEMS);
+    mSendButton = findViewById(R.id.btn_send);
+    mMessageInput = findViewById(R.id.chat_input);
+
     replaceFragment(new ChatBarFragment(name), R.id.frag_chat_bar);
-    replaceFragment(new MessageFragment(Messages.MESSAGE_ITEMS), R.id.frag_messages);
+    replaceFragment(mMessageFragment, R.id.frag_messages);
+
+    mSendButton.setOnClickListener(v -> {
+      String message = mMessageInput.getText().toString();
+      if (message.isEmpty()) {
+        return;
+      }
+      Message newMessage = new Message(message, "1", "2");
+      mMessageFragment.onSendMessage(newMessage);
+      mMessageInput.setText("");
+    });
   }
 
   private void replaceFragment(Fragment fragment, int id) {
     getSupportFragmentManager().beginTransaction()
         .replace(id, fragment)
         .commit();
+  }
+
+  public interface SendMessage {
+    void onSendMessage(Message message);
   }
 }
