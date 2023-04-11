@@ -11,6 +11,10 @@ public class Chatters {
 
   private static final int COUNT = 10;
 
+  private static final String[] UID = {
+      "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"
+  };
+
   private static final String[] NAMES = {
       "John", "Jane", "Jack", "Jill", "Jenny", "Jen", "Jenifer", "Jeniffer", "Jeniffer", "Jeniffer"
   };
@@ -27,7 +31,7 @@ public class Chatters {
 
   static {
     for (int i = 0; i < COUNT; i++) {
-      CHAT_ITEMS.add(new ChatItem(NAMES[i], MESSAGES[i], TIME[i], AVATAR));
+      CHAT_ITEMS.add(new ChatItem(UID[i], NAMES[i], MESSAGES[i], TIME[i], AVATAR));
     }
   }
 

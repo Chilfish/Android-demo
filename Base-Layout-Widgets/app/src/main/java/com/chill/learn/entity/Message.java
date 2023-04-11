@@ -92,7 +92,7 @@ public class Message {
         ", mReceiverId='" + mReceiverId + '\'' +
         ", mSenderId='" + mSenderId + '\'' +
         ", mTime=" + mTime +
-        ", isLeft=" + isRight +
+        ", isRight=" + isRight +
         '}';
   }
 

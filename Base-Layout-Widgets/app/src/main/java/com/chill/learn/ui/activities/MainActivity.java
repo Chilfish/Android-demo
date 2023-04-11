@@ -2,6 +2,7 @@ package com.chill.learn.ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -48,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
     });
 
     activitiesView.setAdapter(adapter);
-
     checkNet();
   }
 

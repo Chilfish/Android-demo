@@ -1,17 +1,27 @@
 package com.chill.learn.entity;
 
 public class ChatItem {
+  private String mUid;
   private String mName;
   private String mContent;
   private String mTime;
 
   private int mAvatarId;
 
-  public ChatItem(String name, String content, String time, int avatarId) {
+  public ChatItem(String uid, String name, String content, String time, int avatarId) {
+    mUid = uid;
     mName = name;
     mContent = content;
     mTime = time;
     mAvatarId = avatarId;
+  }
+
+  public String getUid() {
+    return mUid;
+  }
+
+  public void setUid(String uid) {
+    mUid = uid;
   }
 
   public String getName() {
