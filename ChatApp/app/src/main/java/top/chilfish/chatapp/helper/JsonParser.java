@@ -12,7 +12,9 @@ import top.chilfish.chatapp.entity.ChatItem;
 import top.chilfish.chatapp.entity.Message;
 
 public class JsonParser {
-  public List<Message> Messages(String json, String curUid) throws Exception {
+  private static final String TAG = "JsonParser";
+
+  public static List<Message> Messages(String json, String curUid) throws Exception {
 
     ObjectMapper objectMapper = new ObjectMapper();
     JsonNode rootNode = objectMapper.readTree(json);
@@ -27,11 +29,12 @@ public class JsonParser {
       Message message = new Message(content, receiverId, senderId, timestamp, senderId.equals(curUid));
       messages.add(message);
     }
-    Log.d("UID", curUid + " " + messages.get(0).getSenderId());
+    Log.d(TAG, curUid + " " + messages.get(0).getSenderId());
+    Log.d(TAG, messages.size() + "");
     return messages;
   }
 
-  public List<ChatItem> ChatList(String json) throws Exception {
+  public static List<ChatItem> ChatList(String json) throws Exception {
     ObjectMapper objectMapper = new ObjectMapper();
     JsonNode rootNode = objectMapper.readTree(json);
     List<ChatItem> chatItems = new ArrayList<>();

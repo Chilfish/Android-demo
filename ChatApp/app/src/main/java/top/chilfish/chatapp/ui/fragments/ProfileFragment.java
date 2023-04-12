@@ -38,25 +38,20 @@ public class ProfileFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_profile, container, false);
     Context context = view.getContext();
 
+    bindData(view);
     return view;
   }
 
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-    bindData(view.getContext());
-  }
-
   @SuppressLint("SetTextI18n")
-  private void bindData(Context context) {
-    ImageView avatar = (ImageView) requireView().findViewById(R.id.profile_avatar);
-    TextView name = (TextView) requireView().findViewById(R.id.profile_name);
-    TextView uid = (TextView) requireView().findViewById(R.id.profile_uid);
-    TextView email = (TextView) requireView().findViewById(R.id.profile_email);
-    TextView bio = (TextView) requireView().findViewById(R.id.profile_bio);
+  private void bindData(View view) {
+    ImageView avatar = view.findViewById(R.id.profile_avatar);
+    TextView name = view.findViewById(R.id.profile_name);
+    TextView uid = view.findViewById(R.id.profile_uid);
+    TextView email = view.findViewById(R.id.profile_email);
+    TextView bio = view.findViewById(R.id.profile_bio);
 
     try {
-      Glide.with(context)
+      Glide.with(view.getContext())
           .load(mProfile.getAvatar())
           .into(avatar);
 

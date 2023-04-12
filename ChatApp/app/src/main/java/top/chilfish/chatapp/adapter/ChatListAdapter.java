@@ -52,13 +52,17 @@ public class ChatListAdapter extends BaseAdapter<ChatItem> {
 
     @Override
     public void bindData(ChatItem data) {
-      Glide.with(itemView.getContext())
-          .load(data.getAvatar())
-          .into(mAvatar);
+      try {
+        Glide.with(itemView.getContext())
+            .load(data.getAvatar())
+            .into(mAvatar);
 
-      mName.setText(data.getName());
-      mContent.setText(data.getContent());
-      mTime.setText(data.getTime());
+        mName.setText(data.getName());
+        mContent.setText(data.getContent());
+        mTime.setText(data.getTime());
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
   }
 }

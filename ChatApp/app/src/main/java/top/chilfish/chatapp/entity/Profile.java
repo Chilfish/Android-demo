@@ -1,5 +1,7 @@
 package top.chilfish.chatapp.entity;
 
+import static top.chilfish.chatapp.Main.AppCONTEXT;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -26,6 +28,8 @@ public class Profile {
     this.avatar = avatar;
     this.email = email;
     this.bio = bio;
+
+    save();
   }
 
   public String getUid() {
@@ -81,9 +85,9 @@ public class Profile {
   }
 
   // save profile to shared preference
-  public void save(Context context) {
-    SharedPreferences sharedPreferences = context.getSharedPreferences("profile", Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = sharedPreferences.edit();
+  public void save() {
+    SharedPreferences SP = AppCONTEXT.getSharedPreferences("profile", Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = SP.edit();
     editor.putString("uid", uid);
     editor.putString("name", name);
     editor.putString("avatar", avatar);
@@ -93,14 +97,13 @@ public class Profile {
   }
 
   // get profile from shared preference
-  public static Profile load(Context context) {
-    SharedPreferences sharedPreferences = context.getSharedPreferences("profile", Context.MODE_PRIVATE);
-    String uid = sharedPreferences.getString("uid", "0");
-    String name = sharedPreferences.getString("name", "default");
-    String avatar = sharedPreferences.getString("avatar", "https://p.chilfish.top/avatar.webp");
-    String email = sharedPreferences.getString("email", "default@chilfish.top");
-    String bio = sharedPreferences.getString("bio", "default bio");
+  public static Profile load() {
+    SharedPreferences SP = AppCONTEXT.getSharedPreferences("profile", Context.MODE_PRIVATE);
+    String uid = SP.getString("uid", "0");
+    String name = SP.getString("name", "default");
+    String avatar = SP.getString("avatar", "https://p.chilfish.top/avatar.webp");
+    String email = SP.getString("email", "default@chilfish.top");
+    String bio = SP.getString("bio", "default bio");
     return new Profile(uid, name, avatar, email, bio);
   }
-
 }

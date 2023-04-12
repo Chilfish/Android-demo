@@ -1,5 +1,7 @@
 package top.chilfish.chatapp.ui.activities;
 
+import static top.chilfish.chatapp.Main.AppCONTEXT;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,22 +11,20 @@ import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.entity.Message;
 import top.chilfish.chatapp.helper.JsonParser;
+import top.chilfish.chatapp.helper.LoadFile;
 import top.chilfish.chatapp.ui.fragments.ChatBarFragment;
 import top.chilfish.chatapp.ui.fragments.MessageFragment;
 
 public class ChatMainActivity extends BaseActivity {
 
   private final String Tag = "ChatMainActivity";
-  private static List<Message> MESSAGE_ITEMS;
+  private List<Message> messageList;
 
   private EditText mMessageInput;
   private ImageButton mSendButton;
@@ -52,11 +52,13 @@ public class ChatMainActivity extends BaseActivity {
     String chatAvatar = chatBundle.getString("chatAvatar");
 
     chatUid = chatBundle.getString("chatUid");
-    curUid = getSharedPreferences("UserData", Context.MODE_PRIVATE)
+    curUid = AppCONTEXT.getSharedPreferences("profile", Context.MODE_PRIVATE)
         .getString("uid", "");
 
+    Log.d(Tag, "chatUid: " + chatUid + ", curUid: " + curUid);
+
     fetchMessage();
-    mMessageFragment = new MessageFragment(MESSAGE_ITEMS);
+    mMessageFragment = new MessageFragment(messageList);
     mSendButton = findViewById(R.id.btn_send);
     mMessageInput = findViewById(R.id.chat_input);
 
@@ -84,21 +86,13 @@ public class ChatMainActivity extends BaseActivity {
   // get messages from json file
   // TODO: get json messages from server, and check the local storage if it is new
   void fetchMessage() {
-    JsonParser jsonParser = new JsonParser();
-    StringBuilder json = new StringBuilder();
+    try {
+      String json = LoadFile.assetsString("messages.json");
 
-    try (InputStream inputStream = getApplicationContext().getAssets().open("messages.json")) {
-      BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-      String line;
-      while ((line = reader.readLine()) != null) {
-        json.append(line);
-      }
-
-      MESSAGE_ITEMS = jsonParser.Messages(json.toString(), curUid)
+      messageList = JsonParser.Messages(json, curUid)
           .stream()
           .filter(this::messagesFilter)
           .collect(Collectors.toList());
-
     } catch (Exception e) {
       e.printStackTrace();
     }

@@ -12,13 +12,13 @@ public class BaseActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    // 设置状态栏透明
-    getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-    // 设置内容主体的顶部内边距
-    int statusBarHeight = getStatusBarHeight();
-    View mainContent = findViewById(android.R.id.content);
-    mainContent.setPadding(0, statusBarHeight, 0, 0);
+//    // 设置状态栏透明
+//    getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//
+//    // 设置内容主体的顶部内边距
+//    int statusBarHeight = getStatusBarHeight();
+//    View mainContent = findViewById(android.R.id.content);
+//    mainContent.setPadding(0, statusBarHeight, 0, 0);
   }
 
   // 获取状态栏高度

@@ -49,14 +49,17 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder Holder, int position) {
     ViewHolder holder = (ViewHolder) Holder;
-    T chatItem = getItem(position);
-    holder.bindData(chatItem);
-
-    holder.itemView.setOnClickListener(v -> {
-      if (mOnItemClickListener != null) {
-        mOnItemClickListener.onItemClick(chatItem);
-      }
-    });
+    try {
+      T item = getItem(position);
+      holder.bindData(item);
+      holder.itemView.setOnClickListener(v -> {
+        if (mOnItemClickListener != null) {
+          mOnItemClickListener.onItemClick(item);
+        }
+      });
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder {

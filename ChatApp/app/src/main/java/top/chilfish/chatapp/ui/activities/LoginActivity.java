@@ -1,6 +1,11 @@
 package top.chilfish.chatapp.ui.activities;
 
+import static top.chilfish.chatapp.Main.AppCONTEXT;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,7 +42,6 @@ public class LoginActivity extends BaseActivity {
     loginButton.setOnClickListener(this::loginCheck);
     registerBtn.setOnClickListener(this::loginCheck);
 
-    fetchProfile();
   }
 
   // TODO: more case on validating password
@@ -53,6 +57,11 @@ public class LoginActivity extends BaseActivity {
     if (!isPasswordValid(password)) {
       return;
     }
+    fetchProfile();
+
+    SharedPreferences SP = AppCONTEXT.getSharedPreferences("Status", Context.MODE_PRIVATE);
+    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = SP.edit();
+    editor.putBoolean("isLogin", true);
 
     Bundle data = new Bundle();
     data.putString("username", username);
@@ -72,6 +81,5 @@ public class LoginActivity extends BaseActivity {
     String uid = "0";
 
     mProfile = new Profile(uid, name, avatar, email, bio);
-    mProfile.save(this);
   }
 }

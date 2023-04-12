@@ -8,5 +8,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="GridLayoutManager"
-    tools:context=".ui.fragments.ChatFragment"
+    tools:context=".ui.fragments.ChatListFragment"
     tools:listitem="@layout/item_chat_list" />

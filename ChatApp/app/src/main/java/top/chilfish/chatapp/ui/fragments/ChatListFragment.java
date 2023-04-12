@@ -18,10 +18,10 @@ import top.chilfish.chatapp.adapter.ChatListAdapter;
 import top.chilfish.chatapp.entity.ChatItem;
 import top.chilfish.chatapp.ui.activities.ChatMainActivity;
 
-public class ChatFragment extends Fragment {
+public class ChatListFragment extends Fragment {
   private List<ChatItem> mChats;
 
-  public ChatFragment(List<ChatItem> data) {
+  public ChatListFragment(List<ChatItem> data) {
     mChats = data;
   }
 
