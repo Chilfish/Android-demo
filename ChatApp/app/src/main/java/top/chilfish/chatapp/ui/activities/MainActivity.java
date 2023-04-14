@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
@@ -29,8 +28,6 @@ public class MainActivity extends BaseActivity {
 
   private List<ChatItem> chatItems;
 
-  private Profile profile;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -38,31 +35,27 @@ public class MainActivity extends BaseActivity {
     checkLogin();
 
     fetchChatList();
-    profile = Profile.load();
-    Log.d(TAG, "onCreate: Created!");
 
     chatListFragment = new ChatListFragment(chatItems);
-    profileFragment = new ProfileFragment(profile);
+    profileFragment = new ProfileFragment(Profile.load());
     navChange();
   }
 
   @SuppressLint("NonConstantResourceId")
-  void navChange() {
+  private void navChange() {
     BottomNavigationView BtnNav = findViewById(R.id.nav_btn);
 
     final int id = R.id.frag_main;
 
     BtnNav.setOnItemSelectedListener(item -> {
-      switch (item.getItemId()) {
-        case R.id.nav_chat:
-          replaceFragment(chatListFragment, id);
-          break;
-        case R.id.nav_contract:
-          break;
-        case R.id.nav_profile:
-          replaceFragment(profileFragment, id);
-          break;
+      final int itemId = item.getItemId();
+
+      if (itemId == R.id.nav_chat) {
+        replaceFragment(chatListFragment, id);
+      } else if (itemId == R.id.nav_profile) {
+        replaceFragment(profileFragment, id);
       }
+
       return true;
     });
 
