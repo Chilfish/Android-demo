@@ -1,15 +1,9 @@
 package top.chilfish.chatapp.ui.activities;
 
-import static top.chilfish.chatapp.Main.AppCONTEXT;
-
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -17,6 +11,7 @@ import java.util.Objects;
 
 import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.entity.Profile;
+import top.chilfish.chatapp.helper.LoginCheck;
 
 public class LoginActivity extends BaseActivity {
   private Button loginButton;
@@ -26,6 +21,9 @@ public class LoginActivity extends BaseActivity {
   private TextInputEditText usernameInput;
 
   private Profile mProfile;
+
+  private String username;
+  private String password;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -38,38 +36,77 @@ public class LoginActivity extends BaseActivity {
     passwordInput = findViewById(R.id.password_input);
     usernameInput = findViewById(R.id.username_input);
 
-
-    loginButton.setOnClickListener(this::loginCheck);
-    registerBtn.setOnClickListener(this::loginCheck);
-
+    fetchProfile();
+    loginCheck();
   }
+
 
   // TODO: more case on validating password
-  private boolean isPasswordValid(String password) {
-    return password != null && password.length() >= 8;
+  private boolean isPasswordInvalid() {
+    password = Objects.requireNonNull(passwordInput.getText()).toString();
+    username = Objects.requireNonNull(usernameInput.getText()).toString();
+
+    if (password.length() < 8) {
+      Toast.makeText(this, "Password needs len 8", Toast.LENGTH_SHORT).show();
+      return true;
+    }
+    return false;
   }
 
-  void loginCheck(View view) {
-    String password = Objects.requireNonNull(passwordInput.getText()).toString();
-    String username = Objects.requireNonNull(usernameInput.getText()).toString();
-    Log.d("Login", String.format("%s, %s", username, password));
-
-    if (!isPasswordValid(password)) {
-      return;
+  private void loginCheck() {
+    if (LoginCheck.isLoggedIn(this)) {
+      jump();
     }
-    fetchProfile();
 
-    SharedPreferences SP = AppCONTEXT.getSharedPreferences("Status", Context.MODE_PRIVATE);
-    @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = SP.edit();
-    editor.putBoolean("isLogin", true);
+    loginButton.setOnClickListener(view -> {
+      if (isPasswordInvalid()) {
+        return;
+      }
+      if (!LoginCheck.isPasswordVide(this, username, password)) {
+        Toast toast = Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT);
+        toast.show();
+        return;
+      }
 
+      Toast toast = Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT);
+      toast.show();
+      jump();
+    });
+
+    registerBtn.setOnClickListener(view -> {
+      if (isPasswordInvalid()) {
+        return;
+      }
+
+      if (LoginCheck.isUserExists(username)) {
+        Toast.makeText(this, "User is existed", Toast.LENGTH_SHORT).show();
+        return;
+      }
+
+      LoginCheck.saveUser(this, username, password);
+
+      Toast toast = Toast.makeText(this, "Register Successful", Toast.LENGTH_SHORT);
+      toast.show();
+      jump();
+    });
+  }
+
+  private void jump() {
     Bundle data = new Bundle();
     data.putString("username", username);
     data.putString("password", password);
-
     Intent intent = new Intent(this, MainActivity.class);
     intent.putExtras(data);
     startActivity(intent);
+    finish();
+  }
+
+  @Override
+  public void onBackPressed() {
+    Intent intent = new Intent(Intent.ACTION_MAIN);
+    intent.addCategory(Intent.CATEGORY_HOME);
+    startActivity(intent);
+    finish();
   }
 
   //  TODO: fetch profile from server

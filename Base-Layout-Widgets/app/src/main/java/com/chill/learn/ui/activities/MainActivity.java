@@ -1,13 +1,8 @@
 package com.chill.learn.ui.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chill.learn.R;
 import com.chill.learn.adapter.ActivitiesAdapter;
 import com.chill.learn.entity.ActivityCard;
+import com.chill.learn.helper.LoginCheck;
 
 import java.util.List;
 
@@ -25,6 +21,13 @@ public class MainActivity extends AppCompatActivity {
   private ActivityCard[] activityCards;
 
   void init() {
+    if (!LoginCheck.isLoggedIn(this)) {
+      Intent intent = new Intent(this, LoginActivity.class);
+      startActivity(intent);
+      finish();
+      return;
+    }
+
     activityCards = new ActivityCard[]{
         new ActivityCard("MD3", MD3Activity.class),
         new ActivityCard("Product List", ProductListActivity.class),
@@ -49,14 +52,17 @@ public class MainActivity extends AppCompatActivity {
     });
 
     activitiesView.setAdapter(adapter);
-    checkNet();
+    logOut();
   }
 
-  // check if network is Tethering or hotspot, and API level is 30 or higher
-  void checkNet() {
-    ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-    NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+  private void logOut() {
+    Button logoutBtn = findViewById(R.id.btn_logout);
+    logoutBtn.setOnClickListener(v -> {
+      LoginCheck.logout(this);
 
-    Log.d("Network", networkInfo.getExtraInfo());
+      Intent intent = new Intent(this, LoginActivity.class);
+      startActivity(intent);
+      finish();
+    });
   }
 }

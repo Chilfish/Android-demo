@@ -1,9 +1,10 @@
 package top.chilfish.chatapp.ui.activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.RelativeLayout;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
@@ -16,6 +17,7 @@ import top.chilfish.chatapp.entity.ChatItem;
 import top.chilfish.chatapp.entity.Profile;
 import top.chilfish.chatapp.helper.JsonParser;
 import top.chilfish.chatapp.helper.LoadFile;
+import top.chilfish.chatapp.helper.LoginCheck;
 import top.chilfish.chatapp.ui.fragments.ChatListFragment;
 import top.chilfish.chatapp.ui.fragments.ProfileFragment;
 
@@ -33,10 +35,11 @@ public class MainActivity extends BaseActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    checkLogin();
 
     fetchChatList();
     profile = Profile.load();
-    Log.d(TAG, "onCreate: " + profile);
+    Log.d(TAG, "onCreate: Created!");
 
     chatListFragment = new ChatListFragment(chatItems);
     profileFragment = new ProfileFragment(profile);
@@ -51,12 +54,12 @@ public class MainActivity extends BaseActivity {
 
     BtnNav.setOnItemSelectedListener(item -> {
       switch (item.getItemId()) {
-        case R.id.nav_home:
-          break;
         case R.id.nav_chat:
           replaceFragment(chatListFragment, id);
           break;
-        case R.id.nav_settings:
+        case R.id.nav_contract:
+          break;
+        case R.id.nav_profile:
           replaceFragment(profileFragment, id);
           break;
       }
@@ -79,5 +82,21 @@ public class MainActivity extends BaseActivity {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  private void checkLogin() {
+    if (!LoginCheck.isLoggedIn(this)) {
+      Intent intent = new Intent(this, LoginActivity.class);
+      startActivity(intent);
+      finish();
+    }
+  }
+
+  @Override
+  public void onBackPressed() {
+    Intent intent = new Intent(Intent.ACTION_MAIN);
+    intent.addCategory(Intent.CATEGORY_HOME);
+    startActivity(intent);
+    finish();
   }
 }

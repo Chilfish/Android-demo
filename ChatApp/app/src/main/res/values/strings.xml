@@ -17,6 +17,8 @@
 
     <string name="btn_login">Login</string>
     <string name="btn_register">Register</string>
+    <string name="logout">Log Out</string>
+
     <string name="back">Back</string>
 
     <string name="helper_name">Phone number, email or name</string>

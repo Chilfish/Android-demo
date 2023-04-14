@@ -14,6 +14,8 @@
 
     <color name="secondary">#5079E6</color>
 
+    <color name="error">#D22F2E</color>
+
     <color name="white_bg">#FFFBFE</color>
     <color name="white_bg_1">#F5F5F5</color>
     <color name="mes_r">#E1FBE5</color>

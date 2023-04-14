@@ -2,21 +2,23 @@ package top.chilfish.chatapp.ui.fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 
 import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.entity.Profile;
+import top.chilfish.chatapp.helper.LoginCheck;
+import top.chilfish.chatapp.ui.activities.LoginActivity;
 
 public class ProfileFragment extends Fragment {
   private final String TAG = "ProfileFragment";
@@ -39,6 +41,8 @@ public class ProfileFragment extends Fragment {
     Context context = view.getContext();
 
     bindData(view);
+    logoutEvent(view);
+
     return view;
   }
 
@@ -62,5 +66,16 @@ public class ProfileFragment extends Fragment {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  private void logoutEvent(View view) {
+    Button logoutBtn = view.findViewById(R.id.profile_logout);
+    logoutBtn.setOnClickListener(v -> {
+      LoginCheck.logout(view.getContext());
+
+      Intent intent = new Intent(requireContext(), LoginActivity.class);
+      startActivity(intent);
+      requireActivity().finish();
+    });
   }
 }

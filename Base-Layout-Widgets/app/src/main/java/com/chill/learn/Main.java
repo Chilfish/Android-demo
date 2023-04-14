@@ -1,24 +1,36 @@
 package com.chill.learn;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 
+import com.chill.learn.helper.LoginCheck;
 import com.chill.learn.ui.activities.LoginActivity;
+import com.chill.learn.ui.activities.MainActivity;
 
 public class Main extends Application {
+  @SuppressLint("StaticFieldLeak")
+  public static Context AppCONTEXT;
+
   @Override
   public void onCreate() {
     super.onCreate();
-    SharedPreferences sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = sharedPreferences.edit();
-    editor.putString("uid", "0");
-    editor.apply();
 
+    var pref = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+    AppCONTEXT = getApplicationContext();
 
-    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+    SharedPreferences.Editor editor = pref.edit();
+    editor.putString("uid", "0").apply();
+
+    Intent intent;
+    if (LoginCheck.isLoggedIn(this)) {
+      intent = new Intent(this, MainActivity.class);
+    } else {
+      intent = new Intent(this, LoginActivity.class);
+    }
+
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     startActivity(intent);
   }
