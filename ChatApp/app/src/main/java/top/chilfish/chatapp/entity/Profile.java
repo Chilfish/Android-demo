@@ -7,7 +7,9 @@ import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
-public class Profile {
+import java.io.Serializable;
+
+public class Profile implements Serializable {
   private String uid;
   private String name;
   private String avatar;
@@ -28,8 +30,6 @@ public class Profile {
     this.avatar = avatar;
     this.email = email;
     this.bio = bio;
-
-    save();
   }
 
   public String getUid() {

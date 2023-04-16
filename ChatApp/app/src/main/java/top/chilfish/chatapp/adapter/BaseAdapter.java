@@ -44,7 +44,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<RecyclerView.V
     return super.getItemViewType(position);
   }
 
-  protected abstract int getLayoutId();
+  protected abstract int getItemLayout();
 
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder Holder, int position) {

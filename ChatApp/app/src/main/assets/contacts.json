@@ -1,0 +1,30 @@
+[
+  {
+    "uid": "1",
+    "name": "Chilfish",
+    "avatar": "https://p.chilfish.top/avatar.webp",
+    "bio": "ha haha",
+    "email": "Chilfish@chilfish.top"
+  },
+  {
+    "uid": "2",
+    "name": "Alice",
+    "avatar": "https://p.chilfish.top/avatar0.webp",
+    "bio": "I'm doing great!",
+    "email": "Alice@chilfish.top"
+  },
+  {
+    "uid": "3",
+    "name": "Bob",
+    "avatar": "https://p.chilfish.top/avatar1.webp",
+    "bio": "Can we meet tomorrow?",
+    "email": "Bob@chilfish.top"
+  },
+  {
+    "uid": "4",
+    "name": "Charlie",
+    "avatar": "https://p.chilfish.top/avatar2.webp",
+    "bio": "What's your favorite color?",
+    "email": "Charlie@chilfish.top"
+  }
+]

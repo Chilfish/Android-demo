@@ -27,14 +27,14 @@ public class MessageAdapter extends BaseAdapter<Message> {
   }
 
   @Override
-  protected int getLayoutId() {
-    return R.layout.item_message_list;
+  protected int getItemLayout() {
+    return R.layout.item_message;
   }
 
   @NonNull
   @Override
   public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext()).inflate(getLayoutId(), parent, false);
+    View view = LayoutInflater.from(parent.getContext()).inflate(getItemLayout(), parent, false);
     return new MessageViewHolder(view);
   }
 

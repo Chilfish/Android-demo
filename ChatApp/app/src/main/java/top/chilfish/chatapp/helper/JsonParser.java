@@ -10,6 +10,7 @@ import java.util.List;
 
 import top.chilfish.chatapp.entity.ChatItem;
 import top.chilfish.chatapp.entity.Message;
+import top.chilfish.chatapp.entity.Profile;
 
 public class JsonParser {
   private static final String TAG = "JsonParser";
@@ -52,5 +53,23 @@ public class JsonParser {
       chatItems.add(chatItem);
     }
     return chatItems;
+  }
+
+  public static List<Profile> Profile(String json) throws Exception {
+    ObjectMapper objectMapper = new ObjectMapper();
+    JsonNode rootNode = objectMapper.readTree(json);
+    List<Profile> profiles = new ArrayList<>();
+
+    for (JsonNode node : rootNode) {
+      String uid = node.get("uid").asText();
+      String name = node.get("name").asText();
+      String avatar = node.get("avatar").asText();
+      String email = node.get("email").asText();
+      String bio = node.get("bio").asText();
+
+      Profile profile = new Profile(uid, name, avatar, email, bio);
+      profiles.add(profile);
+    }
+    return profiles;
   }
 }

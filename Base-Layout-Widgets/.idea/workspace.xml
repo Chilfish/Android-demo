@@ -15,12 +15,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64385b1e-1c92-4c36-975d-469909dac4f0" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +27,7 @@
       <option value="module" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[wk8tofsgw45xem4p]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Organic_Fish\.android\avd\Pixel_6_API_30.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -117,45 +112,45 @@
     <option name="showVisibilityIcons" value="true" />
     <option name="sortByType" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "AnalyzeApkAction.lastApkPath": "D:/Download/广东校园 _2.3.2068.19121001.apk",
-    "ApkExportedModule": "Learn.app",
-    "ExportApk.ApkPathForLearn.app": "D:\\Chilling\\Android\\Android-demo\\Base-Layout-Widgets\\app",
-    "ResourceManagerPrefKey.ResourceType": "DRAWABLE",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Weiget/app/src/main/java/com/chill/learn/views/LoginInput.java_SELECTED": "LoginInput",
-    "android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Weiget/app/src/main/java/com/chill/learn/views/MyCustomView.java_SELECTED": "MyCustomView",
-    "android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/java/com/chill/learn/MyTextView.java_SELECTED": "MyTextView",
-    "android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/java/com/chill/learn/MyView.java_SELECTED": "UserInfo",
-    "android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/java/com/chill/learn/ui/views/UserInfo.java_SELECTED": "UserInfo",
-    "android-custom-viewD:/Chilling/Android/Learn/app/src/main/java/com/chill/learn/LoginInput.java_SELECTED": "LoginInput",
-    "android-custom-viewD:/Chilling/Android/Learn/app/src/main/java/com/chill/learn/views/MyCustomView.java_SELECTED": "MyCustomView",
-    "android-custom-viewD:/Coding/Gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED": "RecyclerView",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable": "ALL",
-    "last_directory_selection": "D:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/res/drawable",
-    "last_opened_file_path": "D:/Chilling/Android/Android-demo/ChatApp",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "show.do.not.copy.http.proxy.settings.to.gradle": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;AnalyzeApkAction.lastApkPath&quot;: &quot;D:/Download/广东校园 _2.3.2068.19121001.apk&quot;,
+    &quot;ApkExportedModule&quot;: &quot;Learn.app&quot;,
+    &quot;ExportApk.ApkPathForLearn.app&quot;: &quot;D:\\Chilling\\Android\\Android-demo\\Base-Layout-Widgets\\app&quot;,
+    &quot;ResourceManagerPrefKey.ResourceType&quot;: &quot;DRAWABLE&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Weiget/app/src/main/java/com/chill/learn/views/LoginInput.java_SELECTED&quot;: &quot;LoginInput&quot;,
+    &quot;android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Weiget/app/src/main/java/com/chill/learn/views/MyCustomView.java_SELECTED&quot;: &quot;MyCustomView&quot;,
+    &quot;android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/java/com/chill/learn/MyTextView.java_SELECTED&quot;: &quot;MyTextView&quot;,
+    &quot;android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/java/com/chill/learn/MyView.java_SELECTED&quot;: &quot;UserInfo&quot;,
+    &quot;android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/java/com/chill/learn/ui/views/UserInfo.java_SELECTED&quot;: &quot;UserInfo&quot;,
+    &quot;android-custom-viewD:/Chilling/Android/Learn/app/src/main/java/com/chill/learn/LoginInput.java_SELECTED&quot;: &quot;LoginInput&quot;,
+    &quot;android-custom-viewD:/Chilling/Android/Learn/app/src/main/java/com/chill/learn/views/MyCustomView.java_SELECTED&quot;: &quot;MyCustomView&quot;,
+    &quot;android-custom-viewD:/Coding/Gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED&quot;: &quot;RecyclerView&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable&quot;: &quot;ALL&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/res/drawable&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Chilling/Android/Android-demo/ChatApp&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;show.do.not.copy.http.proxy.settings.to.gradle&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "ExportApk.BuildVariants": [
-      "release"
+  &quot;keyToStringList&quot;: {
+    &quot;ExportApk.BuildVariants&quot;: [
+      &quot;release&quot;
     ],
-    "android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Weiget/app/src/main/java/com/chill/learn/views/LoginInput.java_LoginInput_DIMENSIONS": [
-      "1080",
-      "1920"
+    &quot;android-custom-viewD:/Chilling/Android/Android-demo/Base-Layout-Weiget/app/src/main/java/com/chill/learn/views/LoginInput.java_LoginInput_DIMENSIONS&quot;: [
+      &quot;1080&quot;,
+      &quot;1920&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="PsdUISettings">
     <option name="MODULE_TAB" value="Properties" />
     <option name="LAST_EDITED_SIGNING_CONFIG" value="debug" />

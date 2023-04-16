@@ -3,7 +3,6 @@ package top.chilfish.chatapp.ui.activities;
 import static top.chilfish.chatapp.Main.AppCONTEXT;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -16,6 +15,7 @@ import java.util.stream.Collectors;
 
 import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.entity.Message;
+import top.chilfish.chatapp.entity.Profile;
 import top.chilfish.chatapp.helper.JsonParser;
 import top.chilfish.chatapp.helper.LoadFile;
 import top.chilfish.chatapp.ui.fragments.ChatBarFragment;
@@ -34,24 +34,31 @@ public class ChatMainActivity extends BaseActivity {
   private String curUid;
   private String chatUid;
 
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_chat_main);
 
-    Intent intent = getIntent();
-    Bundle chatBundle = intent.getExtras();
+    Bundle chatBundle = getIntent().getExtras();
 
     if (chatBundle == null) {
       Log.d(Tag, "Bundle is null");
       return;
     }
+    Profile profile;
 
-    String name = chatBundle.getString("chatName");
-    String chatAvatar = chatBundle.getString("chatAvatar");
+    try {
+      profile = (Profile) chatBundle.getSerializable("profile");
+      Log.d(Tag, "profile: " + profile.toString());
+    } catch (Exception e) {
+      e.printStackTrace();
+      return;
+    }
 
-    chatUid = chatBundle.getString("chatUid");
+    String chatName = profile.getName();
+    String chatAvatar = profile.getAvatar();
+    chatUid = profile.getUid();
+
     curUid = AppCONTEXT.getSharedPreferences("profile", Context.MODE_PRIVATE)
         .getString("uid", "");
 
@@ -62,7 +69,7 @@ public class ChatMainActivity extends BaseActivity {
     mSendButton = findViewById(R.id.btn_send);
     mMessageInput = findViewById(R.id.chat_input);
 
-    replaceFragment(new ChatBarFragment(name, chatAvatar), R.id.frag_chat_bar);
+    replaceFragment(new ChatBarFragment(chatName, chatAvatar), R.id.frag_chat_bar);
     replaceFragment(mMessageFragment, R.id.frag_messages);
 
     //  TODO: add send message to server and local storage, meanwhile update the chat list

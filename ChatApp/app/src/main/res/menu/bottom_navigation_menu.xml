@@ -8,7 +8,7 @@
         android:title="@string/chat" />
 
     <item
-        android:id="@+id/nav_contract"
+        android:id="@+id/nav_contact"
         android:enabled="true"
         android:icon="@drawable/contact"
         android:title="@string/friends" />

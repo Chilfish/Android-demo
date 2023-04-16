@@ -118,5 +118,6 @@ public class LoginActivity extends BaseActivity {
     String uid = "0";
 
     mProfile = new Profile(uid, name, avatar, email, bio);
+    mProfile.save();
   }
 }

@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.entity.Profile;
 import top.chilfish.chatapp.helper.LoginCheck;
+import top.chilfish.chatapp.ui.activities.ChatMainActivity;
 import top.chilfish.chatapp.ui.activities.LoginActivity;
 
 public class ProfileFragment extends Fragment {
@@ -25,8 +26,18 @@ public class ProfileFragment extends Fragment {
 
   private Profile mProfile;
 
+  private boolean isContact;
+
+  private Button logoutBtn;
+  private Button sendMsgBtn;
+
   public ProfileFragment(Profile profile) {
     mProfile = profile;
+  }
+
+  public ProfileFragment(Profile profile, boolean isContact) {
+    mProfile = profile;
+    this.isContact = isContact;
   }
 
   @Override
@@ -41,8 +52,11 @@ public class ProfileFragment extends Fragment {
     Context context = view.getContext();
 
     bindData(view);
-    logoutEvent(view);
-
+    if (!isContact) {
+      logoutEvent(view);
+    } else {
+      sendMessageEvent(view);
+    }
     return view;
   }
 
@@ -53,6 +67,9 @@ public class ProfileFragment extends Fragment {
     TextView uid = view.findViewById(R.id.profile_uid);
     TextView email = view.findViewById(R.id.profile_email);
     TextView bio = view.findViewById(R.id.profile_bio);
+
+    logoutBtn = view.findViewById(R.id.profile_logout);
+    sendMsgBtn = view.findViewById(R.id.profile_send_message);
 
     try {
       Glide.with(view.getContext())
@@ -69,11 +86,28 @@ public class ProfileFragment extends Fragment {
   }
 
   private void logoutEvent(View view) {
-    Button logoutBtn = view.findViewById(R.id.profile_logout);
+    logoutBtn.setVisibility(View.VISIBLE);
+    sendMsgBtn.setVisibility(View.GONE);
+
     logoutBtn.setOnClickListener(v -> {
       LoginCheck.logout(view.getContext());
 
-      Intent intent = new Intent(requireContext(), LoginActivity.class);
+      Intent intent = new Intent(view.getContext(), LoginActivity.class);
+      startActivity(intent);
+      requireActivity().finish();
+    });
+  }
+
+  private void sendMessageEvent(View view) {
+    sendMsgBtn.setVisibility(View.VISIBLE);
+    logoutBtn.setVisibility(View.GONE);
+
+    sendMsgBtn.setOnClickListener(v -> {
+      Bundle bundle = new Bundle();
+      bundle.putSerializable("profile", mProfile);
+
+      Intent intent = new Intent(view.getContext(), ChatMainActivity.class);
+      intent.putExtras(bundle);
       startActivity(intent);
       requireActivity().finish();
     });

@@ -18,6 +18,7 @@ import top.chilfish.chatapp.helper.JsonParser;
 import top.chilfish.chatapp.helper.LoadFile;
 import top.chilfish.chatapp.helper.LoginCheck;
 import top.chilfish.chatapp.ui.fragments.ChatListFragment;
+import top.chilfish.chatapp.ui.fragments.ContactFragment;
 import top.chilfish.chatapp.ui.fragments.ProfileFragment;
 
 public class MainActivity extends BaseActivity {
@@ -26,7 +27,11 @@ public class MainActivity extends BaseActivity {
 
   private ProfileFragment profileFragment;
 
+  private ContactFragment contactFragment;
+
   private List<ChatItem> chatItems;
+
+  private List<Profile> contacts;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +40,14 @@ public class MainActivity extends BaseActivity {
     checkLogin();
 
     fetchChatList();
+    fetchContacts();
+
+    Log.d(TAG, "onCreate: " + chatItems.size() + " " + contacts.size());
 
     chatListFragment = new ChatListFragment(chatItems);
     profileFragment = new ProfileFragment(Profile.load());
+    contactFragment = new ContactFragment(contacts);
+
     navChange();
   }
 
@@ -54,6 +64,8 @@ public class MainActivity extends BaseActivity {
         replaceFragment(chatListFragment, id);
       } else if (itemId == R.id.nav_profile) {
         replaceFragment(profileFragment, id);
+      } else if (itemId == R.id.nav_contact) {
+        replaceFragment(contactFragment, id);
       }
 
       return true;
@@ -72,6 +84,15 @@ public class MainActivity extends BaseActivity {
     try {
       String json = LoadFile.assetsString("chatList.json");
       chatItems = JsonParser.ChatList(json);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void fetchContacts() {
+    try {
+      String json = LoadFile.assetsString("contacts.json");
+      contacts = JsonParser.Profile(json);
     } catch (Exception e) {
       e.printStackTrace();
     }
