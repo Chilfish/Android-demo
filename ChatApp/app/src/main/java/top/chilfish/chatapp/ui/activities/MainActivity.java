@@ -3,7 +3,6 @@ package top.chilfish.chatapp.ui.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.fragment.app.Fragment;
 
@@ -40,9 +39,7 @@ public class MainActivity extends BaseActivity {
     checkLogin();
 
     fetchChatList();
-    fetchContacts();
-
-    Log.d(TAG, "onCreate: " + chatItems.size() + " " + contacts.size());
+    getContacts();
 
     chatListFragment = new ChatListFragment(chatItems);
     profileFragment = new ProfileFragment(Profile.load());
@@ -89,7 +86,7 @@ public class MainActivity extends BaseActivity {
     }
   }
 
-  private void fetchContacts() {
+  private void getContacts() {
     try {
       String json = LoadFile.assetsString("contacts.json");
       contacts = JsonParser.Profile(json);

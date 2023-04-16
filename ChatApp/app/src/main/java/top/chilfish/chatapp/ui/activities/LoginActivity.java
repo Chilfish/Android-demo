@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.lifecycle.ViewModel;
+
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
@@ -13,7 +15,7 @@ import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.entity.Profile;
 import top.chilfish.chatapp.helper.LoginCheck;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity{
   private Button loginButton;
   private Button registerBtn;
 
@@ -92,11 +94,7 @@ public class LoginActivity extends BaseActivity {
   }
 
   private void jump() {
-    Bundle data = new Bundle();
-    data.putString("username", username);
-    data.putString("password", password);
     Intent intent = new Intent(this, MainActivity.class);
-    intent.putExtras(data);
     startActivity(intent);
     finish();
   }
@@ -118,6 +116,8 @@ public class LoginActivity extends BaseActivity {
     String uid = "0";
 
     mProfile = new Profile(uid, name, avatar, email, bio);
-    mProfile.save();
+    mProfile.save2SP();
   }
+
+
 }

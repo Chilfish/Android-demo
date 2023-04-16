@@ -41,14 +41,9 @@ public class ChatListFragment extends Fragment {
     var adapter = new ChatListAdapter(mChats);
 
     adapter.setOnItemClickListener(chatItem -> {
-      String name = chatItem.getName();
-      String uid = chatItem.getUid();
-      String avatar = chatItem.getAvatar();
-
       Bundle bundle = new Bundle();
-      bundle.putString("chatName", name);
-      bundle.putString("chatUid", uid);
-      bundle.putString("chatAvatar", avatar);
+
+      bundle.putSerializable("profile", chatItem.getProfile());
 
       Intent intent = new Intent(getActivity(), ChatMainActivity.class);
       intent.putExtras(bundle);

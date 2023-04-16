@@ -1,35 +1,15 @@
 package top.chilfish.chatapp.entity;
 
 public class ChatItem {
-  private String mUid;
-  private String mName;
   private String mContent;
   private String mTime;
 
-  private String mAvatar;
+  private Profile mProfile;
 
-  public ChatItem(String uid, String name, String avatar, String content, String time) {
-    mUid = uid;
-    mName = name;
+  public ChatItem(Profile profile, String content, String time) {
     mContent = content;
     mTime = time;
-    mAvatar = avatar;
-  }
-
-  public String getUid() {
-    return mUid;
-  }
-
-  public void setUid(String uid) {
-    mUid = uid;
-  }
-
-  public String getName() {
-    return mName;
-  }
-
-  public void setName(String name) {
-    mName = name;
+    mProfile = profile;
   }
 
   public String getContent() {
@@ -48,11 +28,8 @@ public class ChatItem {
     mTime = time;
   }
 
-  public String getAvatar() {
-    return mAvatar;
+  public Profile getProfile() {
+    return mProfile;
   }
 
-  public void setAvatarId(String avatar) {
-    mAvatar = avatar;
-  }
 }

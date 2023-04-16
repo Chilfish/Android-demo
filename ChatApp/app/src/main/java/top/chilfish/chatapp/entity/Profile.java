@@ -8,6 +8,11 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import top.chilfish.chatapp.helper.FetchData;
+import top.chilfish.chatapp.helper.JsonParser;
 
 public class Profile implements Serializable {
   private String uid;
@@ -85,7 +90,7 @@ public class Profile implements Serializable {
   }
 
   // save profile to shared preference
-  public void save() {
+  public void save2SP() {
     SharedPreferences SP = AppCONTEXT.getSharedPreferences("profile", Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = SP.edit();
     editor.putString("uid", uid);
@@ -105,5 +110,17 @@ public class Profile implements Serializable {
     String email = SP.getString("email", "default@chilfish.top");
     String bio = SP.getString("bio", "default bio");
     return new Profile(uid, name, avatar, email, bio);
+  }
+
+  public static List<Profile> fetchAll() {
+    final String url = "https://p.chilfish.top/assets/contacts.json";
+
+    try {
+      String json = FetchData.simple(url);
+      return JsonParser.Profile(json);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }

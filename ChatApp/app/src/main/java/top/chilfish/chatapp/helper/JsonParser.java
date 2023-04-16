@@ -44,12 +44,16 @@ public class JsonParser {
       String uid = node.get("uid").asText();
       String name = node.get("name").asText();
       String avatar = node.get("avatar").asText();
-      String lastMessage = node.get("lastMessage").asText();
+      String email = node.get("email").asText();
+      String bio = node.get("bio").asText();
 
+      Profile profile = new Profile(uid, name, avatar, email, bio);
+
+      String lastMessage = node.get("lastMessage").asText();
       String lastMessageTime = TimeFormat.toString(Long.parseLong(node.get("lastTime").asText()),
           "MM-dd");
 
-      ChatItem chatItem = new ChatItem(uid, name, avatar, lastMessage, lastMessageTime);
+      ChatItem chatItem = new ChatItem(profile, lastMessage, lastMessageTime);
       chatItems.add(chatItem);
     }
     return chatItems;

@@ -54,10 +54,10 @@ public class ChatListAdapter extends BaseAdapter<ChatItem> {
     public void bindData(ChatItem data) {
       try {
         Glide.with(itemView.getContext())
-            .load(data.getAvatar())
+            .load(data.getProfile().getAvatar())
             .into(mAvatar);
 
-        mName.setText(data.getName());
+        mName.setText(data.getProfile().getName());
         mContent.setText(data.getContent());
         mTime.setText(data.getTime());
       } catch (Exception e) {

@@ -3,6 +3,8 @@
     "uid": "1",
     "name": "Chilfish",
     "avatar": "https://p.chilfish.top/avatar.webp",
+    "bio": "ha haha",
+    "email": "Chilfish@chilfish.top",
     "lastMessage": "ha haha",
     "lastTime": "1681142224000"
   },
@@ -10,6 +12,8 @@
     "uid": "2",
     "name": "Alice",
     "avatar": "https://p.chilfish.top/avatar0.webp",
+    "bio": "I'm doing great!",
+    "email": "Alice@chilfish.top",
     "lastMessage": "I'm doing great!",
     "lastTime": "1645123456789"
   },
@@ -17,6 +21,8 @@
     "uid": "3",
     "name": "Bob",
     "avatar": "https://p.chilfish.top/avatar1.webp",
+    "bio": "Can we meet tomorrow?",
+    "email": "Bob@chilfish.top",
     "lastMessage": "Can we meet tomorrow?",
     "lastTime": "1645123456790"
   },
@@ -24,6 +30,8 @@
     "uid": "4",
     "name": "Charlie",
     "avatar": "https://p.chilfish.top/avatar2.webp",
+    "bio": "What's your favorite color?",
+    "email": "Charlie@chilfish.top",
     "lastMessage": "What's your favorite color?",
     "lastTime": "1645123456791"
   }
