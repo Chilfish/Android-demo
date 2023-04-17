@@ -1,7 +1,5 @@
 package top.chilfish.chatapp.helper;
 
-import android.util.Log;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -15,7 +13,7 @@ import top.chilfish.chatapp.entity.Profile;
 public class JsonParser {
   private static final String TAG = "JsonParser";
 
-  public static List<Message> Messages(String json, String curUid) throws Exception {
+  public static List<Message> Messages(String json) throws Exception {
 
     ObjectMapper objectMapper = new ObjectMapper();
     JsonNode rootNode = objectMapper.readTree(json);
@@ -26,12 +24,13 @@ public class JsonParser {
       String senderId = node.get("senderId").asText();
       String content = node.get("content").asText();
       String timestamp = node.get("timestamp").asText();
+      String id = node.get("id").asText();
 
-      Message message = new Message(content, receiverId, senderId, timestamp, senderId.equals(curUid));
+      Message message = new Message(content, receiverId, senderId,
+          timestamp, id, senderId.equals(Profile.load().getUid()));
       messages.add(message);
     }
-    Log.d(TAG, curUid + " " + messages.get(0).getSenderId());
-    Log.d(TAG, messages.size() + "");
+
     return messages;
   }
 

@@ -12,13 +12,12 @@ import android.widget.ImageButton;
 import androidx.fragment.app.Fragment;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.UUID;
 
 import top.chilfish.chatapp.R;
+import top.chilfish.chatapp.database.MessageDB;
 import top.chilfish.chatapp.entity.Message;
 import top.chilfish.chatapp.entity.Profile;
-import top.chilfish.chatapp.helper.JsonParser;
-import top.chilfish.chatapp.helper.LoadFile;
 import top.chilfish.chatapp.ui.fragments.ChatBarFragment;
 import top.chilfish.chatapp.ui.fragments.MessageFragment;
 
@@ -56,16 +55,12 @@ public class ChatMainActivity extends BaseActivity {
       return;
     }
 
-    String chatName = profile.getName();
-    String chatAvatar = profile.getAvatar();
     chatUid = profile.getUid();
-
     curUid = AppCONTEXT.getSharedPreferences("profile", Context.MODE_PRIVATE)
         .getString("uid", "");
 
-    Log.d(Tag, "chatUid: " + chatUid + ", curUid: " + curUid);
+    loadMessage();
 
-    fetchMessage();
     mMessageFragment = new MessageFragment(messageList);
     mSendButton = findViewById(R.id.btn_send);
     mMessageInput = findViewById(R.id.chat_input);
@@ -73,16 +68,7 @@ public class ChatMainActivity extends BaseActivity {
     replaceFragment(new ChatBarFragment(profile), R.id.frag_chat_bar);
     replaceFragment(mMessageFragment, R.id.frag_messages);
 
-    //  TODO: add send message to server and local storage, meanwhile update the chat list
-    mSendButton.setOnClickListener(v -> {
-      String message = mMessageInput.getText().toString();
-      if (message.isEmpty()) {
-        return;
-      }
-      Message newMessage = new Message(message, chatUid, curUid);
-      mMessageFragment.onSendMessage(newMessage);
-      mMessageInput.setText("");
-    });
+    sendMessage();
   }
 
   private void replaceFragment(Fragment fragment, int id) {
@@ -91,30 +77,31 @@ public class ChatMainActivity extends BaseActivity {
         .commit();
   }
 
-  // get messages from json file
-  // TODO: get json messages from server, and check the local storage if it is new
-  void fetchMessage() {
-    try {
-      String json = LoadFile.assetsString("messages.json");
-
-      messageList = JsonParser.Messages(json, curUid)
-          .stream()
-          .filter(this::messagesFilter)
-          .collect(Collectors.toList());
+  void loadMessage() {
+    try (MessageDB db = new MessageDB(this)) {
+      messageList = db.getById(chatUid);
+      Log.d(Tag, "Messages: " + messageList.size());
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  private boolean messagesFilter(Message m) {
-    return (m.getReceiverId().equals(chatUid) && m.getSenderId().equals(curUid)) ||
-        (m.getReceiverId().equals(curUid) && m.getSenderId().equals(chatUid));
+  //  TODO: add send message to server and local storage, meanwhile update the chat list
+  private void sendMessage() {
+    mSendButton.setOnClickListener(v -> {
+      String message = mMessageInput.getText().toString();
+      if (message.isEmpty()) {
+        return;
+      }
+      Message newMessage = new Message(message, chatUid, curUid, UUID.randomUUID().toString());
+      mMessageFragment.onSendMessage(newMessage);
+      mMessageInput.setText("");
+    });
   }
 
-  public interface SendMessage {
+  public interface OnSendMessage {
     void onSendMessage(Message message);
   }
-
 
   @Override
   public void onBackPressed() {

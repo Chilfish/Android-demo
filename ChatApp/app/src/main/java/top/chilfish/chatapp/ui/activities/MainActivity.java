@@ -11,7 +11,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
 
 import top.chilfish.chatapp.R;
+import top.chilfish.chatapp.database.MessageDB;
 import top.chilfish.chatapp.entity.ChatItem;
+import top.chilfish.chatapp.entity.Message;
 import top.chilfish.chatapp.entity.Profile;
 import top.chilfish.chatapp.helper.JsonParser;
 import top.chilfish.chatapp.helper.LoadFile;
@@ -39,7 +41,8 @@ public class MainActivity extends BaseActivity {
     checkLogin();
 
     fetchChatList();
-    getContacts();
+    fetchContacts();
+    fetchMessages();
 
     chatListFragment = new ChatListFragment(chatItems);
     profileFragment = new ProfileFragment(Profile.load());
@@ -86,10 +89,26 @@ public class MainActivity extends BaseActivity {
     }
   }
 
-  private void getContacts() {
+  private void fetchContacts() {
     try {
       String json = LoadFile.assetsString("contacts.json");
       contacts = JsonParser.Profile(json);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  // fetch messages then save to database
+  private void fetchMessages() {
+    try {
+      String json = LoadFile.assetsString("messages.json");
+      var messages = JsonParser.Messages(json);
+
+      MessageDB db = new MessageDB(this);
+      for (Message message : messages) {
+        db.insert(message);
+      }
+      db.close();
     } catch (Exception e) {
       e.printStackTrace();
     }

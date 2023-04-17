@@ -10,10 +10,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.Objects;
 
 import top.chilfish.chatapp.R;
+import top.chilfish.chatapp.database.MessageDB;
 import top.chilfish.chatapp.entity.Profile;
 import top.chilfish.chatapp.helper.LoginCheck;
 
-public class LoginActivity extends BaseActivity{
+public class LoginActivity extends BaseActivity {
   private Button loginButton;
   private Button registerBtn;
 
@@ -56,6 +57,7 @@ public class LoginActivity extends BaseActivity{
   private void loginCheck() {
     if (LoginCheck.isLoggedIn(this)) {
       jump();
+      return;
     }
 
     loginButton.setOnClickListener(view -> {
@@ -84,6 +86,11 @@ public class LoginActivity extends BaseActivity{
       }
 
       LoginCheck.saveUser(this, username, password);
+      try (var db = new MessageDB(this)) {
+        db.dropTable();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
 
       Toast toast = Toast.makeText(this, "Register Successful", Toast.LENGTH_SHORT);
       toast.show();
@@ -117,6 +124,5 @@ public class LoginActivity extends BaseActivity{
     mProfile = new Profile(uid, name, avatar, email, bio);
     mProfile.save2SP();
   }
-
 
 }

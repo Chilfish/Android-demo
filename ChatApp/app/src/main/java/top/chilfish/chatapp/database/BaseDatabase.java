@@ -1,4 +1,4 @@
-package top.chilfish.chatapp.helper.DB;
+package top.chilfish.chatapp.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,19 +18,4 @@ public abstract class BaseDatabase extends SQLiteOpenHelper {
   public BaseDatabase(@Nullable Context context) {
     super(context, DB_NAME, null, DB_VERSION);
   }
-
-  @Override
-  public void onCreate(SQLiteDatabase db) {
-    createTable(db);
-  }
-
-  @Override
-  public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    dropTable(db);
-    createTable(db);
-  }
-
-  public abstract void createTable(SQLiteDatabase db);
-
-  public abstract void dropTable(SQLiteDatabase db);
 }

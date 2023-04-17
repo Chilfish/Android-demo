@@ -17,7 +17,7 @@ import top.chilfish.chatapp.ui.activities.ChatMainActivity;
 
 import java.util.List;
 
-public class MessageFragment extends Fragment implements ChatMainActivity.SendMessage {
+public class MessageFragment extends Fragment implements ChatMainActivity.OnSendMessage {
   private List<Message> mMessages;
   private RecyclerView recyclerView;
   private MessageAdapter adapter;

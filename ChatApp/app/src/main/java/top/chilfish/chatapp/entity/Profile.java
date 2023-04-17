@@ -8,10 +8,9 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import top.chilfish.chatapp.helper.FetchData;
+import top.chilfish.chatapp.api.FetchData;
 import top.chilfish.chatapp.helper.JsonParser;
 
 public class Profile implements Serializable {

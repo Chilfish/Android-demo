@@ -3,114 +3,133 @@
     "receiverId": "1",
     "senderId": "0",
     "content": "Hello",
-    "timestamp": "1681142224000"
+    "timestamp": "1681142224000",
+    "id": "7f4a501a-4e4f-4f2e-bd26-8e2b7c9b9d9c"
   },
   {
     "receiverId": "0",
     "senderId": "2",
     "content": "Hello",
-    "timestamp": "1681143224000"
+    "timestamp": "1681143224000",
+    "id": "e6d7e6d8-6f2b-4f1e-8e6f-8d956a7c3b3d"
   },
   {
     "receiverId": "0",
     "senderId": "1",
     "content": "Hi there!",
-    "timestamp": "1681142224000"
+    "timestamp": "1681142224000",
+    "id": "d8b09a2a-0c75-4d0b-bc5f-2c6a9f9a7dc6"
   },
   {
     "receiverId": "2",
     "senderId": "0",
     "content": "How are you?",
-    "timestamp": "1681142824000"
+    "timestamp": "1681142824000",
+    "id": "e6e8b6d7-9c9a-46f3-8a6d-7b0f5c5f2d1e"
   },
   {
     "receiverId": "0",
     "senderId": "3",
     "content": "I'm doing well, thanks for asking.",
-    "timestamp": "1681143424000"
+    "timestamp": "1681143424000",
+    "id": "2f1aef0f-7e70-4808-8d4c-4ed9c2d1e8e4"
   },
   {
     "receiverId": "1",
     "senderId": "0",
     "content": "That's great to hear!",
-    "timestamp": "1681144024000"
+    "timestamp": "1681144024000",
+    "id": "d4a4f9c4-1e2d-4c4b-b0ab-1e3d86e3e3d3"
   },
   {
     "receiverId": "0",
     "senderId": "2",
     "content": "What have you been up to lately?",
-    "timestamp": "1681144624000"
+    "timestamp": "1681144624000",
+    "id": "e7e5c5e5-5f5c-4e5c-9f9d-5d5d5f5d5d5f"
   },
   {
     "receiverId": "3",
     "senderId": "0",
     "content": "Just keeping busy with work and family.",
-    "timestamp": "1681145224000"
+    "timestamp": "1681145224000",
+    "id": "1e7c4f4c-6f0a-4f3d-b3b0-8f9d7a9c9d68"
   },
   {
     "receiverId": "0",
     "senderId": "1",
     "content": "Sounds like you have a full schedule.",
-    "timestamp": "1681145924000"
+    "timestamp": "1681145924000",
+    "id": "0b5d9d1e-6c7f-4d3b-8f6c-c5b7f0c8f2d1"
   },
   {
     "receiverId": "0",
     "senderId": "1",
     "content": "How are you?",
-    "timestamp": "1681144224000"
+    "timestamp": "1681144224000",
+    "id": "e7f0d2c2-1f5d-4d6e-9e9c-9f7d8f1a0d7f"
   },
   {
     "receiverId": "2",
     "senderId": "0",
     "content": "I'm fine, thank you",
-    "timestamp": "1681145224000"
+    "timestamp": "1681145224000",
+    "id": "9e6e7c6d-8b3e-4e3c-ae7f-5d8d2f1c5a5b"
   },
   {
     "receiverId": "3",
     "senderId": "0",
     "content": "What are you doing?",
-    "timestamp": "1681146224000"
+    "timestamp": "1681146224000",
+    "id": "0f6d8c6b-7d2f-4d1f-9b5d-0e6d0f6c7d2f"
   },
   {
     "receiverId": "1",
     "senderId": "0",
     "content": "Just watching TV",
-    "timestamp": "1681147224000"
+    "timestamp": "1681147224000",
+    "id": "4f4e4d1d-2e1c-4b0e-8e3c-3f4d9e7f4a5d"
   },
   {
     "receiverId": "0",
     "senderId": "3",
     "content": "That sounds relaxing",
-    "timestamp": "1681148224000"
+    "timestamp": "1681148224000",
+    "id": "8c5f7d4b-9f9d-4e5f-8f0c-5d5f7d5d5c5d"
   },
   {
     "receiverId": "2",
     "senderId": "0",
     "content": "What about you?",
-    "timestamp": "1681149224000"
+    "timestamp": "1681149224000",
+    "id": "9c7b6e2c-1f0d-4c6e-a7c5-5d0f7a5f5c5b"
   },
   {
     "receiverId": "0",
     "senderId": "1",
     "content": "I'm studying for exams",
-    "timestamp": "1681150224000"
+    "timestamp": "1681150224000",
+    "id": "7e2d4e1f-6e4b-4d7c-8c3d-7d3e4c5f7e1f"
   },
   {
     "receiverId": "3",
     "senderId": "0",
     "content": "Good luck!",
-    "timestamp": "1681151224000"
+    "timestamp": "1681151224000",
+    "id": "0d8c0f7d-6b2c-4f2e-8e6f-5a5e1c5b5d5c"
   },
   {
     "receiverId": "1",
     "senderId": "0",
     "content": "Thanks!",
-    "timestamp": "1681152224000"
+    "timestamp": "1681152224000",
+    "id": "5f5d5f5d-5d5f-5d5f-5d5f-5d5f5d5d5d5f"
   },
   {
     "receiverId": "0",
     "senderId": "2",
     "content": "What are you up to?",
-    "timestamp": "1681153224000"
+    "timestamp": "1681153224000",
+    "id": "3d3d3f3d-3e3f-3d3e-3f3d-3f3d3e3d3f3e"
   }
 ]
