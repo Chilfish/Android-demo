@@ -6,10 +6,13 @@ public class ChatItem {
 
   private Profile mProfile;
 
+  private String profileJson; // 序列化 Profile
+
   public ChatItem(Profile profile, String content, String time) {
     mContent = content;
     mTime = time;
     mProfile = profile;
+    profileJson = Profile.getJson(profile);
   }
 
   public String getContent() {
@@ -32,4 +35,7 @@ public class ChatItem {
     return mProfile;
   }
 
+  public String getProfileJson() {
+    return profileJson;
+  }
 }

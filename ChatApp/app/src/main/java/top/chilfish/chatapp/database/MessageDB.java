@@ -21,7 +21,7 @@ public class MessageDB extends BaseDatabase {
   private static final String COLUMN_TIME = "time";
   private static final String COLUMN_RIGHT = "isRight";
 
-  private static final String SQL_CREATE_ENTRIES =
+  static final String CREATE_MESSAGE =
       "CREATE TABLE " + TABLE_NAME + " (" +
           COLUMN_ID + " TEXT ," +
           COLUMN_CONTENT + " TEXT," +
@@ -41,23 +41,6 @@ public class MessageDB extends BaseDatabase {
       COLUMN_TIME,
       COLUMN_RIGHT
   };
-
-  @Override
-  public void onCreate(SQLiteDatabase db) {
-    db.execSQL(SQL_CREATE_ENTRIES);
-  }
-
-  @Override
-  public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-    db.execSQL(SQL_DELETE_ENTRIES);
-    db.execSQL(SQL_CREATE_ENTRIES);
-  }
-
-  public void dropTable() {
-    SQLiteDatabase db = getWritableDatabase();
-    db.execSQL(SQL_DELETE_ENTRIES);
-    db.execSQL(SQL_CREATE_ENTRIES);
-  }
 
   public MessageDB(Context context) {
     super(context);

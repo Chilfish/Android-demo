@@ -20,7 +20,7 @@ public class ContactDB extends BaseDatabase {
   private static final String COLUMN_EMAIL = "email";
   private static final String COLUMN_BIO = "bio";
 
-  private static final String CREATE_TABLE =
+  static final String CREATE_CONTACT =
       "CREATE TABLE " + TABLE_NAME + " (" +
           COLUMN_UID + " TEXT," +
           COLUMN_NAME + " TEXT," +
@@ -42,17 +42,6 @@ public class ContactDB extends BaseDatabase {
 
   public ContactDB(@Nullable Context context) {
     super(context);
-  }
-
-  @Override
-  public void onCreate(SQLiteDatabase db) {
-    db.execSQL(CREATE_TABLE);
-  }
-
-  @Override
-  public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-    db.execSQL(SQL_DELETE_ENTRIES);
-    db.execSQL(CREATE_TABLE);
   }
 
   private ContentValues putValues(Profile profile) {

@@ -80,7 +80,6 @@ public class ChatMainActivity extends BaseActivity {
   void loadMessage() {
     try (MessageDB db = new MessageDB(this)) {
       messageList = db.getById(chatUid);
-      Log.d(Tag, "Messages: " + messageList.size());
     } catch (Exception e) {
       e.printStackTrace();
     }

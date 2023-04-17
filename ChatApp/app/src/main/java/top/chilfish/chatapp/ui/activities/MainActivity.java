@@ -2,6 +2,7 @@ package top.chilfish.chatapp.ui.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,12 +12,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.List;
 
 import top.chilfish.chatapp.R;
-import top.chilfish.chatapp.database.MessageDB;
+import top.chilfish.chatapp.api.FetchData;
+import top.chilfish.chatapp.database.ChatListDB;
+import top.chilfish.chatapp.database.ContactDB;
 import top.chilfish.chatapp.entity.ChatItem;
-import top.chilfish.chatapp.entity.Message;
 import top.chilfish.chatapp.entity.Profile;
-import top.chilfish.chatapp.helper.JsonParser;
-import top.chilfish.chatapp.helper.LoadFile;
 import top.chilfish.chatapp.helper.LoginCheck;
 import top.chilfish.chatapp.ui.fragments.ChatListFragment;
 import top.chilfish.chatapp.ui.fragments.ContactFragment;
@@ -40,9 +40,15 @@ public class MainActivity extends BaseActivity {
     setContentView(R.layout.activity_main);
     checkLogin();
 
-    fetchChatList();
-    fetchContacts();
-    fetchMessages();
+    FetchData.All();
+
+    SharedPreferences pref = getSharedPreferences("status", MODE_PRIVATE);
+    if (pref.getBoolean("isFirst", true)) {
+      FetchData.saveToDB(this);
+      pref.edit().putBoolean("isFirst", false).apply();
+    }
+
+    loadDB();
 
     chatListFragment = new ChatListFragment(chatItems);
     profileFragment = new ProfileFragment(Profile.load());
@@ -80,40 +86,6 @@ public class MainActivity extends BaseActivity {
         .commit();
   }
 
-  private void fetchChatList() {
-    try {
-      String json = LoadFile.assetsString("chatList.json");
-      chatItems = JsonParser.ChatList(json);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  private void fetchContacts() {
-    try {
-      String json = LoadFile.assetsString("contacts.json");
-      contacts = JsonParser.Profile(json);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  // fetch messages then save to database
-  private void fetchMessages() {
-    try {
-      String json = LoadFile.assetsString("messages.json");
-      var messages = JsonParser.Messages(json);
-
-      MessageDB db = new MessageDB(this);
-      for (Message message : messages) {
-        db.insert(message);
-      }
-      db.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
   private void checkLogin() {
     if (!LoginCheck.isLoggedIn(this)) {
       Intent intent = new Intent(this, LoginActivity.class);
@@ -129,5 +101,20 @@ public class MainActivity extends BaseActivity {
     intent.addCategory(Intent.CATEGORY_HOME);
     startActivity(intent);
     finish();
+  }
+
+  private void loadDB() {
+    try {
+      ChatListDB chatListDB = new ChatListDB(this);
+      chatItems = chatListDB.getAll();
+
+      ContactDB contactDB = new ContactDB(this);
+      contacts = contactDB.getAll();
+
+      chatListDB.close();
+      contactDB.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }

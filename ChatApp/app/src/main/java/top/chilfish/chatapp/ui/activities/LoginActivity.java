@@ -86,11 +86,11 @@ public class LoginActivity extends BaseActivity {
       }
 
       LoginCheck.saveUser(this, username, password);
-      try (var db = new MessageDB(this)) {
-        db.dropTable();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+//      try (var db = new MessageDB(this)) {
+//        db.dropTable();
+//      } catch (Exception e) {
+//        e.printStackTrace();
+//      }
 
       Toast toast = Toast.makeText(this, "Register Successful", Toast.LENGTH_SHORT);
       toast.show();

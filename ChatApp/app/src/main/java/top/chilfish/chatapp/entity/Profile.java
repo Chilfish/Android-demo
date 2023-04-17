@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,7 +20,6 @@ public class Profile implements Serializable {
   private String name;
   private String avatar;
   private String email;
-
   private String bio;
 
   public Profile() {
@@ -74,6 +75,14 @@ public class Profile implements Serializable {
 
   public void setBio(String bio) {
     this.bio = bio;
+  }
+
+  public static Profile getProfile(String json) {
+    return new Gson().fromJson(json, Profile.class);
+  }
+
+  public static String getJson(Profile profile) {
+    return new Gson().toJson(profile);
   }
 
   @NonNull
