@@ -94,7 +94,6 @@ public class ProfileFragment extends Fragment {
 
       Intent intent = new Intent(view.getContext(), LoginActivity.class);
       startActivity(intent);
-      requireActivity().finish();
     });
   }
 
@@ -109,7 +108,6 @@ public class ProfileFragment extends Fragment {
       Intent intent = new Intent(view.getContext(), ChatMainActivity.class);
       intent.putExtras(bundle);
       startActivity(intent);
-      requireActivity().finish();
     });
   }
 }

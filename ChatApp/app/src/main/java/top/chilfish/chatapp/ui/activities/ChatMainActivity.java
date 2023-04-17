@@ -3,6 +3,7 @@ package top.chilfish.chatapp.ui.activities;
 import static top.chilfish.chatapp.Main.AppCONTEXT;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -69,7 +70,7 @@ public class ChatMainActivity extends BaseActivity {
     mSendButton = findViewById(R.id.btn_send);
     mMessageInput = findViewById(R.id.chat_input);
 
-    replaceFragment(new ChatBarFragment(chatName, chatAvatar), R.id.frag_chat_bar);
+    replaceFragment(new ChatBarFragment(profile), R.id.frag_chat_bar);
     replaceFragment(mMessageFragment, R.id.frag_messages);
 
     //  TODO: add send message to server and local storage, meanwhile update the chat list
@@ -112,5 +113,14 @@ public class ChatMainActivity extends BaseActivity {
 
   public interface SendMessage {
     void onSendMessage(Message message);
+  }
+
+
+  @Override
+  public void onBackPressed() {
+    Intent intent = new Intent(this, MainActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    startActivity(intent);
+    finish();
   }
 }

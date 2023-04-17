@@ -1,9 +1,11 @@
 package top.chilfish.chatapp.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,19 +14,18 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 
 import top.chilfish.chatapp.R;
+import top.chilfish.chatapp.entity.Profile;
+import top.chilfish.chatapp.ui.activities.ProfileActivity;
 
 public class ChatBarFragment extends Fragment {
-  private final String username;
-  private final String avatar;
+  private final Profile profile;
 
-  public ChatBarFragment(String username, String avatar) {
-    this.username = username;
-    this.avatar = avatar;
+  public ChatBarFragment(Profile profile) {
+    this.profile = profile;
   }
 
   public ChatBarFragment() {
-    this.username = "Chat";
-    this.avatar = "https://p.chilfsih.top/avatar.webp";
+    this.profile = new Profile();
   }
 
   @Override
@@ -38,12 +39,24 @@ public class ChatBarFragment extends Fragment {
     View view = inflater.inflate(R.layout.fragment_chat_bar, container, false);
 
     TextView name = view.findViewById(R.id.chat_bar_name);
-    name.setText(username);
+    name.setText(profile.getName());
 
     ImageView avatarView = view.findViewById(R.id.chat_avatar);
     Glide.with(view.getContext())
-        .load(avatar)
+        .load(profile.getAvatar())
         .into(avatarView);
+
+    avatarView.setOnClickListener(v -> {
+      Bundle bundle = new Bundle();
+      bundle.putSerializable("profile", profile);
+
+      Intent intent = new Intent(view.getContext(), ProfileActivity.class);
+      intent.putExtras(bundle);
+      startActivity(intent);
+    });
+
+    ImageButton back = view.findViewById(R.id.btn_chat_back);
+    back.setOnClickListener(v -> requireActivity().finish());
 
     return view;
   }

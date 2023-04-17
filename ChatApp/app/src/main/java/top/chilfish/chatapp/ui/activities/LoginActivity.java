@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.lifecycle.ViewModel;
-
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Objects;
@@ -102,6 +100,7 @@ public class LoginActivity extends BaseActivity{
   @Override
   public void onBackPressed() {
     Intent intent = new Intent(Intent.ACTION_MAIN);
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     intent.addCategory(Intent.CATEGORY_HOME);
     startActivity(intent);
     finish();

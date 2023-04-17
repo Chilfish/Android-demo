@@ -6,15 +6,18 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Objects;
 
 import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.adapter.ContactAdapter;
 import top.chilfish.chatapp.entity.Profile;
 import top.chilfish.chatapp.ui.activities.ChatMainActivity;
+import top.chilfish.chatapp.ui.activities.ProfileActivity;
 
 public class ContactFragment extends Fragment {
   private List<Profile> mContactList;
@@ -38,15 +41,14 @@ public class ContactFragment extends Fragment {
     recyclerView.setLayoutManager(new LinearLayoutManager(context));
     var adapter = new ContactAdapter(mContactList);
 
-    // jump to message page
+    // jump to profile page
     adapter.setOnItemClickListener(profile -> {
       Bundle bundle = new Bundle();
       bundle.putSerializable("profile", profile);
 
-      Intent intent = new Intent(context, ChatMainActivity.class);
+      Intent intent = new Intent(getContext(), ProfileActivity.class);
       intent.putExtras(bundle);
       startActivity(intent);
-      requireActivity().finish();
     });
 
     recyclerView.setAdapter(adapter);

@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <ImageButton
-        android:id="@+id/backButton"
+        android:id="@+id/btn_chat_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -27,7 +27,7 @@
         android:layout_marginEnd="12dp"
         app:cardCornerRadius="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/backButton"
+        app:layout_constraintStart_toEndOf="@id/btn_chat_back"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
