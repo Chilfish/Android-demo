@@ -1,4 +1,4 @@
-package top.chilfish.chatapp.helper;
+package top.chilfish.chatapp.helper.DB;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;

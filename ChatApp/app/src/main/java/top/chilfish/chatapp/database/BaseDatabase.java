@@ -1,4 +1,4 @@
-package top.chilfish.chatapp.helper;
+package top.chilfish.chatapp.helper.DB;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
