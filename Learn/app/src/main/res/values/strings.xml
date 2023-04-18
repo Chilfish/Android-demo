@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Learn</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="title">Title</string>
+    <string name="send">Send</string>
+
+    <string name="lorem_ipsum">Hello World</string>
+    <string name="prompt">Prompt</string>
+    <string name="received">Received</string>
+
+    <string name="username">Username</string>
+    <string name="helper_name">Helper Name</string>
+    <string name="password">Password</string>
+    <string name="email">email</string>
+</resources>
