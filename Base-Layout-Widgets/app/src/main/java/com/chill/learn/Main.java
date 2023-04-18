@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.chill.learn.helper.LoginCheck;
-import com.chill.learn.ui.activities.LoginActivity;
 import com.chill.learn.ui.activities.MainActivity;
 
 public class Main extends Application {
@@ -24,12 +22,7 @@ public class Main extends Application {
     SharedPreferences.Editor editor = pref.edit();
     editor.putString("uid", "0").apply();
 
-    Intent intent;
-    if (LoginCheck.isLoggedIn(this)) {
-      intent = new Intent(this, MainActivity.class);
-    } else {
-      intent = new Intent(this, LoginActivity.class);
-    }
+    Intent intent = new Intent(this, MainActivity.class);
 
     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     startActivity(intent);

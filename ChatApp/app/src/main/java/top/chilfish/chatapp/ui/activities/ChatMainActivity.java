@@ -93,13 +93,13 @@ public class ChatMainActivity extends BaseActivity {
         return;
       }
       Message newMessage = new Message(message, chatUid, curUid, UUID.randomUUID().toString());
-      mMessageFragment.onSendMessage(newMessage);
+      mMessageFragment.onSendMessage(this, newMessage);
       mMessageInput.setText("");
     });
   }
 
   public interface OnSendMessage {
-    void onSendMessage(Message message);
+    void onSendMessage(Context context, Message message);
   }
 
   @Override

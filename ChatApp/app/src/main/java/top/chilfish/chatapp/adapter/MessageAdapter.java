@@ -5,12 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import top.chilfish.chatapp.R;
+import top.chilfish.chatapp.databinding.ItemMessageBinding;
 import top.chilfish.chatapp.entity.Message;
 import top.chilfish.chatapp.helper.TimeFormat;
 
@@ -26,59 +26,49 @@ public class MessageAdapter extends BaseAdapter<Message> {
     mMessageList = dataList;
   }
 
-  @Override
-  protected int getItemLayout() {
-    return R.layout.item_message;
-  }
-
   @NonNull
   @Override
   public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext()).inflate(getItemLayout(), parent, false);
-    return new MessageViewHolder(view);
+    ItemMessageBinding binding = ItemMessageBinding.inflate(LayoutInflater.from(parent.getContext()),
+        parent, false);
+    return new MessageViewHolder(binding);
   }
 
   public class MessageViewHolder extends BaseAdapter<Message>.ViewHolder {
-    TextView mTimeBubble;
-    TextView mContent;
-    TextView mTime;
-    LinearLayout mBody;
+    private ItemMessageBinding binding;
 
-    public MessageViewHolder(View itemView) {
-      super(itemView);
-      mTimeBubble = itemView.findViewById(R.id.time_bubble);
-      mContent = itemView.findViewById(R.id.mess_text);
-      mTime = itemView.findViewById(R.id.mess_time);
-      mBody = itemView.findViewById(R.id.mess_body);
+    public MessageViewHolder(ItemMessageBinding binding) {
+      super(binding.getRoot());
+      this.binding = binding;
     }
 
     @Override
     public void bindData(Message data) {
-      mContent.setText(data.getContent());
-      mTime.setText(TimeFormat.toString(data.getTime(), "HH:mm"));
-      mTimeBubble.setText(TimeFormat.toString(data.getTime(), "MM-dd HH:mm"));
+      binding.messText.setText(data.getContent());
+      binding.messTime.setText(TimeFormat.toString(data.getTime(), "HH:mm"));
+      binding.timeBubble.setText(TimeFormat.toString(data.getTime(), "MM-dd HH:mm"));
 
-      LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) mBody.getLayoutParams();
+      LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) binding.messBody.getLayoutParams();
       if (data.isRight()) {
         layoutParams.gravity = Gravity.END;
-        mBody.setBackgroundResource(R.drawable.message_r);
+        binding.messBody.setBackgroundResource(R.drawable.message_r);
       } else {
         layoutParams.gravity = Gravity.START;
-        mBody.setBackgroundResource(R.drawable.message_l);
+        binding.messBody.setBackgroundResource(R.drawable.message_l);
       }
 
       // 时间泡泡：第一条消息要加、否则与上一条消息的时间间隔大于5分钟才加
       if (mMessageList.get(0).equals(data)) {
-        mTimeBubble.setVisibility(View.VISIBLE);
+        binding.timeBubble.setVisibility(View.VISIBLE);
         return;
       }
       int index = mMessageList.indexOf(data);
       Message lastMessage = mMessageList.get(index - 1);
 
       if (data.getTime() - lastMessage.getTime() >= 5 * 60 * 1000) {
-        mTimeBubble.setVisibility(View.VISIBLE);
+        binding.timeBubble.setVisibility(View.VISIBLE);
       } else {
-        mTimeBubble.setVisibility(View.GONE);
+        binding.timeBubble.setVisibility(View.GONE);
       }
     }
   }

@@ -2,22 +2,18 @@ package top.chilfish.chatapp.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
 
 import top.chilfish.chatapp.R;
+import top.chilfish.chatapp.databinding.FragmentChatBarBinding;
 import top.chilfish.chatapp.entity.Profile;
 import top.chilfish.chatapp.ui.activities.ProfileActivity;
 
-public class ChatBarFragment extends Fragment {
+public class ChatBarFragment extends BaseFragment<FragmentChatBarBinding> {
   private final Profile profile;
 
   public ChatBarFragment(Profile profile) {
@@ -29,19 +25,16 @@ public class ChatBarFragment extends Fragment {
   }
 
   @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  protected int getLayoutId() {
+    return R.layout.fragment_chat_bar;
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_chat_bar, container, false);
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    binding.chatBarName.setText(profile.getName());
 
-    TextView name = view.findViewById(R.id.chat_bar_name);
-    name.setText(profile.getName());
-
-    ImageView avatarView = view.findViewById(R.id.chat_avatar);
+    var avatarView = binding.chatAvatar;
     Glide.with(view.getContext())
         .load(profile.getAvatar())
         .into(avatarView);
@@ -55,9 +48,7 @@ public class ChatBarFragment extends Fragment {
       startActivity(intent);
     });
 
-    ImageButton back = view.findViewById(R.id.btn_chat_back);
-    back.setOnClickListener(v -> requireActivity().finish());
-
-    return view;
+    binding.btnChatBack.setOnClickListener(v -> requireActivity().finish());
   }
+
 }

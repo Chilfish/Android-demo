@@ -2,22 +2,21 @@ package top.chilfish.chatapp.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.adapter.MessageAdapter;
+import top.chilfish.chatapp.databinding.FragmentMessageListBinding;
 import top.chilfish.chatapp.entity.Message;
 import top.chilfish.chatapp.ui.activities.ChatMainActivity;
 
-import java.util.List;
-
-public class MessageFragment extends Fragment implements ChatMainActivity.OnSendMessage {
+public class MessageFragment extends BaseFragment<FragmentMessageListBinding> implements ChatMainActivity.OnSendMessage {
   private List<Message> mMessages;
   private RecyclerView recyclerView;
   private MessageAdapter adapter;
@@ -27,14 +26,13 @@ public class MessageFragment extends Fragment implements ChatMainActivity.OnSend
   }
 
   @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  protected int getLayoutId() {
+    return R.layout.fragment_message_list;
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_message_list, container, false);
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
     Context context = view.getContext();
 
@@ -44,11 +42,11 @@ public class MessageFragment extends Fragment implements ChatMainActivity.OnSend
 
     recyclerView.setAdapter(adapter);
     recyclerView.scrollToPosition(mMessages.size() - 1);
-    return view;
+
   }
 
   @Override
-  public void onSendMessage(Message message) {
+  public void onSendMessage(Context context, Message message) {
     mMessages.add(message);
     adapter.notifyItemChanged(mMessages.size() - 1);
     recyclerView.scrollToPosition(mMessages.size() - 1);

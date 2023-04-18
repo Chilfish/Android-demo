@@ -1,10 +1,7 @@
 package top.chilfish.chatapp.adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +10,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import top.chilfish.chatapp.R;
+import top.chilfish.chatapp.databinding.ItemContactBinding;
 import top.chilfish.chatapp.entity.Profile;
 
 public class ContactAdapter extends BaseAdapter<Profile> {
@@ -24,26 +21,21 @@ public class ContactAdapter extends BaseAdapter<Profile> {
     mContactList = dataList;
   }
 
-  @Override
-  protected int getItemLayout() {
-    return R.layout.item_contact;
-  }
-
   @NonNull
   @Override
   public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext()).inflate(getItemLayout(), parent, false);
-    return new ContactViewHolder(view);
+    ItemContactBinding binding = ItemContactBinding.inflate(LayoutInflater.from(parent.getContext()),
+        parent, false);
+
+    return new ContactViewHolder(binding);
   }
 
   public class ContactViewHolder extends BaseAdapter<Profile>.ViewHolder {
-    private ImageView mAvatar;
-    private TextView mName;
+    private ItemContactBinding binding;
 
-    public ContactViewHolder(@NonNull View itemView) {
-      super(itemView);
-      mAvatar = itemView.findViewById(R.id.contact_avatar);
-      mName = itemView.findViewById(R.id.contact_name);
+    public ContactViewHolder(ItemContactBinding binding) {
+      super(binding.getRoot());
+      this.binding = binding;
     }
 
     @Override
@@ -51,9 +43,9 @@ public class ContactAdapter extends BaseAdapter<Profile> {
       try {
         Glide.with(itemView.getContext())
             .load(data.getAvatar())
-            .into(mAvatar);
+            .into(binding.contactAvatar);
 
-        mName.setText(data.getName());
+        binding.contactName.setText(data.getName());
       } catch (Exception e) {
         e.printStackTrace();
       }

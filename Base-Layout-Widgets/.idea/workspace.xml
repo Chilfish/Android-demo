@@ -16,6 +16,10 @@
   <component name="ChangeListManager">
     <list default="true" id="64385b1e-1c92-4c36-975d-469909dac4f0" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/chill/learn/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/src/main/java/top/chilfish/chatapp/entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/src/main/java/top/chilfish/chatapp/entity/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/src/main/java/top/chilfish/chatapp/ui/activities/ChatMainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/src/main/java/top/chilfish/chatapp/ui/activities/ChatMainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ChatApp/app/src/main/java/top/chilfish/chatapp/ui/fragments/MessageFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ChatApp/app/src/main/java/top/chilfish/chatapp/ui/fragments/MessageFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +31,7 @@
       <option value="module" />
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Organic_Fish\.android\avd\Pixel_6_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[wk8tofsgw45xem4p]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -134,7 +138,7 @@
     &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
     &quot;com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable&quot;: &quot;ALL&quot;,
     &quot;last_directory_selection&quot;: &quot;D:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/res/drawable&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Chilling/Android/Android-demo/ChatApp&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Chilling/Android/Android-demo/Base-Layout-Widgets&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,

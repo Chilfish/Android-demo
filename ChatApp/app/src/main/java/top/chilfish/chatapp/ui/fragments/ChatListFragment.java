@@ -3,11 +3,9 @@ package top.chilfish.chatapp.ui.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,10 +13,11 @@ import java.util.List;
 
 import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.adapter.ChatListAdapter;
+import top.chilfish.chatapp.databinding.FragmentChatListsBinding;
 import top.chilfish.chatapp.entity.ChatItem;
 import top.chilfish.chatapp.ui.activities.ChatMainActivity;
 
-public class ChatListFragment extends Fragment {
+public class ChatListFragment extends BaseFragment<FragmentChatListsBinding> {
   private List<ChatItem> mChats;
 
   public ChatListFragment(List<ChatItem> data) {
@@ -26,14 +25,13 @@ public class ChatListFragment extends Fragment {
   }
 
   @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  protected int getLayoutId() {
+    return R.layout.fragment_chat_lists;
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_chat_lists, container, false);
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
     Context context = view.getContext();
     RecyclerView recyclerView = (RecyclerView) view;
@@ -51,6 +49,5 @@ public class ChatListFragment extends Fragment {
     });
 
     recyclerView.setAdapter(adapter);
-    return view;
   }
 }

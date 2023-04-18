@@ -2,7 +2,9 @@ package top.chilfish.chatapp.entity;
 
 import androidx.annotation.NonNull;
 
-public class Message {
+import java.io.Serializable;
+
+public class Message implements Serializable {
   private String mContent; // 消息内容
   private String mReceiverId; // 接收者的id
   private String mSenderId; // 发送者的id

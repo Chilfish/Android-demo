@@ -5,21 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-import java.util.Objects;
 
 import top.chilfish.chatapp.R;
 import top.chilfish.chatapp.adapter.ContactAdapter;
+import top.chilfish.chatapp.databinding.FragmentContactsBinding;
 import top.chilfish.chatapp.entity.Profile;
-import top.chilfish.chatapp.ui.activities.ChatMainActivity;
 import top.chilfish.chatapp.ui.activities.ProfileActivity;
 
-public class ContactFragment extends Fragment {
+public class ContactFragment extends BaseFragment<FragmentContactsBinding> {
   private List<Profile> mContactList;
 
   public ContactFragment(List<Profile> contactList) {
@@ -27,14 +25,13 @@ public class ContactFragment extends Fragment {
   }
 
   @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+  protected int getLayoutId() {
+    return R.layout.fragment_contacts;
   }
 
   @Override
-  public View onCreateView(android.view.LayoutInflater inflater, android.view.ViewGroup container,
-                           Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_contacts, container, false);
+  public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
 
     Context context = view.getContext();
     RecyclerView recyclerView = (RecyclerView) view;
@@ -52,6 +49,5 @@ public class ContactFragment extends Fragment {
     });
 
     recyclerView.setAdapter(adapter);
-    return view;
   }
 }
