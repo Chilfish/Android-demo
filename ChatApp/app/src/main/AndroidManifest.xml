@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".Main"
+        android:name="top.chilfish.chatapp.Main"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -25,7 +25,7 @@
         </activity>
 
         <activity android:name=".ui.activities.LoginActivity" />
-        <activity android:name=".ui.activities.ChatMainActivity"/>
-        <activity android:name=".ui.activities.ProfileActivity"/>
+        <activity android:name=".ui.activities.ChatMainActivity" />
+        <activity android:name=".ui.activities.ProfileActivity" />
     </application>
 </manifest>
