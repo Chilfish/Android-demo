@@ -10,11 +10,9 @@ import top.chilfish.chatapp.databinding.FragmentChatListsBinding
 import top.chilfish.chatapp.entity.ChatItem
 
 class ChatListFragment(private val mChats: List<ChatItem>) :
-    BaseFragment<FragmentChatListsBinding?>() {
+    BaseFragment<FragmentChatListsBinding>() {
 
-    override val layoutId: Int
-        get() = R.layout.fragment_chat_lists
-
+    override val layoutId = R.layout.fragment_chat_lists
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

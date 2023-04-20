@@ -66,7 +66,7 @@ object LoginCheck {
     @get:Throws(IOException::class)
     private val csvFile: File
         get() {
-            val context = Main.AppCONTEXT ?: throw Exception("AppCONTEXT is null")
+            val context = Main.AppCONTEXT!!
             val file = File(context.filesDir, CSV_File_Name)
             if (!file.exists()) {
                 val status = file.createNewFile()
@@ -76,7 +76,6 @@ object LoginCheck {
             }
             return file
         }
-
 
     private val csvLines: List<String>
         get() {
@@ -98,9 +97,10 @@ object LoginCheck {
 
     @JvmStatic
     fun isUserExists(username: String): Boolean {
-        for (line in Objects.requireNonNull(
-            csvLines
-        )) {
+        if (csvLines.isEmpty()) {
+            return false
+        }
+        for (line in csvLines) {
             val user = line.split(CSV_SEPARATOR.toRegex())
                 .dropLastWhile { it.isEmpty() }
                 .toTypedArray()[0]
@@ -114,10 +114,11 @@ object LoginCheck {
 
     @JvmStatic
     fun isPasswordVide(context: Context, username: String, password: String): Boolean {
+        if (csvLines.isEmpty()) {
+            return false
+        }
         val csvRow = username + CSV_SEPARATOR + encryptPassword(password)
-        for (line in Objects.requireNonNull(
-            csvLines
-        )) {
+        for (line in csvLines) {
             val l = line.split(CSV_SEPARATOR.toRegex())
                 .dropLastWhile { it.isEmpty() }
                 .toTypedArray()

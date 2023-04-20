@@ -10,8 +10,7 @@ object JsonParser {
 
     @Throws(Exception::class)
     fun messages(json: String?): List<Message> {
-        val objectMapper = ObjectMapper()
-        val rootNode = objectMapper.readTree(json)
+        val rootNode = ObjectMapper().readTree(json)
         val messages: MutableList<Message> = ArrayList()
         for (node in rootNode) {
             val receiverId = node["receiverId"].asText()
@@ -21,7 +20,7 @@ object JsonParser {
             val id = node["id"].asText()
             val message = Message(
                 content, receiverId, senderId,
-                timestamp, id, senderId == load().uid
+                id, timestamp, senderId == load().uid
             )
             messages.add(message)
         }
@@ -30,8 +29,7 @@ object JsonParser {
 
     @Throws(Exception::class)
     fun chatList(json: String?): List<ChatItem> {
-        val objectMapper = ObjectMapper()
-        val rootNode = objectMapper.readTree(json)
+        val rootNode = ObjectMapper().readTree(json)
         val chatItems: MutableList<ChatItem> = ArrayList()
         for (node in rootNode) {
             val uid = node["uid"].asText()
@@ -40,8 +38,9 @@ object JsonParser {
             val email = node["email"].asText()
             val bio = node["bio"].asText()
             val profile = Profile(uid, name, avatar, email, bio)
+
             val lastMessage = node["lastMessage"].asText()
-            val lastMessageTime = TimeFormat.toString(
+            val lastMessageTime = TimeFormat.formatDate(
                 node["lastTime"].asText().toLong(),
                 "MM-dd"
             )
@@ -53,8 +52,7 @@ object JsonParser {
 
     @Throws(Exception::class)
     fun profile(json: String?): List<Profile> {
-        val objectMapper = ObjectMapper()
-        val rootNode = objectMapper.readTree(json)
+        val rootNode = ObjectMapper().readTree(json)
         val profiles: MutableList<Profile> = ArrayList()
         for (node in rootNode) {
             val uid = node["uid"].asText()

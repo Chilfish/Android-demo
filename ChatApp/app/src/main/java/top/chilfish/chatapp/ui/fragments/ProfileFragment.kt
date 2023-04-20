@@ -13,23 +13,13 @@ import top.chilfish.chatapp.helper.LoginCheck.logout
 import top.chilfish.chatapp.ui.activities.ChatMainActivity
 import top.chilfish.chatapp.ui.activities.LoginActivity
 
-class ProfileFragment : BaseFragment<FragmentProfileBinding?> {
-    private var mProfile: Profile
-    private var isContact = false
+class ProfileFragment(val profile: Profile, private val isContact: Boolean = false) :
+    BaseFragment<FragmentProfileBinding>() {
+
     private var logoutBtn: Button? = null
     private var sendMsgBtn: Button? = null
 
-    constructor(profile: Profile) {
-        mProfile = profile
-    }
-
-    constructor(profile: Profile, isContact: Boolean) {
-        mProfile = profile
-        this.isContact = isContact
-    }
-
-    override val layoutId: Int
-        get() = R.layout.fragment_profile
+    override val layoutId = R.layout.fragment_profile
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,25 +33,26 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding?> {
 
     @SuppressLint("SetTextI18n")
     private fun bindData(view: View) {
-        logoutBtn = binding!!.profileLogout
-        sendMsgBtn = binding!!.profileSendMessage
+        logoutBtn = binding?.profileLogout
+        sendMsgBtn = binding?.profileSendMessage
         try {
             Glide.with(view.context)
-                .load(mProfile.avatar)
+                .load(profile.avatar)
                 .into(binding!!.profileAvatar)
-            binding!!.profileName.text = mProfile.name
-            binding!!.profileUid.text = "uid: " + mProfile.uid
-            binding!!.profileEmail.text = mProfile.email
-            binding!!.profileBio.text = mProfile.bio
+
+            binding?.profileName?.text = profile.name
+            binding?.profileUid?.text = "uid: " + profile.uid
+            binding?.profileEmail?.text = profile.email
+            binding?.profileBio?.text = profile.bio
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
     private fun logoutEvent(view: View) {
-        logoutBtn!!.visibility = View.VISIBLE
-        sendMsgBtn!!.visibility = View.GONE
-        logoutBtn!!.setOnClickListener {
+        logoutBtn?.visibility = View.VISIBLE
+        sendMsgBtn?.visibility = View.GONE
+        logoutBtn?.setOnClickListener {
             logout(view.context)
             val intent = Intent(view.context, LoginActivity::class.java)
             startActivity(intent)
@@ -69,11 +60,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding?> {
     }
 
     private fun sendMessageEvent(view: View) {
-        sendMsgBtn!!.visibility = View.VISIBLE
-        logoutBtn!!.visibility = View.GONE
-        sendMsgBtn!!.setOnClickListener {
+        sendMsgBtn?.visibility = View.VISIBLE
+        logoutBtn?.visibility = View.GONE
+        sendMsgBtn?.setOnClickListener {
             val bundle = Bundle()
-            bundle.putSerializable("profile", mProfile)
+            bundle.putSerializable("profile", profile)
             val intent = Intent(view.context, ChatMainActivity::class.java)
             intent.putExtras(bundle)
             startActivity(intent)

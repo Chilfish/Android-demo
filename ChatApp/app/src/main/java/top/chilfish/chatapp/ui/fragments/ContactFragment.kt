@@ -10,9 +10,8 @@ import top.chilfish.chatapp.databinding.FragmentContactsBinding
 import top.chilfish.chatapp.entity.Profile
 
 class ContactFragment(private val mContactList: List<Profile>) :
-    BaseFragment<FragmentContactsBinding?>() {
-    override val layoutId: Int
-        get() = R.layout.fragment_contacts
+    BaseFragment<FragmentContactsBinding>() {
+    override val layoutId = R.layout.fragment_contacts
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

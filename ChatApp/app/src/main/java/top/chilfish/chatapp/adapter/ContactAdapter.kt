@@ -20,7 +20,6 @@ class ContactAdapter : BaseAdapter<Profile, ItemContactBinding>() {
         val data = items[position]
         val binding = holder.binding
         try {
-
             Glide.with(holder.itemView.context)
                 .load(data.avatar)
                 .into(binding.contactAvatar)

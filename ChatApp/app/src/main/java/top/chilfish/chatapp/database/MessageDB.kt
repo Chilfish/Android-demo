@@ -13,7 +13,7 @@ class MessageDB(context: Context?) : BaseDatabase(context) {
         values.put(COLUMN_CONTENT, message.content)
         values.put(COLUMN_RECEIVER_ID, message.receiverId)
         values.put(COLUMN_SENDER_ID, message.senderId)
-        values.put(COLUMN_TIME, message.timeString)
+        values.put(COLUMN_TIME, message.timeStamp)
         values.put(COLUMN_RIGHT, message.isRightString)
         return values
     }
@@ -25,9 +25,9 @@ class MessageDB(context: Context?) : BaseDatabase(context) {
             message.content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT))
             message.receiverId = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RECEIVER_ID))
             message.senderId = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_SENDER_ID))
-            message.setTime(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME)))
+            message.timeStamp = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TIME))
             message.id = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID))
-            message.setRight(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RIGHT)))
+            message.isRight = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_RIGHT)) == "true"
             messages.add(message)
         }
         cursor.close()

@@ -8,11 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T, VB : ViewDataBinding> :
+abstract class BaseAdapter<T, VB : ViewDataBinding>:
     RecyclerView.Adapter<BaseAdapter.ViewHolder<VB>>() {
 
-    protected var items: List<T> = listOf()
     private var onItemClickListener: ((T) -> Unit)? = null
+    protected var items: List<T> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<VB> {
         val inflater = LayoutInflater.from(parent.context)

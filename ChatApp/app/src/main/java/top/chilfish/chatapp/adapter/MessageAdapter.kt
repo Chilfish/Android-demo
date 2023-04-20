@@ -19,9 +19,9 @@ class MessageAdapter : BaseAdapter<Message, ItemMessageBinding>() {
         val binding = holder.binding
 
         binding.messText.text = data.content
-        binding.messTime.text = TimeFormat.toString(data.time, "HH:mm")
+        binding.messTime.text = TimeFormat.formatDate(data.time, "HH:mm")
         binding.timeBubble.text =
-            TimeFormat.toString(data.time, "MM-dd HH:mm")
+            TimeFormat.formatDate(data.time, "MM-dd HH:mm")
         val layoutParams = binding.messBody.layoutParams as LinearLayout.LayoutParams
         if (data.isRight) {
             layoutParams.gravity = Gravity.END
@@ -36,8 +36,8 @@ class MessageAdapter : BaseAdapter<Message, ItemMessageBinding>() {
             binding.timeBubble.visibility = View.VISIBLE
             return
         }
-        val index = items.indexOf(data)
-        val lastMessage = items[index - 1]
+
+        val lastMessage = items.last()
         if (data.time - lastMessage.time >= 5 * 60 * 1000) {
             binding.timeBubble.visibility = View.VISIBLE
         } else {

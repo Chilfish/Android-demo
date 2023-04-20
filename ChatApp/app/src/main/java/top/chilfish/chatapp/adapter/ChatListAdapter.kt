@@ -2,7 +2,6 @@ package top.chilfish.chatapp.adapter
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat.startActivity
 import com.bumptech.glide.Glide
@@ -21,7 +20,6 @@ class ChatListAdapter : BaseAdapter<ChatItem, ItemChatBinding>() {
         val data = items[position]
         val binding = holder.binding
         try {
-
             Glide.with(holder.itemView.context)
                 .load(data.profile.avatar)
                 .into(binding.chatAvatar)

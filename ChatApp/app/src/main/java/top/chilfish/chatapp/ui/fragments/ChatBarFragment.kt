@@ -9,24 +9,16 @@ import top.chilfish.chatapp.databinding.FragmentChatBarBinding
 import top.chilfish.chatapp.entity.Profile
 import top.chilfish.chatapp.ui.activities.ProfileActivity
 
-class ChatBarFragment : BaseFragment<FragmentChatBarBinding?> {
-    private val profile: Profile
+class ChatBarFragment(val profile: Profile) :
+    BaseFragment<FragmentChatBarBinding>() {
 
-    constructor(profile: Profile) {
-        this.profile = profile
-    }
-
-    constructor() {
-        profile = Profile()
-    }
-
-    override val layoutId: Int
-        get() = R.layout.fragment_chat_bar
+    override val layoutId = R.layout.fragment_chat_bar
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding!!.chatBarName.text = profile.name
-        val avatarView = binding!!.chatAvatar
+        binding?.chatBarName?.text = profile.name
+
+        val avatarView = binding?.chatAvatar!!
         Glide.with(view.context)
             .load(profile.avatar)
             .into(avatarView)
@@ -38,6 +30,6 @@ class ChatBarFragment : BaseFragment<FragmentChatBarBinding?> {
             intent.putExtras(bundle)
             startActivity(intent)
         }
-        binding!!.btnChatBack.setOnClickListener { requireActivity().finish() }
+        binding?.btnChatBack?.setOnClickListener { requireActivity().finish() }
     }
 }

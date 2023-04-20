@@ -6,10 +6,10 @@ import java.io.InputStreamReader
 
 object LoadFile {
     // load text file from assets
-    fun assetsString(fileName: String?): String {
+    fun assetsString(fileName: String): String {
         val fileString = StringBuilder()
         try {
-            Main.AppCONTEXT!!.assets.open(fileName!!).use { inputStream ->
+            Main.AppCONTEXT!!.assets.open(fileName).use { inputStream ->
                 val reader = BufferedReader(InputStreamReader(inputStream))
                 var line: String?
                 while (reader.readLine().also { line = it } != null) {

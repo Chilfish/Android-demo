@@ -22,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
     private var mProfile: Profile? = null
     private var username: String? = null
     private var password: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -38,8 +39,8 @@ class LoginActivity : AppCompatActivity() {
     // TODO: more case on validating password
     private val isPasswordInvalid: Boolean
         get() {
-            password = Objects.requireNonNull(passwordInput!!.text).toString()
-            username = Objects.requireNonNull(usernameInput!!.text).toString()
+            password = Objects.requireNonNull(passwordInput?.text).toString()
+            username = Objects.requireNonNull(usernameInput?.text).toString()
             if (password!!.length < 8) {
                 Toast.makeText(this, "Password needs len 8", Toast.LENGTH_SHORT).show()
                 return true
@@ -52,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
             jump()
             return
         }
-        loginButton!!.setOnClickListener { view: View? ->
+        loginButton?.setOnClickListener { view: View? ->
             if (isPasswordInvalid) {
                 return@setOnClickListener
             }
@@ -65,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
             toast.show()
             jump()
         }
-        registerBtn!!.setOnClickListener {
+        registerBtn?.setOnClickListener {
             if (isPasswordInvalid) {
                 return@setOnClickListener
             }
@@ -98,11 +99,10 @@ class LoginActivity : AppCompatActivity() {
     //  TODO: fetch profile from server
     private fun fetchProfile() {
         val avatar = "https://p.chilfish.top/avatar.webp"
-        val name = "Chilfish"
         val bio = "hi, I'm Chilfish."
         val email = "chill4fish@gmail.com"
         val uid = "0"
-        mProfile = Profile(uid, name, avatar, email, bio)
-        mProfile!!.save2SP()
+        mProfile = Profile(uid, username!!, avatar, email, bio)
+        mProfile?.save2SP()
     }
 }

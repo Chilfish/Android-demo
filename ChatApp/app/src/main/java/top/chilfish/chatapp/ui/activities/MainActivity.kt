@@ -53,11 +53,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_chat -> {
                     replaceFragment(chatListFragment, id)
                 }
-
                 R.id.nav_profile -> {
                     replaceFragment(profileFragment, id)
                 }
-
                 R.id.nav_contact -> {
                     replaceFragment(contactFragment, id)
                 }

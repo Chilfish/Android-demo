@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import top.chilfish.chatapp.Main
 import top.chilfish.chatapp.R
 import top.chilfish.chatapp.database.MessageDB
 import top.chilfish.chatapp.entity.Message
@@ -25,8 +24,8 @@ class ChatMainActivity : AppCompatActivity() {
     private var mSendButton: ImageButton? = null
     private var mMessageFragment: MessageFragment? = null
 
-    private var curUid: String? = null
-    private var chatUid: String? = null
+    private var curUid: String = ""
+    private var chatUid: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,23 +35,22 @@ class ChatMainActivity : AppCompatActivity() {
             Log.d(tag, "Bundle is null")
             return
         }
-        val profile: Profile?
+        val profile: Profile
         try {
-            profile = chatBundle.getSerializable("profile") as Profile?
-            Log.d(tag, "profile: " + profile.toString())
+            profile = chatBundle.getSerializable("profile") as Profile
+            Log.d(tag, "profile: $profile")
         } catch (e: Exception) {
             e.printStackTrace()
             return
         }
-        chatUid = profile!!.uid
-        curUid = Main.AppCONTEXT
-            ?.getSharedPreferences("profile", MODE_PRIVATE)
-            ?.getString("uid", "")
+        chatUid = profile.uid
+        curUid = Profile.load().uid
         loadMessage()
 
         mMessageFragment = messageList?.let { MessageFragment(it) }
         mSendButton = findViewById(R.id.btn_send)
         mMessageInput = findViewById(R.id.chat_input)
+
         replaceFragment(ChatBarFragment(profile), R.id.frag_chat_bar)
         replaceFragment(mMessageFragment!!, R.id.frag_messages)
         sendMessage()
@@ -74,26 +72,23 @@ class ChatMainActivity : AppCompatActivity() {
 
     //  TODO: add send message to server and local storage, meanwhile update the chat list
     private fun sendMessage() {
-        mSendButton!!.setOnClickListener {
-            val message = mMessageInput!!.text.toString()
+        mSendButton?.setOnClickListener {
+            val message = mMessageInput?.text.toString()
             if (message.isEmpty()) {
                 return@setOnClickListener
             }
-            val newMessage = chatUid?.let { it1 ->
-                curUid?.let { it2 ->
-                    Message(
-                        message,
-                        it1, it2, UUID.randomUUID().toString()
-                    )
-                }
-            }
-            mMessageFragment!!.onSendMessage(this, newMessage)
-            mMessageInput!!.setText("")
+            val newMessage = Message(
+                message,
+                chatUid, curUid,
+                UUID.randomUUID().toString()
+            )
+            mMessageFragment?.onSendMessage(this, newMessage)
+            mMessageInput?.setText("")
         }
     }
 
     interface OnSendMessage {
-        fun onSendMessage(context: Context?, message: Message?)
+        fun onSendMessage(context: Context, message: Message)
     }
 
     @Deprecated("Deprecated in Java")
