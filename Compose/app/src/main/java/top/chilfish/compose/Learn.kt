@@ -54,8 +54,8 @@ class Learn {
             item {
                 Count()
                 Parent()
-                HelloContent()
-                HelloScreen()
+                Remember()
+                RememberSavable()
 
                 ListComposable(myList = listOf("A", "B", "C"))
                 TextList()
@@ -147,13 +147,13 @@ class Learn {
     }
 
     @Composable
-    fun HelloContent() {
+    fun Remember() {
         Column(modifier = Modifier.padding(16.dp)) {
             val (name, setName) = remember { mutableStateOf("") }
 
             if (name.isNotEmpty()) {
                 Text(
-                    text = "Hello, $name!",
+                    text = "Remember, $name",
                     modifier = Modifier.padding(bottom = 8.dp),
                     style = MaterialTheme.typography.headlineSmall
                 )
@@ -168,7 +168,7 @@ class Learn {
     }
 
     @Composable
-    fun HelloScreen() {
+    fun RememberSavable() {
         val (name, setName) = rememberSaveable { mutableStateOf("") }
 
         HelloContent(name = name, onNameChange = { setName(it) })
@@ -178,7 +178,7 @@ class Learn {
     fun HelloContent(name: String, onNameChange: (String) -> Unit) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = "Hello, $name",
+                text = "RememberSavable, $name",
                 modifier = Modifier.padding(bottom = 8.dp),
                 style = MaterialTheme.typography.headlineSmall
             )
