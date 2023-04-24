@@ -19,8 +19,6 @@ class ChatListViewModel : ViewModel() {
 
     private fun loadChats() {
         viewModelScope.launch {
-            // 模拟异步加载聊天列表
-            delay(1000)
             _chats.value = listOf(
                 Chat(
                     id = "1",

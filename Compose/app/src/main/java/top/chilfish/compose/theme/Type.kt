@@ -1,4 +1,4 @@
-package top.chilfish.compose.ui.theme
+package top.chilfish.compose.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

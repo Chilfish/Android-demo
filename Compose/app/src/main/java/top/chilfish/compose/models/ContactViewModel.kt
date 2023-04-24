@@ -18,8 +18,6 @@ class ContactViewModel : ViewModel() {
 
     private fun loadContacts() {
         viewModelScope.launch {
-            // 模拟异步加载联系人列表
-            delay(1000)
             _contacts.value = listOf(
                 Profile(
                     name = "Contact 1",

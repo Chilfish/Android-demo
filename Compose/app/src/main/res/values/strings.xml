@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Compose</string>
+
+    <string name="login_title">Sign in/up</string>
+    <string name="login_prompt">Use your Chat Account</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
+    <string name="username_hint">your username or email</string>
+    <string name="password_hint">your password</string>
+    <string name="username_required">Username is required</string>
+    <string name="password_required">Password is required</string>
+    <string name="username_invalid">Username is invalid or not exits</string>
+    <string name="password_invalid">Password is invalid</string>
+    <string name="password_short">Your Password is to short</string>
 </resources>

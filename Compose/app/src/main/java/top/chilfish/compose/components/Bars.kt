@@ -2,6 +2,7 @@ package top.chilfish.compose.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -18,6 +19,7 @@ import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -30,9 +32,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import top.chilfish.compose.Profile
 import top.chilfish.compose.R
+import top.chilfish.compose.theme.Purple80
 
 
 @Composable
@@ -40,7 +44,7 @@ fun HomeBar() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .background(colorResource(id = R.color.Primary))
+            .background(MaterialTheme.colorScheme.primary)
             .padding(12.dp)
     ) {
         Text(
@@ -50,12 +54,13 @@ fun HomeBar() {
             modifier = Modifier
                 .weight(1f)
                 .padding(12.dp),
-            color = Color.White,
+            color = MaterialTheme.colorScheme.onPrimary
         )
         Icon(
             Icons.Rounded.Search,
             contentDescription = "Search",
-            modifier = Modifier.padding(12.dp)
+            modifier = Modifier.padding(12.dp),
+            tint = MaterialTheme.colorScheme.onPrimary
         )
     }
 }
@@ -63,7 +68,7 @@ fun HomeBar() {
 @Composable
 fun MessageBar(
     profile: Profile,
-    color: Color = colorResource(id = R.color.Primary)
+    color: Color = MaterialTheme.colorScheme.primary,
 ) {
     Row(
         modifier = Modifier
@@ -105,45 +110,41 @@ fun MessageBar(
 }
 
 @Composable
-fun MessageBarPreview() {
-    MessageBar(
-        Profile(name = "Chilfish", avatar = "https://p.chilfish.top/avatar.webp"),
-        Color.White
-    )
-}
-
-@Composable
-fun NavBar() {
+fun NavBar(navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(64.dp)
-            .background(colorResource(id = R.color.Background)),
+            .background(MaterialTheme.colorScheme.inverseOnSurface),
         verticalAlignment = Alignment.CenterVertically
     ) {
         NavBarItem(
+            { navController.navigate("home") },
             icon = R.drawable.outline_chat_24,
-            contentDescription = "Home",
+            contentDescription = "home",
         )
         NavBarItem(
+            { navController.navigate("contact") },
             icon = R.drawable.contact,
-            contentDescription = "Chat",
+            contentDescription = "contact",
         )
         NavBarItem(
+            { navController.navigate("profile/${true}") },
             icon = R.drawable.outline_person_24,
-            contentDescription = "Profile",
+            contentDescription = "profile",
         )
     }
 }
 
 @Composable
 fun RowScope.NavBarItem(
+    navigator: () -> Unit,
     @DrawableRes icon: Int,
     contentDescription: String,
-    tint: Color = colorResource(id = R.color.Primary)
+    tint: Color = MaterialTheme.colorScheme.primary
 ) {
     Button(
-        onClick = {},
+        onClick = navigator,
         Modifier
             .weight(1f)
             .width(56.dp)

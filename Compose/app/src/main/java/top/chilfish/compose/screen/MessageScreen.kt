@@ -8,11 +8,10 @@ import top.chilfish.compose.models.MessageViewModel
 
 @Composable
 fun MessageScreen(
-    profile: Profile,
     viewModel: MessageViewModel,
+    profile: Profile,
     onBack: () -> Unit
 ) {
     val message = viewModel.message.collectAsState()
     MessageBar(profile = profile)
 }
-

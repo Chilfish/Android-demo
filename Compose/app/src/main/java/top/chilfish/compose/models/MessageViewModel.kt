@@ -20,7 +20,6 @@ class MessageViewModel : ViewModel() {
 
     private fun loadMessage() {
         viewModelScope.launch {
-            delay(1000)
             _message.value = listOf(
                 Message(
                     id = "1",
