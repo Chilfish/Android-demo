@@ -34,11 +34,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavController
 import top.chilfish.compose.R
+import top.chilfish.compose.models.LoginViewModel
+import top.chilfish.compose.navigation.Routers
 
-@Preview(showBackground = true, device = "id:Chill")
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    viewModel: LoginViewModel,
+    navController: NavController
+) {
     val (username, setUsername) = rememberSaveable { mutableStateOf("") }
     val (password, setPassword) = rememberSaveable { mutableStateOf("") }
 
@@ -89,6 +94,7 @@ fun LoginScreen() {
                     text = stringResource(R.string.login),
                     onClick = {
                         if (username.isEmpty()) setUsnError(true)
+                        viewModel.onLogin(username, password, navController)
                     }
                 )
             }

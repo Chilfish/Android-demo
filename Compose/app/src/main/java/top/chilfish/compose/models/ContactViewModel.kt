@@ -2,11 +2,11 @@ package top.chilfish.compose.models
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
+import androidx.navigation.NavController
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import top.chilfish.compose.Profile
+import top.chilfish.compose.data.Profile
 
 class ContactViewModel : ViewModel() {
     private val _contacts = MutableStateFlow<List<Profile>>(emptyList())
@@ -33,5 +33,9 @@ class ContactViewModel : ViewModel() {
                 ),
             )
         }
+    }
+
+    fun onContactSelected(contactId: String, navController: NavController) {
+        println(contactId)
     }
 }

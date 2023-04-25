@@ -21,21 +21,25 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import top.chilfish.compose.Profile
 import top.chilfish.compose.R
+import top.chilfish.compose.data.Profile
 import top.chilfish.compose.models.ContactViewModel
 
 @Composable
 fun ColumnScope.ContactScreen(
     viewModel: ContactViewModel,
-    onContactSelected: (contactId: String) -> Unit
+    navController: NavController,
 ) {
     val contacts by viewModel.contacts.collectAsState()
 
     LazyColumn(Modifier.weight(1f)) {
         itemsIndexed(contacts) { _, contact ->
-            ContactItem(profile = contact, onClick = { onContactSelected(contact.uid) })
+            ContactItem(
+                profile = contact,
+                onClick = { viewModel.onContactSelected(contact.uid, navController) }
+            )
         }
     }
 }

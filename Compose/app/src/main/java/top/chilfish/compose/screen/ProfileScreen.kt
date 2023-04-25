@@ -14,6 +14,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,16 +25,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
-import top.chilfish.compose.Profile
 import top.chilfish.compose.R
+import top.chilfish.compose.data.Profile
+import top.chilfish.compose.models.ProfileViewModel
 
 @Composable
 fun ProfileScreen(
-    profile: Profile,
-    isMe: Boolean,
-    onClick: () -> Unit
+    viewModel: ProfileViewModel,
+    navController: NavController,
 ) {
+    val profile = viewModel.profile.collectAsState().value
     Column(
         Modifier
             .fillMaxSize()
@@ -43,7 +47,9 @@ fun ProfileScreen(
     ) {
         Hero(profile)
         ProfileInfo(profile)
-        ProfileBtn(isMe, onClick)
+        ProfileBtn(viewModel.isMe()) {
+            viewModel.onBtnClick(navController)
+        }
     }
 }
 
@@ -151,7 +157,7 @@ fun ProfileBtn(isMe: Boolean, onClick: () -> Unit) {
 @Composable
 fun ProfileScreenPreview() {
     ProfileScreen(
-        Profile(),
-        true,
-    ) {}
+        ProfileViewModel(),
+        rememberNavController()
+    )
 }

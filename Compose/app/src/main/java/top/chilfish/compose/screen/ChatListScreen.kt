@@ -19,34 +19,37 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import top.chilfish.compose.Chat
-import top.chilfish.compose.Profile
 import top.chilfish.compose.R
+import top.chilfish.compose.data.ChatItem
+import top.chilfish.compose.data.Profile
 import top.chilfish.compose.models.ChatListViewModel
 
 @Composable
 fun ColumnScope.ChatListScreen(
     viewModel: ChatListViewModel,
-    onChatSelected: (chatId: String) -> Unit
+    navController: NavController,
 ) {
     val chats by viewModel.chats.collectAsState()
 
     LazyColumn(Modifier.weight(1f)) {
         itemsIndexed(chats) { _, chat ->
-            ChatListItem(chat = chat, onClick = { onChatSelected(chat.id) })
+            ChatListItem(
+                chat = chat,
+                onClick = { viewModel.onChatSelected(chat.id, navController) }
+            )
         }
     }
 }
 
 
 @Composable
-fun ChatListItem(chat: Chat, onClick: () -> Unit) {
+fun ChatListItem(chat: ChatItem, onClick: () -> Unit) {
     val padding = 12.dp
     Row(
         modifier = Modifier
@@ -99,7 +102,7 @@ fun ColumnScope.ChatListPreview() {
     LazyColumn(Modifier.weight(1f)) {
         items(6) { index ->
             ChatListItem(
-                chat = Chat(
+                chat = ChatItem(
                     id = "1",
                     profile = Profile(
                         avatar = "https://p.chilfish.top/avatar.webp",
