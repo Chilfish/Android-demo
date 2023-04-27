@@ -1,7 +1,6 @@
 package top.chilfish.compose.screen
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -26,18 +24,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
 import top.chilfish.compose.R
 import top.chilfish.compose.models.LoginViewModel
-import top.chilfish.compose.navigation.Routers
 
 @Composable
 fun LoginScreen(
@@ -63,7 +56,7 @@ fun LoginScreen(
                 value = username,
                 onValueChange = {
                     setUsername(it)
-                    setUsnError(false)
+//                    setUsnError(false)
                 },
                 placeholder = stringResource(R.string.username_hint),
                 isError = isUsnError,
@@ -82,6 +75,7 @@ fun LoginScreen(
                 isError = isPwdError,
                 errorText = stringResource(R.string.password_invalid)
             )
+
             Row(
                 Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
@@ -151,53 +145,37 @@ fun LoginInput(
 ) {
     val (passwordHidden, setPasswordHidden) = rememberSaveable { mutableStateOf(true) }
 
-    ConstraintLayout(
+    Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp),
+        horizontalArrangement = Arrangement.Center
     ) {
-        val (input, hint) = createRefs()
-        Box(Modifier.constrainAs(input) {
-            top.linkTo(parent.top)
-            start.linkTo(parent.start)
-            end.linkTo(parent.end)
-        }) {
-            OutlinedTextField(
-                modifier = modifier
-                    .align(Alignment.Center)
-                    .width(300.dp),
-                value = value,
-                onValueChange = onValueChange,
-                label = { Text(text = label) },
-                placeholder = { Text(text = placeholder) },
-                visualTransformation = if (isPassword && passwordHidden)
-                    PasswordVisualTransformation() else VisualTransformation.None,
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Done,
-                    keyboardType = KeyboardType.Email
-                ),
-                isError = isError,
-                singleLine = true,
-                trailingIcon = {
-                    if (isPassword) VisibilityBtn(passwordHidden, setPasswordHidden)
-                }
-            )
-        }
+        OutlinedTextField(
+            modifier = modifier.width(300.dp),
+            value = value,
+            onValueChange = onValueChange,
+            label = { Text(text = label) },
+            isError = isError,
+            singleLine = true,
 
-        if (isError) {
-            Text(
-                text = "* $errorText",
-                color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodySmall,
-                textAlign = TextAlign.Start,
-                modifier = Modifier
-                    .constrainAs(hint) {
-                        top.linkTo(input.bottom)
-                        start.linkTo(input.start)
-                    }
-                    .padding(top = 8.dp)
-            )
-        }
+            visualTransformation = if (isPassword && passwordHidden)
+                PasswordVisualTransformation() else VisualTransformation.None,
+            trailingIcon = {
+                if (isPassword) VisibilityBtn(passwordHidden, setPasswordHidden)
+            },
+
+            placeholder = { Text(text = placeholder) },
+            supportingText = {
+                if (isError) Text(
+                    text = "* $errorText",
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.bodySmall,
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+            }
+        )
     }
 }
 

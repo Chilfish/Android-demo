@@ -1,6 +1,7 @@
 package top.chilfish.compose.navigation
 
 import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import top.chilfish.compose.R
@@ -15,7 +16,7 @@ object Routers {
 
 data class NavBarDes(
     val router: String,
-    val iconTextId: Int,
+    @StringRes val iconTextId: Int,
     @DrawableRes val selectedIcon: Int
 )
 
