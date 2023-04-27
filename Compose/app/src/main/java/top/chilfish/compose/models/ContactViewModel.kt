@@ -1,12 +1,17 @@
 package top.chilfish.compose.models
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import top.chilfish.compose.data.Profile
+import top.chilfish.compose.data.fake.Accounts
+import top.chilfish.compose.navigation.NavigationActions
+import top.chilfish.compose.navigation.Routers
 
 class ContactViewModel : ViewModel() {
     private val _contacts = MutableStateFlow<List<Profile>>(emptyList())
@@ -18,24 +23,13 @@ class ContactViewModel : ViewModel() {
 
     private fun loadContacts() {
         viewModelScope.launch {
-            _contacts.value = listOf(
-                Profile(
-                    name = "Contact 1",
-                    avatar = "https://p.chilfish.top/avatar.webp"
-                ),
-                Profile(
-                    name = "Contact 2",
-                    avatar = "https://p.chilfish.top/avatar1.webp"
-                ),
-                Profile(
-                    name = "Contact 3",
-                    avatar = "https://p.chilfish.top/avatar2.webp"
-                ),
-            )
+            _contacts.value = Accounts.contacts
         }
     }
 
-    fun onContactSelected(contactId: String, navController: NavController) {
-        println(contactId)
+    fun onContactSelected(contactId: String, navController: NavHostController) {
+        Log.d("Nav", "uid: $contactId")
+
+        NavigationActions(navController).navigateTo(Routers.Profile, contactId)
     }
 }

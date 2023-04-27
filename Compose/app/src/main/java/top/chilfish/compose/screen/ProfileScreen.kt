@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import top.chilfish.compose.R
@@ -35,7 +36,7 @@ import top.chilfish.compose.models.ProfileViewModel
 @Composable
 fun ProfileScreen(
     viewModel: ProfileViewModel,
-    navController: NavController,
+    navController: NavHostController,
 ) {
     val profile = viewModel.profile.collectAsState().value
     Column(
@@ -48,7 +49,7 @@ fun ProfileScreen(
         Hero(profile)
         ProfileInfo(profile)
         ProfileBtn(viewModel.isMe()) {
-            viewModel.onBtnClick(navController)
+            viewModel.onBtnClick(profile.uid, navController)
         }
     }
 }
@@ -157,7 +158,7 @@ fun ProfileBtn(isMe: Boolean, onClick: () -> Unit) {
 @Composable
 fun ProfileScreenPreview() {
     ProfileScreen(
-        ProfileViewModel(),
+        ProfileViewModel("0"),
         rememberNavController()
     )
 }

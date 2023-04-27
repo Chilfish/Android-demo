@@ -6,10 +6,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import top.chilfish.compose.data.Message
+import top.chilfish.compose.data.fake.Messages
 
-class MessageViewModel : ViewModel() {
-    private val _message = MutableStateFlow<List<Message>>(emptyList())
-    val message: StateFlow<List<Message>> = _message
+class MessageViewModel(val chatUid: String) : ViewModel() {
+    private val _messages = MutableStateFlow<List<Message>>(emptyList())
+    val messages: StateFlow<List<Message>> = _messages
 
     init {
         loadMessage()
@@ -17,21 +18,7 @@ class MessageViewModel : ViewModel() {
 
     private fun loadMessage() {
         viewModelScope.launch {
-            _message.value = listOf(
-                Message(
-                    id = "1",
-                    content = "Hello",
-                    isSelf = true
-                ),
-                Message(
-                    content = "Hello",
-                    isSelf = false
-                ),
-                Message(
-                    content = "Hello",
-                    isSelf = true
-                ),
-            )
+            _messages.value = Messages.chatHistory(chatUid)
         }
     }
 }

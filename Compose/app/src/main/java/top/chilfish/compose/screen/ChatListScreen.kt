@@ -23,7 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import top.chilfish.compose.R
 import top.chilfish.compose.data.ChatItem
@@ -33,7 +33,7 @@ import top.chilfish.compose.models.ChatListViewModel
 @Composable
 fun ColumnScope.ChatListScreen(
     viewModel: ChatListViewModel,
-    navController: NavController,
+    navController: NavHostController,
 ) {
     val chats by viewModel.chats.collectAsState()
 
@@ -41,7 +41,7 @@ fun ColumnScope.ChatListScreen(
         itemsIndexed(chats) { _, chat ->
             ChatListItem(
                 chat = chat,
-                onClick = { viewModel.onChatSelected(chat.id, navController) }
+                onClick = { viewModel.onChatSelected(chat.profile.uid, navController) }
             )
         }
     }

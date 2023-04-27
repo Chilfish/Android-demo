@@ -1,5 +1,6 @@
 package top.chilfish.compose.navigation
 
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -11,7 +12,7 @@ object Routers {
     const val Home = "home"
     const val Contact = "contact"
     const val Message = "message/{chatId}" // TODO 传递参数
-    const val Profile = "profile/{isMe}"
+    const val Profile = "profile/{uid}"
 }
 
 data class NavBarDes(
@@ -21,14 +22,22 @@ data class NavBarDes(
 )
 
 class NavigationActions(private val navController: NavHostController) {
-    fun navigateTo(destination: NavBarDes) {
-        navController.navigate(destination.router) {
+    fun navigateTo(route: String, uid: String) {
+        val router = when (route) {
+            Routers.Message -> route.replace("{chatId}", uid)
+            Routers.Profile -> route.replace("{uid}", uid)
+            else -> route
+        }
+
+        Log.d("Nav", "navigateTo: $uid")
+
+        navController.navigate(router) {
             // Pop up to the start destination of the graph to
             // avoid building up a large stack of destinations
             // on the back stack as users select items
-            popUpTo(navController.graph.findStartDestination().id) {
-                saveState = true
-            }
+//            popUpTo(navController.graph.findStartDestination().id) {
+//                saveState = true
+//            }
             // Avoid multiple copies of the same destination when
             // reselecting the same item
             launchSingleTop = true

@@ -28,6 +28,7 @@ import top.chilfish.compose.models.ContactViewModel
 import top.chilfish.compose.models.LoginViewModel
 import top.chilfish.compose.models.MessageViewModel
 import top.chilfish.compose.models.ProfileViewModel
+import top.chilfish.compose.models.currUid
 import top.chilfish.compose.screen.ChatListScreen
 import top.chilfish.compose.screen.ContactScreen
 import top.chilfish.compose.screen.LoginScreen
@@ -50,7 +51,7 @@ fun NavBar(
                 selected = selectedItem == index,
                 onClick = {
                     setSelectedItem(index)
-                    NavigationActions(navController).navigateTo(navBar)
+                    NavigationActions(navController).navigateTo(navBar.router, currUid.value!!)
                 },
                 icon = {
                     Icon(
@@ -101,19 +102,23 @@ fun ChillNavHost(
                 )
             }
 
-            composable(Routers.Profile) {
+            composable(
+                Routers.Profile,
+                arguments = listOf(navArgument("uid") { type = NavType.StringType })
+            ) {
+                val uid = it.arguments?.getString("uid")!!
                 ProfileScreen(
-                    viewModel = ProfileViewModel(),
+                    viewModel = ProfileViewModel(uid),
                     navController = navController
                 )
             }
 
             composable(
                 Routers.Message,
-                arguments = listOf(navArgument("id") { type = NavType.IntType })
+                arguments = listOf(navArgument("chatId") { type = NavType.StringType })
             ) { backStackEntry ->
-                val id = backStackEntry.arguments?.getInt("id")
-                MessageScreen(viewModel = MessageViewModel(), Profile()) {
+                val id = backStackEntry.arguments?.getString("chatId")!!
+                MessageScreen(viewModel = MessageViewModel(id)) {
                     navController.popBackStack()
                 }
             }

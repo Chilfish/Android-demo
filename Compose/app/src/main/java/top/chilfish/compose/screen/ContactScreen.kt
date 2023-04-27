@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import top.chilfish.compose.R
 import top.chilfish.compose.data.Profile
@@ -30,7 +31,7 @@ import top.chilfish.compose.models.ContactViewModel
 @Composable
 fun ColumnScope.ContactScreen(
     viewModel: ContactViewModel,
-    navController: NavController,
+    navController: NavHostController,
 ) {
     val contacts by viewModel.contacts.collectAsState()
 
