@@ -1,7 +1,7 @@
 package top.chilfish.compose.data.fake
 
 import top.chilfish.compose.data.Profile
-import top.chilfish.compose.models.currUid
+import top.chilfish.compose.models.UIState
 
 object Accounts {
     private val accounts = listOf(
@@ -28,7 +28,7 @@ object Accounts {
         )
     )
 
-    val contacts = accounts.filter { it.uid != currUid.value }
+    val contacts = accounts.filter { it.uid != UIState.currUid.value }
 
     val find: (String) -> Profile = { uid ->
         accounts.find { it.uid == uid } ?: Profile()

@@ -29,9 +29,11 @@ import top.chilfish.compose.R
 import top.chilfish.compose.data.ChatItem
 import top.chilfish.compose.data.Profile
 import top.chilfish.compose.models.ChatListViewModel
+import top.chilfish.compose.models.UIState
 
 @Composable
 fun ColumnScope.ChatListScreen(
+    uiState: UIState,
     viewModel: ChatListViewModel,
     navController: NavHostController,
 ) {

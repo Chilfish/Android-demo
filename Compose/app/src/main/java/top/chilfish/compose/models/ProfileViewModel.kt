@@ -1,9 +1,7 @@
 package top.chilfish.compose.models
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,8 +10,6 @@ import top.chilfish.compose.data.Profile
 import top.chilfish.compose.data.fake.Accounts
 import top.chilfish.compose.navigation.NavigationActions
 import top.chilfish.compose.navigation.Routers
-
-val currUid: MutableLiveData<String> = MutableLiveData("")
 
 class ProfileViewModel(private val uid: String) : ViewModel() {
     private val _profile = MutableStateFlow(Profile())
@@ -36,6 +32,6 @@ class ProfileViewModel(private val uid: String) : ViewModel() {
     }
 
     fun isMe(): Boolean {
-        return currUid.value == profile.value.uid
+        return UIState.currUid.value == profile.value.uid
     }
 }

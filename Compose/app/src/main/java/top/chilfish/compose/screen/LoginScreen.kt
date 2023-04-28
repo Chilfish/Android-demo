@@ -16,7 +16,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,11 +31,14 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import kotlinx.coroutines.launch
 import top.chilfish.compose.R
 import top.chilfish.compose.models.LoginViewModel
+import top.chilfish.compose.models.UIState
 
 @Composable
 fun LoginScreen(
+    uiState: UIState,
     viewModel: LoginViewModel,
     navController: NavController
 ) {
@@ -42,6 +47,8 @@ fun LoginScreen(
 
     val (isUsnError, setUsnError) = rememberSaveable { mutableStateOf(false) }
     val (isPwdError, setPwdError) = rememberSaveable { mutableStateOf(false) }
+
+    val scope = rememberCoroutineScope()
 
     LazyColumn(
         Modifier
@@ -88,7 +95,10 @@ fun LoginScreen(
                     text = stringResource(R.string.login),
                     onClick = {
                         if (username.isEmpty()) setUsnError(true)
-                        viewModel.onLogin(username, password, navController)
+
+                        scope.launch {
+                            viewModel.onLogin(uiState, username, password, navController)
+                        }
                     }
                 )
             }

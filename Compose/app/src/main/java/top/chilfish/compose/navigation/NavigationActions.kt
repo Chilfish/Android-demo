@@ -29,7 +29,7 @@ class NavigationActions(private val navController: NavHostController) {
             else -> route
         }
 
-        Log.d("Nav", "navigateTo: $uid")
+        Log.d("Nav", "navigateTo: $router/$uid")
 
         navController.navigate(router) {
             // Pop up to the start destination of the graph to

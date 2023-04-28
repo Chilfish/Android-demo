@@ -25,20 +25,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import top.chilfish.compose.R
 import top.chilfish.compose.data.Profile
 import top.chilfish.compose.models.ProfileViewModel
+import top.chilfish.compose.models.UIState
 
 @Composable
 fun ProfileScreen(
+    uiState: UIState,
     viewModel: ProfileViewModel,
     navController: NavHostController,
 ) {
     val profile = viewModel.profile.collectAsState().value
+
     Column(
         Modifier
             .fillMaxSize()
@@ -158,6 +160,7 @@ fun ProfileBtn(isMe: Boolean, onClick: () -> Unit) {
 @Composable
 fun ProfileScreenPreview() {
     ProfileScreen(
+        UIState,
         ProfileViewModel("0"),
         rememberNavController()
     )

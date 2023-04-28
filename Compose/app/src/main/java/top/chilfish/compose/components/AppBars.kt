@@ -40,15 +40,18 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import top.chilfish.compose.R
 import top.chilfish.compose.data.Profile
+import top.chilfish.compose.models.UIState
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeBar() {
+fun HomeBar(
+    title: String = stringResource(R.string.app_name),
+) {
     TopAppBar(
         title = {
             Text(
-                text = stringResource(R.string.app_name),
+                text = title,
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
                 color = MaterialTheme.colorScheme.onPrimary
@@ -81,6 +84,7 @@ fun HomeBar() {
 @Composable
 fun MessageBar(
     profile: Profile,
+    onClick: () -> Unit
 ) {
     TopAppBar(
         title = {
@@ -88,7 +92,7 @@ fun MessageBar(
                 modifier = Modifier.padding(start = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = onClick) {
                     AsyncImage(
                         model = profile.avatar,
                         contentDescription = "avatar",
@@ -208,7 +212,7 @@ fun BottomAppBars() {
 fun AppBars() {
     Scaffold(
         topBar = {
-            MessageBar(profile = Profile())
+            MessageBar(profile = Profile()) {}
             HomeBar()
         },
         content = { innerPadding ->
@@ -220,6 +224,4 @@ fun AppBars() {
     )
 
 //    EnterAlwaysTopAppBar()
-
 }
-
