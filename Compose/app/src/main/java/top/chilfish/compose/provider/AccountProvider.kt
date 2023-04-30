@@ -2,26 +2,22 @@ package top.chilfish.compose.provider
 
 import android.content.Context
 import androidx.datastore.core.DataStore
-import androidx.datastore.core.IOException
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
 const val ACCOUNT_SP = "Account"
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = ACCOUNT_SP)
-
-data class State(
-    val isLogin: Boolean,
-    val currUid: String
-)
+var curUid: String = ""
+var isLoggedIn = MutableStateFlow(false)
 
 object AccountProvider {
     private lateinit var dataStore: DataStore<Preferences>
@@ -30,36 +26,30 @@ object AccountProvider {
 
     fun init(context: Context) {
         dataStore = context.dataStore
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val pref = dataStore.data.first()
+
+            isLoggedIn.value = pref[KEY_IS_LOGIN] ?: false
+            curUid = pref[KEY_UID] ?: ""
+        }
     }
 
-    suspend fun saveLoginState(uid: String) {
+    suspend fun setLogin(uid: String) {
+        curUid = uid
+        isLoggedIn.value = true
         dataStore.edit {
             it[KEY_IS_LOGIN] = true
             it[KEY_UID] = uid
         }
     }
 
-    suspend fun saveLogoutState() {
+    suspend fun setLogout() {
+        curUid = ""
+        isLoggedIn.value = false
         dataStore.edit {
             it[KEY_IS_LOGIN] = false
             it[KEY_UID] = ""
         }
-    }
-
-    suspend fun getState(): State {
-        return dataStore.data
-            .catch {
-                if (it is IOException) {
-                    it.printStackTrace()
-                    emit(emptyPreferences())
-                } else {
-                    throw it
-                }
-            }.map {
-                State(
-                    it[KEY_IS_LOGIN] ?: false,
-                    it[KEY_UID] ?: ""
-                )
-            }.first()
     }
 }

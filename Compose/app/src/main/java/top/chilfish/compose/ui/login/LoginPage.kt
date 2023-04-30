@@ -1,4 +1,4 @@
-package top.chilfish.compose.screen
+package top.chilfish.compose.ui.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,9 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,25 +28,18 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import kotlinx.coroutines.launch
 import top.chilfish.compose.R
-import top.chilfish.compose.models.LoginViewModel
-import top.chilfish.compose.models.UIState
+
 
 @Composable
-fun LoginScreen(
-    uiState: UIState,
+fun LoginPage(
     viewModel: LoginViewModel,
-    navController: NavController
 ) {
     val (username, setUsername) = rememberSaveable { mutableStateOf("") }
     val (password, setPassword) = rememberSaveable { mutableStateOf("") }
 
     val (isUsnError, setUsnError) = rememberSaveable { mutableStateOf(false) }
     val (isPwdError, setPwdError) = rememberSaveable { mutableStateOf(false) }
-
-    val scope = rememberCoroutineScope()
 
     LazyColumn(
         Modifier
@@ -63,7 +54,6 @@ fun LoginScreen(
                 value = username,
                 onValueChange = {
                     setUsername(it)
-//                    setUsnError(false)
                 },
                 placeholder = stringResource(R.string.username_hint),
                 isError = isUsnError,
@@ -95,10 +85,7 @@ fun LoginScreen(
                     text = stringResource(R.string.login),
                     onClick = {
                         if (username.isEmpty()) setUsnError(true)
-
-                        scope.launch {
-                            viewModel.onLogin(uiState, username, password, navController)
-                        }
+                        else viewModel.goToLogin(username, password)
                     }
                 )
             }

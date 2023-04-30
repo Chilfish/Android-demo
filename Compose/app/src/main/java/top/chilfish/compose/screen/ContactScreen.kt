@@ -26,11 +26,9 @@ import coil.compose.AsyncImage
 import top.chilfish.compose.R
 import top.chilfish.compose.data.Profile
 import top.chilfish.compose.models.ContactViewModel
-import top.chilfish.compose.models.UIState
 
 @Composable
 fun ColumnScope.ContactScreen(
-    uiState: UIState,
     viewModel: ContactViewModel,
     navController: NavHostController,
 ) {

@@ -31,11 +31,9 @@ import coil.compose.AsyncImage
 import top.chilfish.compose.R
 import top.chilfish.compose.data.Profile
 import top.chilfish.compose.models.ProfileViewModel
-import top.chilfish.compose.models.UIState
 
 @Composable
 fun ProfileScreen(
-    uiState: UIState,
     viewModel: ProfileViewModel,
     navController: NavHostController,
 ) {
@@ -160,7 +158,6 @@ fun ProfileBtn(isMe: Boolean, onClick: () -> Unit) {
 @Composable
 fun ProfileScreenPreview() {
     ProfileScreen(
-        UIState,
         ProfileViewModel("0"),
         rememberNavController()
     )

@@ -7,3 +7,11 @@ data class Profile(
     val bio: String = "Default Bio",
     val email: String = "Default Email",
 )
+
+enum class ProfileProp(val propName: String) {
+    UID("uid"),
+    NAME("name"),
+    AVATAR("avatar"),
+    BIO("bio"),
+    EMAIL("email")
+}

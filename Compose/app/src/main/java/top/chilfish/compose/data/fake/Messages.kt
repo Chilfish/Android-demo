@@ -2,7 +2,9 @@ package top.chilfish.compose.data.fake
 
 import top.chilfish.compose.data.ChatItem
 import top.chilfish.compose.data.Message
-import top.chilfish.compose.models.UIState
+import top.chilfish.compose.data.Profile
+import top.chilfish.compose.data.ProfileProp
+import top.chilfish.compose.provider.curUid
 
 object Messages {
     private val messages = listOf(
@@ -123,7 +125,6 @@ object Messages {
     )
 
     val chatHistory: (String) -> List<Message> = { chatUid ->
-        val curUid = UIState.currUid.value
 
         messages.filter {
             (it.senderId == chatUid && it.receiverId == curUid)
@@ -133,7 +134,7 @@ object Messages {
 
     fun lastChat(chatUid: String): ChatItem {
         val lastMessage = chatHistory(chatUid).first()
-        val profile = Accounts.find(chatUid)
+        val profile = Accounts.find(chatUid) ?: Profile()
         return ChatItem(
             profile = profile,
             content = lastMessage.content,

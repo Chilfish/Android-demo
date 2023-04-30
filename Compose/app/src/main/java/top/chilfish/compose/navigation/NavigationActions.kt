@@ -8,10 +8,9 @@ import androidx.navigation.NavHostController
 import top.chilfish.compose.R
 
 object Routers {
-    const val Login = "login"
     const val Home = "home"
     const val Contact = "contact"
-    const val Message = "message/{chatId}" // TODO 传递参数
+    const val Message = "message/{chatId}"
     const val Profile = "profile/{uid}"
 }
 
@@ -35,9 +34,9 @@ class NavigationActions(private val navController: NavHostController) {
             // Pop up to the start destination of the graph to
             // avoid building up a large stack of destinations
             // on the back stack as users select items
-//            popUpTo(navController.graph.findStartDestination().id) {
-//                saveState = true
-//            }
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
             // Avoid multiple copies of the same destination when
             // reselecting the same item
             launchSingleTop = true

@@ -40,7 +40,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import top.chilfish.compose.R
 import top.chilfish.compose.data.Profile
-import top.chilfish.compose.models.UIState
 
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -1,4 +1,4 @@
-package top.chilfish.compose
+package top.chilfish.compose.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -31,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import top.chilfish.compose.R
 
 class Learn {
     private val padding = 16.dp
