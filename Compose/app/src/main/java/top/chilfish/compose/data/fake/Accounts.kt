@@ -31,8 +31,8 @@ object Accounts {
 
     val contacts = accounts.filter { it.uid != curUid }
 
-    fun find(value: String, prop: ProfileProp = ProfileProp.UID): Profile? {
-        return accounts.find { profile ->
+    fun find(value: String, prop: ProfileProp = ProfileProp.UID) =
+        accounts.find { profile ->
             when (prop) {
                 ProfileProp.UID -> profile.uid == value
                 ProfileProp.NAME -> profile.name == value
@@ -41,5 +41,4 @@ object Accounts {
                 ProfileProp.EMAIL -> profile.email == value
             }
         }
-    }
 }

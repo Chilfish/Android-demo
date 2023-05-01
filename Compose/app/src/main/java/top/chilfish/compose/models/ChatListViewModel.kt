@@ -1,5 +1,6 @@
 package top.chilfish.compose.models
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
@@ -21,11 +22,14 @@ class ChatListViewModel : ViewModel() {
 
     private fun loadChats() {
         viewModelScope.launch {
-            _chats.value = ChatList.chatList
+            ChatList.getChatList().collect() {
+                _chats.value = it
+            }
         }
     }
 
     fun onChatSelected(chatId: String, navController: NavHostController) {
         NavigationActions(navController).navigateTo(Routers.Message, chatId)
     }
+
 }
