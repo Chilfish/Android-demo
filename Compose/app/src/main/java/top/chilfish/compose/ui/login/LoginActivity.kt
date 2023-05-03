@@ -16,7 +16,6 @@ class LoginActivity : BaseActivity() {
             LoginPage(viewModel = loginViewModel)
         }
         initEvent()
-        loginViewModel.login()
     }
 
     private fun initEvent() {
