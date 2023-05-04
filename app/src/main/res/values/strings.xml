@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Labs</string>
+
+    <string name="title_sqlite">SQLite Lab</string>
+
+    <string name="name">Name: %s</string>
+    <string name="phone">Phone: %s</string>
+
+    <string name="query">Query</string>
+    <string name="insert">Insert</string>
+    <string name="update">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="all">All</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="label_name">Name</string>
+    <string name="label_phone">Phone</string>
+    <string name="place_name">the name of contact</string>
+    <string name="place_phone">the phone number of contact</string>
+
+</resources>
