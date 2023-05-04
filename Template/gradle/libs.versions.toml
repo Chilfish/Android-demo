@@ -1,11 +1,12 @@
 [versions]
 compileSdk = "33"
-minSdk = "21"
+minSdk = "24"
 targetSdk = "33"
 
-kotlin = "1.8.21"
+kotlin = "1.8.20"
 kotlinCore = "1.10.0"
-coroutines = '1.6.4'
+coroutines = '1.7.0-RC'
+kapt = "1.8.20"
 
 # Compose
 activity = "1.7.1"
@@ -22,7 +23,7 @@ room = '2.5.1'
 dataStore = '1.1.0-alpha04'
 
 # UI
-material = "1.9.0-alpha01"
+material = "1.8.0"
 material3 = '1.1.0-rc01'
 coil = "2.3.0"
 
@@ -35,7 +36,8 @@ androidxJunit = '1.1.5'
 # Kotlin
 androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "kotlinCore" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version = "coroutines" }
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+kapt = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kapt" }
 
 # Compose
 compose = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
@@ -47,7 +49,7 @@ compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = 
 # UI
 compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
-material = { group = "com.google.android.material", name = "material", version = "1.8.0" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 

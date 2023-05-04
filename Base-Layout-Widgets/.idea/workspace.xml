@@ -16,12 +16,8 @@
   <component name="ChangeListManager">
     <list default="true" id="64385b1e-1c92-4c36-975d-469909dac4f0" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compose/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Compose/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compose/app/src/main/java/top/chilfish/compose/components/Learn.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Compose/app/src/main/java/top/chilfish/compose/components/Learn.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compose/app/src/main/java/top/chilfish/compose/ui/login/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Compose/app/src/main/java/top/chilfish/compose/ui/login/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Compose/app/src/main/java/top/chilfish/compose/ui/main/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Compose/app/src/main/java/top/chilfish/compose/ui/main/MainActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Compose/app/src/main/java/top/chilfish/compose/ui/main/MainApp.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../Compose/app/src/main/java/top/chilfish/compose/ui/main/MainApp.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Template/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../Template/gradle/libs.versions.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,12 +132,11 @@
     "android-custom-viewD:/Chilling/Android/Learn/app/src/main/java/com/chill/learn/LoginInput.java_SELECTED": "LoginInput",
     "android-custom-viewD:/Chilling/Android/Learn/app/src/main/java/com/chill/learn/views/MyCustomView.java_SELECTED": "MyCustomView",
     "android-custom-viewD:/Coding/Gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED": "RecyclerView",
-    "android.gradle.sync.needed": "true",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
     "com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable": "ALL",
     "last_directory_selection": "D:/Chilling/Android/Android-demo/Base-Layout-Widgets/app/src/main/res/drawable",
-    "last_opened_file_path": "D:/Chilling/Android/Android-demo/Base-Layout-Widgets",
+    "last_opened_file_path": "D:/Chilling/Android/Labs",
     "project.structure.last.edited": "Suggestions",
     "project.structure.proportion": "0.17",
     "project.structure.side.proportion": "0.2",
