@@ -1,26 +1,25 @@
 package top.chilfish.labs
 
-import android.annotation.SuppressLint
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseAdapter<T, VB : ViewDataBinding> :
     RecyclerView.Adapter<BaseAdapter.ViewHolder<VB>>() {
 
-    private var items: MutableList<T> = mutableListOf()
+    protected var items: MutableList<T> = mutableListOf()
     protected lateinit var binding: VB
 
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<VB> {
         val inflater = LayoutInflater.from(parent.context)
-        binding = DataBindingUtil.inflate(inflater, itemId, parent, false)
+        binding = DataBindingUtil.inflate(inflater, itemLayout, parent, false)
         return ViewHolder(binding)
     }
 
@@ -34,23 +33,25 @@ abstract class BaseAdapter<T, VB : ViewDataBinding> :
     override fun getItemCount() = items.size
     protected fun getItem(position: Int) = items[position]
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateItems(newItems: MutableList<T>) {
-        items = newItems
-        notifyDataSetChanged()
-    }
-
     fun addItem(item: T) {
         items.add(item)
-        updateItems(items)
+        notifyItemInserted(items.size - 1)
     }
 
     fun rmItem(item: T) {
+        notifyItemRemoved(items.indexOf(item))
         items.remove(item)
-        updateItems(items)
     }
 
-    protected abstract val itemId: Int
+    fun updateItem(old: T, new: T) {
+        val index = items.indexOf(old)
+        items[index] = new
+        notifyItemChanged(index)
+    }
+
+    abstract fun updateItems(newItems: MutableList<T>)
+
+    protected abstract val itemLayout: Int
 
     open fun onItemClicked(item: T, view: View) {}
 
@@ -60,4 +61,22 @@ abstract class BaseAdapter<T, VB : ViewDataBinding> :
             binding.executePendingBindings()
         }
     }
+}
+
+abstract class BaseDiffCallback<T>(
+    private val oldList: MutableList<T>,
+    private val newList: MutableList<T>
+) : DiffUtil.Callback() {
+    override fun getOldListSize() = oldList.size
+    override fun getNewListSize() = newList.size
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+        areSameItems(oldList[oldItemPosition], newList[newItemPosition])
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+        areSameContent(oldList[oldItemPosition], newList[newItemPosition])
+
+    abstract fun areSameItems(oldItem: T, newItem: T): Boolean
+
+    abstract fun areSameContent(oldItem: T, newItem: T): Boolean
 }

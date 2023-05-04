@@ -97,14 +97,14 @@ class ContactDB(context: Context?) :
         return if (result > 0) MesCode.SUCCESS else MesCode.DB_FAIL
     }
 
-    fun delById(id: Int): MesCode = delete(id, COLUMN_ID)
+    fun delById(id: Int): MesCode = delete(id.toString(), COLUMN_ID)
     fun delByName(name: String): MesCode = delete(name, COLUMN_NAME)
     fun delByPhone(phone: String): MesCode = delete(phone, COLUMN_PHONE)
 
-    private fun delete(key: Any, col: String): MesCode {
+    private fun delete(key: String, col: String): MesCode {
         val db = writableDatabase
         val selection = "$col=?"
-        val args = arrayOf(key.toString())
+        val args = arrayOf(key)
         val result = db.delete(
             TABLE_NAME,
             selection,
@@ -145,7 +145,7 @@ class ContactDB(context: Context?) :
             args,
             null,
             null,
-            null
+            COLUMN_NAME
         )
         return getContacts(cursor)
     }
@@ -165,7 +165,7 @@ class ContactDB(context: Context?) :
             args,
             null,
             null,
-            null
+            COLUMN_NAME
         )
         return getContacts(cursor)
     }

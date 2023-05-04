@@ -1,29 +1,25 @@
 package top.chilfish.labs.sqlite
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.textfield.TextInputEditText
 import top.chilfish.labs.databinding.ActivitySqliteBinding
 import top.chilfish.labs.showToast
+import top.chilfish.labs.sqlite.ViewProvider.clearInput
+import top.chilfish.labs.sqlite.ViewProvider.nameInput
+import top.chilfish.labs.sqlite.ViewProvider.phoneInput
 
 class SqliteActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySqliteBinding
 
+    private lateinit var binding: ActivitySqliteBinding
     private val contactAdapter = ContactAdapter()
 
     private lateinit var rv: RecyclerView
 
-    private lateinit var nameInput: TextInputEditText
-    private lateinit var phoneInput: TextInputEditText
-
     private fun init() {
         binding = ActivitySqliteBinding.inflate(layoutInflater)
-
-        nameInput = binding.nameEdit
-        phoneInput = binding.phoneEdit
+        ViewProvider.init(binding)
         rv = binding.contacts
 
         rv.layoutManager = LinearLayoutManager(this)
@@ -76,19 +72,21 @@ class SqliteActivity : AppCompatActivity() {
         if (res == MesCode.SUCCESS) {
             contactAdapter.addItem(contact)
         }
+        clearInput()
     }
 
     private fun query() {
         val contact = checkInput() ?: return
         val res = SQLEvents.query(contact) ?: return
 
-        Log.d("SQLITE", "query: $res")
+        logContacts("query", res)
         contactAdapter.updateItems(res)
+        clearInput()
     }
 
     private fun findAll() {
         val res = SQLEvents.getALl() ?: return
-        Log.d("SQLITE", "findAll: $res")
+        logContacts("findAll", res)
         contactAdapter.updateItems(res)
     }
 }
