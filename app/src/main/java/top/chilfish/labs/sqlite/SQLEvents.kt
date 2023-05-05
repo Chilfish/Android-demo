@@ -11,15 +11,7 @@ object SQLEvents {
         this.db = ContactDB(context)
     }
 
-    fun insert(contact: Contact): MesCode {
-        val res = db.insert(contact)
-        showCode(res)
-        return res
-    }
-
     fun query(contact: Contact): MutableList<Contact>? {
-//        Log.d("SQLITE", "query: $contact")
-
         val res = if (contact.name.isEmpty()) {
             db.findByPhone(contact.phone)
         } else if (contact.phone.isEmpty()) {
@@ -27,20 +19,14 @@ object SQLEvents {
         } else {
             db.find(contact)
         }
-
-        showToast("find ${res?.size} items")
         return res
     }
 
-    fun delete(contact: Contact): MesCode {
-        return db.delById(contact.id)
-    }
+    fun insert(contact: Contact) = db.insert(contact)
 
-    fun update(old: Contact, new: Contact): MesCode {
-        return db.update(old, new)
-    }
+    fun delete(contact: Contact) = db.delete(contact.id)
 
-    fun getALl(): MutableList<Contact>? {
-        return db.getContacts()
-    }
+    fun update(old: Contact, new: Contact) = db.update(old, new)
+
+    fun getALl() = db.getContacts()
 }

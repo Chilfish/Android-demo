@@ -5,7 +5,6 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
 
 class ContactDB(context: Context?) :
     SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
@@ -65,8 +64,6 @@ class ContactDB(context: Context?) :
 
     fun insert(contact: Contact): MesCode {
         val found = findByName(contact.name, "=")?.get(0)
-        Log.d("SQLITE", "insert: ${contact.name}, found: $found")
-
         if (found != null && found.name == contact.name) {
             return MesCode.NAME_EXIST
         }
@@ -97,14 +94,10 @@ class ContactDB(context: Context?) :
         return if (result > 0) MesCode.SUCCESS else MesCode.DB_FAIL
     }
 
-    fun delById(id: Int): MesCode = delete(id.toString(), COLUMN_ID)
-    fun delByName(name: String): MesCode = delete(name, COLUMN_NAME)
-    fun delByPhone(phone: String): MesCode = delete(phone, COLUMN_PHONE)
-
-    private fun delete(key: String, col: String): MesCode {
+    fun delete(id: Int): MesCode {
         val db = writableDatabase
-        val selection = "$col=?"
-        val args = arrayOf(key)
+        val selection = "$COLUMN_ID=?"
+        val args = arrayOf(id.toString())
         val result = db.delete(
             TABLE_NAME,
             selection,
@@ -127,13 +120,6 @@ class ContactDB(context: Context?) :
         return getContacts(cursor)
     }
 
-
-    fun findByName(name: String, type: String = "like"): MutableList<Contact>? =
-        find(name, COLUMN_NAME, type)
-
-    fun findByPhone(email: String, type: String = "like"): MutableList<Contact>? =
-        find(email, COLUMN_PHONE, type)
-
     fun find(contact: Contact, type: String = "like"): MutableList<Contact>? {
         val db = readableDatabase
         val selection = "$COLUMN_NAME $type ? and $COLUMN_PHONE $type ?"
@@ -149,6 +135,13 @@ class ContactDB(context: Context?) :
         )
         return getContacts(cursor)
     }
+
+    // fuzzy query
+    fun findByName(name: String, type: String = "like"): MutableList<Contact>? =
+        find(name, COLUMN_NAME, type)
+
+    fun findByPhone(email: String, type: String = "like"): MutableList<Contact>? =
+        find(email, COLUMN_PHONE, type)
 
     private fun find(key: String, col: String, type: String = "like"): MutableList<Contact>? {
         val k =

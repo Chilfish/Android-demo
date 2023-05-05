@@ -55,6 +55,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.material3)
     implementation(libs.coil)
+    implementation(libs.appcompat)
 
     // Jetpack
     implementation(libs.lifecycle)

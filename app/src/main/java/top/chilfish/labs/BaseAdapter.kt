@@ -1,5 +1,6 @@
 package top.chilfish.labs
 
+import android.content.Context
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -15,11 +16,13 @@ abstract class BaseAdapter<T, VB : ViewDataBinding> :
 
     protected var items: MutableList<T> = mutableListOf()
     protected lateinit var binding: VB
+    protected lateinit var context: Context
 
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<VB> {
         val inflater = LayoutInflater.from(parent.context)
         binding = DataBindingUtil.inflate(inflater, itemLayout, parent, false)
+        context = parent.context
         return ViewHolder(binding)
     }
 

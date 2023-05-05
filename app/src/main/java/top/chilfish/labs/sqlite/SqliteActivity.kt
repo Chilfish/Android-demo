@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import top.chilfish.labs.R
 import top.chilfish.labs.databinding.ActivitySqliteBinding
 import top.chilfish.labs.showToast
 import top.chilfish.labs.sqlite.ViewProvider.clearInput
@@ -44,7 +45,7 @@ class SqliteActivity : AppCompatActivity() {
         val phone = phoneInput.text.toString().trim().replace('\n', ' ')
 
         if (name.isEmpty() && phone.isEmpty()) {
-            showToast("name and phone is empty")
+            showToast(getString(R.string.toast_isEmpty, "name & phone"))
             return null
         }
         return Contact(name = name, phone = phone)
@@ -53,11 +54,11 @@ class SqliteActivity : AppCompatActivity() {
 
     private fun checkEmpty(name: String, phone: String): Boolean {
         if (name.isEmpty()) {
-            showToast("name is empty")
+            showToast(getString(R.string.toast_isEmpty, "name"))
             return false
         }
         if (phone.isEmpty()) {
-            showToast("phone is empty")
+            showToast(getString(R.string.toast_isEmpty, "phone"))
             return false
         }
         return true
@@ -70,7 +71,10 @@ class SqliteActivity : AppCompatActivity() {
 
         val res = SQLEvents.insert(contact)
         if (res == MesCode.SUCCESS) {
+            showToast(getString(R.string.toast_success, "insert"))
             contactAdapter.addItem(contact)
+        } else if (res == MesCode.NAME_EXIST) {
+            showToast(getString(R.string.toast_isExist, "name"))
         }
         clearInput()
     }
@@ -78,15 +82,13 @@ class SqliteActivity : AppCompatActivity() {
     private fun query() {
         val contact = checkInput() ?: return
         val res = SQLEvents.query(contact) ?: return
-
-        logContacts("query", res)
+        showToast(getString(R.string.toast_items_found, res.size))
         contactAdapter.updateItems(res)
         clearInput()
     }
 
     private fun findAll() {
         val res = SQLEvents.getALl() ?: return
-        logContacts("findAll", res)
         contactAdapter.updateItems(res)
     }
 }

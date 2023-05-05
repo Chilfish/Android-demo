@@ -19,4 +19,13 @@
     <string name="place_name">the name of contact</string>
     <string name="place_phone">the phone number of contact</string>
 
+    <string name="alert_title_delete">Confirm to Delete?</string>
+    <string name="alert_subtitle_delete">This action cannot be undone.</string>
+
+    <string name="toast_success">%s Success</string>
+    <string name="toast_failed">%s Failed</string>
+
+    <string name="toast_isEmpty">Empty %s!</string>
+    <string name="toast_isExist">%s is Exist!</string>
+    <string name="toast_items_found">Found %d items</string>
 </resources>
