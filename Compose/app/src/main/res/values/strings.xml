@@ -21,4 +21,33 @@
     <string name="settings">Settings</string>
     <string name="contacts">Contacts</string>
     <string name="search">Search</string>
+
+    <!--    Buttons  -->
+    <string name="send">Send</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="ok">OK</string>
+    <string name="logout">Logout</string>
+    <string name="delete">Delete</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="add">Add</string>
+    <string name="query">Query</string>
+    <string name="remove">Remove</string>
+    <string name="load">Load</string>
+
+    <!--  Input  -->
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="city">City</string>
+    <string name="country">Country</string>
+    <string name="age">Age</string>
+
+    <string name="age_error">Age is too large</string>
+
+
+    <string name="alert_title_delete">Confirm to Delete?</string>
+    <string name="alert_message_delete">This action cannot be undone.</string>
 </resources>

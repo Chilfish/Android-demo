@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -40,13 +41,17 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import top.chilfish.compose.R
 import top.chilfish.compose.data.Profile
+import top.chilfish.compose.ui.main.MainViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeBar(
+    viewModel: MainViewModel,
     title: String = stringResource(R.string.app_name),
 ) {
+    val context = LocalContext.current
+
     TopAppBar(
         title = {
             Text(
@@ -67,7 +72,7 @@ fun HomeBar(
             }
         },
         navigationIcon = {
-            IconButton(onClick = { /* doSomething() */ }) {
+            IconButton(onClick = { viewModel.jumpToTest(context) }) {
                 Icon(
                     imageVector = Icons.Filled.Menu,
                     contentDescription = "Localized description",
@@ -212,7 +217,7 @@ fun AppBars() {
     Scaffold(
         topBar = {
             MessageBar(profile = Profile()) {}
-            HomeBar()
+            HomeBar(MainViewModel())
         },
         content = { innerPadding ->
             ContentColumn(innerPadding)

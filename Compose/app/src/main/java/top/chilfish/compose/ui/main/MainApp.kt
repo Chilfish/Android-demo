@@ -5,6 +5,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -15,6 +16,7 @@ import top.chilfish.compose.navigation.Routers
 
 @Composable
 fun MainApp(
+    viewModel: MainViewModel,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
 ) {
@@ -25,7 +27,7 @@ fun MainApp(
     Scaffold(
         modifier = modifier,
         topBar = {
-            if (showBars) HomeBar()
+            if (showBars) HomeBar(viewModel)
         },
         bottomBar = {
             if (showBars) NavBar(navController)

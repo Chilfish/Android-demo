@@ -18,7 +18,7 @@ class MainActivity : BaseActivity() {
         loginViewModel.login()
 
         setContent {
-            MainApp()
+            MainApp(viewModel)
         }
 
         lifecycleScope.launch {
