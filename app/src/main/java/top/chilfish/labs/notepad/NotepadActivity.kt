@@ -3,12 +3,14 @@ package top.chilfish.labs.notepad
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.launch
 import top.chilfish.labs.MainApplication
 import top.chilfish.labs.R
 import top.chilfish.labs.databinding.ActivityNotepadBinding
-import top.chilfish.labs.notepad.data.NoteEntity
 
 class NotepadActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNotepadBinding
@@ -25,19 +27,28 @@ class NotepadActivity : AppCompatActivity() {
         rv = binding.notes
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = noteAdapter
-
-        noteAdapter.addItems(
-            listOf(
-                NoteEntity(title = "title1", content = "content1"),
-                NoteEntity(title = "title2", content = "content2"),
-                NoteEntity(title = "title3", content = getString(R.string.place_long_content)),
-            ).toMutableList()
-        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
         setContentView(binding.root)
+
+        lifecycleScope.launch {
+            noteViewModel.noteState.collect {
+                noteAdapter.updateItems(it.notes)
+            }
+        }
+
+        binding.addNote.setOnClickListener {
+            replaceFragment(NewNoteFragment(), R.id.frag_newNote)
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment, id: Int) {
+        supportFragmentManager.beginTransaction()
+            .replace(id, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }

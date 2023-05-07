@@ -21,7 +21,7 @@ class NoteViewModel(
 
     fun loadNotes() = viewModelScope.launch {
         repository.allNotes.collect {
-            _noteState.value = NoteState(it)
+            _noteState.value = NoteState(it.toMutableList())
         }
     }
 
@@ -51,5 +51,5 @@ class NoteViewModelFactory(
 }
 
 data class NoteState(
-    val notes: List<NoteEntity> = emptyList(),
+    val notes: MutableList<NoteEntity> = mutableListOf()
 )
