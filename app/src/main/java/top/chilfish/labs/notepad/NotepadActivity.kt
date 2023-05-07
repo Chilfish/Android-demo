@@ -1,7 +1,7 @@
 package top.chilfish.labs.notepad
 
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,12 +18,16 @@ class NotepadActivity : BaseActivity(), BaseAdapter.OnItemClickListener<NoteEnti
     private val noteAdapter = NoteAdapter()
     private lateinit var rv: RecyclerView
 
-    private val noteViewModel: NoteViewModel by viewModels {
-        NoteViewModelFactory((application as MainApplication).noteRepository, noteAdapter)
-    }
+    private lateinit var noteViewModel: NoteViewModel
 
     private fun init() {
         binding = ActivityNotepadBinding.inflate(layoutInflater)
+        noteViewModel = ViewModelProvider(
+            this, NoteViewModelFactory(
+                (application as MainApplication).noteRepository,
+                noteAdapter
+            )
+        )[NoteViewModel::class.java]
 
         rv = binding.notes
         rv.layoutManager = LinearLayoutManager(this)
@@ -45,14 +49,12 @@ class NotepadActivity : BaseActivity(), BaseAdapter.OnItemClickListener<NoteEnti
         }
 
         binding.addNote.setOnClickListener {
-            replaceFragment(
-                NewNoteFragment(noteViewModel = noteViewModel, isNew = true),
-                R.id.frag_newNote
-            )
+            replaceFragment(NewNoteFragment(isNew = true), R.id.frag_newNote)
         }
     }
 
     override fun onItemClick(item: NoteEntity) {
-        replaceFragment(NewNoteFragment(noteViewModel, item), R.id.frag_newNote)
+        noteViewModel.setSelected(item)
+        replaceFragment(NewNoteFragment(), R.id.frag_newNote)
     }
 }

@@ -16,14 +16,9 @@ class NoteViewModel(
     private val _noteState = MutableStateFlow(NoteState())
     val noteState: StateFlow<NoteState> = _noteState
 
-    init {
-        loadNotes()
-    }
-
     fun loadNotes() = viewModelScope.launch {
         repository.allNotes.collect {
             _noteState.value = NoteState(it.toMutableList())
-            adapter.addItems(it.toMutableList())
         }
     }
 
@@ -41,6 +36,12 @@ class NoteViewModel(
         repository.update(note)
         adapter.updateItem(old, note)
     }
+
+    fun setSelected(note: NoteEntity) = viewModelScope.launch {
+        _noteState.value = _noteState.value.copy(selected = note)
+    }
+
+    fun getSelected() = _noteState.value.selected
 }
 
 class NoteViewModelFactory(
@@ -57,5 +58,6 @@ class NoteViewModelFactory(
 }
 
 data class NoteState(
-    val notes: MutableList<NoteEntity> = mutableListOf()
+    val notes: MutableList<NoteEntity> = mutableListOf(),
+    val selected: NoteEntity = NoteEntity()
 )

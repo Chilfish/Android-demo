@@ -2,16 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="note"
-            type="top.chilfish.labs.notepad.data.NoteEntity" />
-
-        <variable
-            name="viewModel"
-            type="top.chilfish.labs.notepad.NoteViewModel" />
-    </data>
+    <data />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -51,12 +42,11 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/note_date"
+                android:id="@+id/note_time"
                 style="@style/TextAppearance.Material3.BodySmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="@{note.formattedTime}" />
+                android:layout_marginStart="12dp" />
 
             <EditText
                 android:id="@+id/note_content"
