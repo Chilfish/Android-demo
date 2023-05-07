@@ -1,6 +1,7 @@
 package top.chilfish.labs.notepad
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,7 +20,7 @@ class NoteViewModel(
     }
 
     fun loadNotes() = viewModelScope.launch {
-        repository.getAll().collect {
+        repository.allNotes.collect {
             _noteState.value = NoteState(it)
         }
     }
@@ -34,6 +35,18 @@ class NoteViewModel(
 
     fun update(note: NoteEntity) = viewModelScope.launch {
         repository.update(note)
+    }
+}
+
+class NoteViewModelFactory(
+    private val repository: NoteRepository
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(NoteViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return NoteViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
 

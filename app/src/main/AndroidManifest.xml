@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".MainApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -22,7 +23,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".sqlite.SqliteActivity" />
+        <activity
+            android:name=".sqlite.SqliteActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".notepad.NotepadActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

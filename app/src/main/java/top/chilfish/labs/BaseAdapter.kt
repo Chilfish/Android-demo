@@ -41,6 +41,12 @@ abstract class BaseAdapter<T, VB : ViewDataBinding> :
         notifyItemInserted(items.size - 1)
     }
 
+    fun addItems(newItems: MutableList<T>) {
+        val oldSize = items.size
+        items.addAll(newItems)
+        notifyItemRangeInserted(oldSize, newItems.size)
+    }
+
     fun rmItem(item: T) {
         notifyItemRemoved(items.indexOf(item))
         items.remove(item)

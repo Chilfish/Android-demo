@@ -41,7 +41,7 @@ android {
     buildFeatures {
         dataBinding = true
     }
-
+    
     buildToolsVersion = "33.0.2"
 }
 
@@ -50,6 +50,7 @@ dependencies {
     implementation(libs.kotlin.stdlib)
     implementation(libs.coroutines)
     kapt(libs.kapt)
+    implementation(libs.activity)
 
     //UI
     implementation(libs.material)
@@ -70,6 +71,7 @@ dependencies {
 
     implementation(libs.room)
     annotationProcessor(libs.room.compiler)
+    kapt(libs.room.compiler)
     implementation(libs.room.ktx)
 
     // Test
