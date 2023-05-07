@@ -2,8 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/check"
+        android:id="@+id/save_note"
         android:icon="@drawable/baseline_check_24"
         android:title="@string/check"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/delete_note"
+        android:icon="@drawable/baseline_delete_24"
+        android:title="@string/delete"
         app:showAsAction="ifRoom" />
 </menu>

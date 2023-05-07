@@ -2,23 +2,24 @@ package top.chilfish.labs.notepad
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
+import top.chilfish.labs.BaseActivity
+import top.chilfish.labs.BaseAdapter
 import top.chilfish.labs.MainApplication
 import top.chilfish.labs.R
 import top.chilfish.labs.databinding.ActivityNotepadBinding
+import top.chilfish.labs.notepad.data.NoteEntity
 
-class NotepadActivity : AppCompatActivity() {
+class NotepadActivity : BaseActivity(), BaseAdapter.OnItemClickListener<NoteEntity> {
     private lateinit var binding: ActivityNotepadBinding
     private val noteAdapter = NoteAdapter()
     private lateinit var rv: RecyclerView
 
     private val noteViewModel: NoteViewModel by viewModels {
-        NoteViewModelFactory((application as MainApplication).noteRepository)
+        NoteViewModelFactory((application as MainApplication).noteRepository, noteAdapter)
     }
 
     private fun init() {
@@ -26,7 +27,10 @@ class NotepadActivity : AppCompatActivity() {
 
         rv = binding.notes
         rv.layoutManager = LinearLayoutManager(this)
+        noteAdapter.setOnItemClickListener(this)
         rv.adapter = noteAdapter
+
+        noteViewModel.loadNotes()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,14 +45,14 @@ class NotepadActivity : AppCompatActivity() {
         }
 
         binding.addNote.setOnClickListener {
-            replaceFragment(NewNoteFragment(), R.id.frag_newNote)
+            replaceFragment(
+                NewNoteFragment(noteViewModel = noteViewModel, isNew = true),
+                R.id.frag_newNote
+            )
         }
     }
 
-    private fun replaceFragment(fragment: Fragment, id: Int) {
-        supportFragmentManager.beginTransaction()
-            .replace(id, fragment)
-            .addToBackStack(null)
-            .commit()
+    override fun onItemClick(item: NoteEntity) {
+        replaceFragment(NewNoteFragment(noteViewModel, item), R.id.frag_newNote)
     }
 }

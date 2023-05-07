@@ -43,6 +43,9 @@
     </string>
     <string name="place_time">03–04 12:00</string>
 
+    <string name="new_title">New Title</string>
+    <string name="new_content">New Content</string>
+
     <string name="add">Add</string>
     <string name="check">Check</string>
 

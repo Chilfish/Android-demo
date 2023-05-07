@@ -13,9 +13,9 @@ const val NOTE_TABLE = "notes"
 data class NoteEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val title: String,
-    val content: String,
-    val time: Long = System.currentTimeMillis()
+    var title: String = "",
+    var content: String = "",
+    var time: Long = System.currentTimeMillis()
 ) {
     @get:Ignore
     val formattedTime: String

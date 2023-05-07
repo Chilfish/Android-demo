@@ -7,6 +7,10 @@
         <variable
             name="note"
             type="top.chilfish.labs.notepad.data.NoteEntity" />
+
+        <variable
+            name="viewModel"
+            type="top.chilfish.labs.notepad.NoteViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -44,8 +48,7 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:value="@{note.title}" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/note_date"
@@ -64,8 +67,7 @@
                 android:autofillHints="Text"
                 android:hint="@string/start_typing"
                 android:lineSpacingExtra="14sp"
-                android:minLines="5"
-                android:value="@{note.content}" />
+                android:minLines="5" />
         </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

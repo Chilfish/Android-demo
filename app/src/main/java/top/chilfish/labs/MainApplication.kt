@@ -9,6 +9,6 @@ import top.chilfish.labs.notepad.data.NoteRepository
 class MainApplication : Application() {
     val applicationScope = CoroutineScope(SupervisorJob())
 
-    private val noteDatabase by lazy { NoteDatabase.getDatabase(this) }
+    private val noteDatabase by lazy { NoteDatabase.getDatabase(this, applicationScope) }
     val noteRepository by lazy { NoteRepository(noteDatabase.noteDao()) }
 }

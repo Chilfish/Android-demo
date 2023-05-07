@@ -1,11 +1,8 @@
 package top.chilfish.labs
 
 import android.content.Context
-import android.os.Build
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
@@ -18,7 +15,8 @@ abstract class BaseAdapter<T, VB : ViewDataBinding> :
     protected lateinit var binding: VB
     protected lateinit var context: Context
 
-    @RequiresApi(Build.VERSION_CODES.Q)
+    private var onItemClickListener: OnItemClickListener<T>? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<VB> {
         val inflater = LayoutInflater.from(parent.context)
         binding = DataBindingUtil.inflate(inflater, itemLayout, parent, false)
@@ -29,7 +27,7 @@ abstract class BaseAdapter<T, VB : ViewDataBinding> :
     override fun onBindViewHolder(holder: ViewHolder<VB>, position: Int) {
         val item = getItem(position)
         holder.itemView.setOnClickListener {
-            onItemClicked(item, holder.itemView)
+            onItemClickListener?.onItemClick(item)
         }
     }
 
@@ -53,16 +51,26 @@ abstract class BaseAdapter<T, VB : ViewDataBinding> :
     }
 
     fun updateItem(old: T, new: T) {
-        val index = items.indexOf(old)
-        items[index] = new
-        notifyItemChanged(index)
+        try {
+            val index = items.indexOf(old)
+            items[index] = new
+            notifyItemChanged(index)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     abstract fun updateItems(newItems: MutableList<T>)
 
     protected abstract val itemLayout: Int
 
-    open fun onItemClicked(item: T, view: View) {}
+    interface OnItemClickListener<T> {
+        fun onItemClick(item: T)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener<T>) {
+        onItemClickListener = listener
+    }
 
     class ViewHolder<VB : ViewDataBinding>(binding: VB) :
         RecyclerView.ViewHolder(binding.root) {
