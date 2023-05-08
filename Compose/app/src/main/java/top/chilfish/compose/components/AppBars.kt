@@ -62,7 +62,7 @@ fun HomeBar(
             )
         },
         actions = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = { viewModel.jumpToNotepad(context) }) {
                 Icon(
                     imageVector = Icons.Rounded.Search,
                     contentDescription = stringResource(R.string.search),

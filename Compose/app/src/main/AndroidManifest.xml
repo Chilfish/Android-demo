@@ -48,6 +48,10 @@
         <activity
             android:name=".ui.room.RoomActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".notepad.NotepadActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
