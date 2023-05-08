@@ -1,8 +1,6 @@
 package top.chilfish.labs.sqlite
 
-import androidx.recyclerview.widget.DiffUtil
 import top.chilfish.labs.BaseAdapter
-import top.chilfish.labs.BaseDiffCallback
 import top.chilfish.labs.R
 import top.chilfish.labs.alert
 import top.chilfish.labs.databinding.ItemContactBinding
@@ -14,18 +12,10 @@ import top.chilfish.labs.sqlite.ViewProvider.nameInput
 import top.chilfish.labs.sqlite.ViewProvider.phoneInput
 import top.chilfish.labs.sqlite.ViewProvider.toggleVisible
 
-class ContactAdapter : BaseAdapter<Contact, ItemContactBinding>() {
+class ContactAdapter :
+    BaseAdapter<Contact, ItemContactBinding>( R.layout.item_contact) {
 
-    override val itemLayout = R.layout.item_contact
     private var isUpdateClicked = false
-
-    override fun updateItems(newItems: MutableList<Contact>) {
-        DiffUtil
-            .calculateDiff(ContactDiff(items, newItems))
-            .dispatchUpdatesTo(this)
-        items.clear()
-        items.addAll(newItems)
-    }
 
     override fun onBindViewHolder(holder: ViewHolder<ItemContactBinding>, position: Int) {
         super.onBindViewHolder(holder, position)
@@ -91,12 +81,4 @@ class ContactAdapter : BaseAdapter<Contact, ItemContactBinding>() {
         clearInput()
         isUpdateClicked = false
     }
-}
-
-class ContactDiff(
-    oldList: MutableList<Contact>,
-    newList: MutableList<Contact>
-) : BaseDiffCallback<Contact>(oldList, newList) {
-    override fun areSameItems(oldItem: Contact, newItem: Contact) = oldItem.id == newItem.id
-    override fun areSameContent(oldItem: Contact, newItem: Contact) = oldItem == newItem
 }

@@ -1,17 +1,21 @@
 package top.chilfish.labs
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListUpdateCallback
 import androidx.recyclerview.widget.RecyclerView
+import top.chilfish.labs.notepad.data.NotesLog
 
-abstract class BaseAdapter<T, VB : ViewDataBinding> :
-    RecyclerView.Adapter<BaseAdapter.ViewHolder<VB>>() {
+abstract class BaseAdapter<T : Diffable, VB : ViewDataBinding>(
+    private val itemLayout: Int
+) : RecyclerView.Adapter<BaseAdapter.ViewHolder<VB>>() {
 
-    protected var items: MutableList<T> = mutableListOf()
+    private var items: MutableList<T> = mutableListOf()
     protected lateinit var binding: VB
     protected lateinit var context: Context
 
@@ -33,6 +37,7 @@ abstract class BaseAdapter<T, VB : ViewDataBinding> :
 
     override fun getItemCount() = items.size
     protected fun getItem(position: Int) = items[position]
+    fun items() = items
 
     fun addItem(item: T) {
         items.add(item)
@@ -60,9 +65,12 @@ abstract class BaseAdapter<T, VB : ViewDataBinding> :
         }
     }
 
-    abstract fun updateItems(newItems: MutableList<T>)
+    fun updateItems(newItems: MutableList<T>) {
+        Differ(items, newItems).dispatchUpdatesTo(this)
+        items = newItems
+    }
 
-    protected abstract val itemLayout: Int
+    override fun getItemId(position: Int): Long = getItem(position).itemId()
 
     interface OnItemClickListener<T> {
         fun onItemClick(item: T)
@@ -80,20 +88,26 @@ abstract class BaseAdapter<T, VB : ViewDataBinding> :
     }
 }
 
-abstract class BaseDiffCallback<T>(
+interface Diffable {
+    fun itemId(): Long
+    fun sameContent(other: Diffable): Boolean
+}
+
+class Differ<T : Diffable>(
     private val oldList: MutableList<T>,
     private val newList: MutableList<T>
-) : DiffUtil.Callback() {
-    override fun getOldListSize() = oldList.size
-    override fun getNewListSize() = newList.size
+) {
+    private val diffResult = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+        override fun getOldListSize() = oldList.size
+        override fun getNewListSize() = newList.size
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+            oldList[oldItemPosition].itemId() == newList[newItemPosition].itemId()
 
-    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-        areSameItems(oldList[oldItemPosition], newList[newItemPosition])
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
+            oldList[oldItemPosition].sameContent(newList[newItemPosition])
+    })
 
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-        areSameContent(oldList[oldItemPosition], newList[newItemPosition])
-
-    abstract fun areSameItems(oldItem: T, newItem: T): Boolean
-
-    abstract fun areSameContent(oldItem: T, newItem: T): Boolean
+    fun dispatchUpdatesTo(adapter: RecyclerView.Adapter<*>) {
+        diffResult.dispatchUpdatesTo(adapter)
+    }
 }

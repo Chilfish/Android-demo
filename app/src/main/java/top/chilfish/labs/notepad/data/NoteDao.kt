@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface NoteDao {
 
     @Query("SELECT * FROM $NOTE_TABLE ORDER BY time DESC")
-    fun getAll(): Flow<List<NoteEntity>>
+    fun getAll(): Flow<MutableList<NoteEntity>>
 
     @Insert
     suspend fun insert(note: NoteEntity): Long

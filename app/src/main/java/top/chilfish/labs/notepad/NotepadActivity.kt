@@ -1,6 +1,7 @@
 package top.chilfish.labs.notepad
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import top.chilfish.labs.MainApplication
 import top.chilfish.labs.R
 import top.chilfish.labs.databinding.ActivityNotepadBinding
 import top.chilfish.labs.notepad.data.NoteEntity
+import top.chilfish.labs.notepad.data.NotesLog
 
 class NotepadActivity : BaseActivity(), BaseAdapter.OnItemClickListener<NoteEntity> {
     private lateinit var binding: ActivityNotepadBinding
@@ -23,18 +25,14 @@ class NotepadActivity : BaseActivity(), BaseAdapter.OnItemClickListener<NoteEnti
     private fun init() {
         binding = ActivityNotepadBinding.inflate(layoutInflater)
         noteViewModel = ViewModelProvider(
-            this, NoteViewModelFactory(
-                (application as MainApplication).noteRepository,
-                noteAdapter
-            )
+            this,
+            NoteViewModelFactory((application as MainApplication).noteRepository)
         )[NoteViewModel::class.java]
 
         rv = binding.notes
         rv.layoutManager = LinearLayoutManager(this)
         noteAdapter.setOnItemClickListener(this)
         rv.adapter = noteAdapter
-
-        noteViewModel.loadNotes()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +53,7 @@ class NotepadActivity : BaseActivity(), BaseAdapter.OnItemClickListener<NoteEnti
 
     override fun onItemClick(item: NoteEntity) {
         noteViewModel.setSelected(item)
+        Log.d("note", "Activity: $item")
         replaceFragment(NewNoteFragment(), R.id.frag_newNote)
     }
 }

@@ -53,7 +53,7 @@ class ContactDB(context: Context?) :
         val contacts: MutableList<Contact> = ArrayList()
         while (cursor.moveToNext()) {
             val contact = Contact()
-            contact.id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+            contact.id = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_ID))
             contact.name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME))
             contact.phone = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PHONE))
             contacts.add(contact)
@@ -94,7 +94,7 @@ class ContactDB(context: Context?) :
         return if (result > 0) MesCode.SUCCESS else MesCode.DB_FAIL
     }
 
-    fun delete(id: Int): MesCode {
+    fun delete(id: Long): MesCode {
         val db = writableDatabase
         val selection = "$COLUMN_ID=?"
         val args = arrayOf(id.toString())

@@ -3,55 +3,61 @@ package top.chilfish.labs.notepad
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import top.chilfish.labs.notepad.data.NoteEntity
 import top.chilfish.labs.notepad.data.NoteRepository
+import top.chilfish.labs.notepad.data.NotesLog
 
 class NoteViewModel(
     private val repository: NoteRepository,
-    private val adapter: NoteAdapter
 ) : ViewModel() {
     private val _noteState = MutableStateFlow(NoteState())
-    val noteState: StateFlow<NoteState> = _noteState
+    val noteState: Flow<NoteState> = _noteState
+        .asStateFlow()
+        .distinctUntilChanged { old, new ->
+            old.notes == new.notes
+        }
 
-    fun loadNotes() = viewModelScope.launch {
+    init {
+        loadNotes()
+    }
+
+     private fun loadNotes() = viewModelScope.launch {
         repository.allNotes.collect {
-            _noteState.value = NoteState(it.toMutableList())
+            _noteState.value = _noteState.value.copy(notes = it)
         }
     }
 
     fun insert(note: NoteEntity) = viewModelScope.launch {
         repository.insert(note)
-        adapter.addItem(note)
     }
 
     fun delete(note: NoteEntity) = viewModelScope.launch {
         repository.delete(note)
-        adapter.rmItem(note)
     }
 
-    fun update(old: NoteEntity, note: NoteEntity) = viewModelScope.launch {
+    fun update(note: NoteEntity) = viewModelScope.launch {
         repository.update(note)
-        adapter.updateItem(old, note)
     }
 
     fun setSelected(note: NoteEntity) = viewModelScope.launch {
         _noteState.value = _noteState.value.copy(selected = note)
     }
 
-    fun getSelected() = _noteState.value.selected
+    fun getSelected() = _noteState.value.selected.copy()
 }
 
 class NoteViewModelFactory(
     private val repository: NoteRepository,
-    private val adapter: NoteAdapter
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(NoteViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return NoteViewModel(repository, adapter) as T
+            return NoteViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

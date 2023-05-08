@@ -1,6 +1,7 @@
 package top.chilfish.labs.notepad
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +10,7 @@ import top.chilfish.labs.R
 import top.chilfish.labs.alert
 import top.chilfish.labs.databinding.FragNewNoteBinding
 import top.chilfish.labs.notepad.data.NoteEntity
+import top.chilfish.labs.notepad.data.NotesLog
 
 class NewNoteFragment(
     private val isNew: Boolean = false,
@@ -22,7 +24,7 @@ class NewNoteFragment(
         super.onCreate(savedInstanceState)
 
         noteViewModel = ViewModelProvider(requireActivity())[NoteViewModel::class.java]
-        note = noteViewModel.getSelected()
+        note = if (!isNew) noteViewModel.getSelected() else NoteEntity()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,8 +38,6 @@ class NewNoteFragment(
     private fun onMenuClick(menuItem: MenuItem): Boolean {
         when (menuItem.itemId) {
             R.id.save_note -> {
-                val old = note.copy()
-
                 val title = binding.noteTitle.text.toString()
                 val content = binding.noteContent.text.toString()
 
@@ -46,7 +46,7 @@ class NewNoteFragment(
                 note.time = System.currentTimeMillis()
 
                 if (isNew) noteViewModel.insert(note)
-                else noteViewModel.update(old, note)
+                else noteViewModel.update(note)
 
                 back()
                 return true
@@ -83,13 +83,8 @@ class NewNoteFragment(
         binding.noteTime.text = note.formattedTime
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
         noteViewModel.setSelected(note.copy())
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        setNote()
     }
 }
