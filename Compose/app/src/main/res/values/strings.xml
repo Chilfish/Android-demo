@@ -50,4 +50,24 @@
 
     <string name="alert_title_delete">Confirm to Delete?</string>
     <string name="alert_message_delete">This action cannot be undone.</string>
+
+    <string name="title_notepad">Notepad Lab</string>
+    <string name="label_title">Title</string>
+    <string name="label_content">Content</string>
+    <string name="label_time">Time</string>
+
+    <string name="place_title">the title of note</string>
+    <string name="place_content">the content of note</string>
+    <string name="place_long_content">the long content of note,  the long content of note,
+        the long content of note, the long content of note,the long content of note,
+        the long content of note, the long content of note,
+    </string>
+    <string name="place_time">03–04 12:00</string>
+
+    <string name="new_title">New Title</string>
+    <string name="new_content">New Content</string>
+
+    <string name="check">Check</string>
+
+    <string name="start_typing">Start typing</string>
 </resources>

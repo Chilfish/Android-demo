@@ -51,9 +51,13 @@ abstract class NotepadDatabase : RoomDatabase() {
         }
 
         suspend fun populateDatabase(noteDao: NotepadDao) {
+            val longText = "Material Design\n" +
+                    "Material 3 is the latest version of Google’s open-source design system." +
+                    " Design and build beautiful, usable products with Material 3."
+
             noteDao.deleteAll()
             noteDao.insert(NoteEntity(title = "Title 1", content = "Content 1"))
-            noteDao.insert(NoteEntity(title = "Title 2", content = "Content 2"))
+            noteDao.insert(NoteEntity(title = "Title 2", content = longText))
         }
     }
 }

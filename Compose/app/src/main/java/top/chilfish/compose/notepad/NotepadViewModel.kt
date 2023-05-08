@@ -30,6 +30,12 @@ class NotepadViewModel(
             _noteState.value = _noteState.value.copy(Notes = it)
         }
     }
+
+    fun toDetail(note: NoteEntity) = viewModelScope.launch {
+    }
+
+    fun toNewNote() = viewModelScope.launch {
+    }
 }
 
 class NotepadViewModelFactory(

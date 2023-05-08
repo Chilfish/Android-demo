@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
 import top.chilfish.compose.BaseActivity
 import top.chilfish.compose.ChatApplication
-import top.chilfish.compose.ui.room.RoomPage
 
 class NotepadActivity : BaseActivity() {
 
@@ -20,7 +19,12 @@ class NotepadActivity : BaseActivity() {
         )[NotepadViewModel::class.java]
 
         setContent {
-            Scaffold { padding ->
+            Scaffold(
+                topBar = { HomeAppBar() },
+                floatingActionButton = {
+                    FAB { notepadViewModel.toNewNote() }
+                }
+            ) { padding ->
                 NotepadPage(
                     modifier = Modifier.padding(padding),
                     viewModel = notepadViewModel
