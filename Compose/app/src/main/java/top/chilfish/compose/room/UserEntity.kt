@@ -5,17 +5,33 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "user")
+const val MAX_AGE = 150
+const val TABLE_NAME = "user"
+
+@Entity(tableName = TABLE_NAME)
 data class UserEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val id: Long = 0,
     @ColumnInfo(name = "name", typeAffinity = ColumnInfo.TEXT)
     val name: String = "",
     @ColumnInfo(name = "age", typeAffinity = ColumnInfo.INTEGER)
     val age: Int = 0,
-)
+) {
+    override fun equals(other: Any?): Boolean {
+        if (other == null || other !is UserEntity) return false
+        return name == other.name && age == other.age
+    }
 
-const val MAX_AGE = 150
+    override fun hashCode(): Int {
+        return super.hashCode()
+    }
+}
+
+fun newUser(old: UserEntity) =
+    UserEntity(
+        name = old.name,
+        age = old.age
+    )
 
 val UserSaver = listSaver<UserEntity, Any>(
     save = {
@@ -23,7 +39,7 @@ val UserSaver = listSaver<UserEntity, Any>(
     },
     restore = {
         UserEntity(
-            id = it[0] as Int,
+            id = it[0] as Long,
             name = it[1] as String,
             age = it[2] as Int,
         )

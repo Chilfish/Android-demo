@@ -19,8 +19,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -50,12 +48,16 @@ fun RoomPage(
     val (isShowAlert, setIsShowAlert) = rememberSaveable {
         mutableStateOf(false)
     }
+    val (users, setUsers) = rememberSaveable {
+        mutableStateOf(emptyList<UserEntity>())
+    }
 
     LaunchedEffect(viewModel.pageState) {
         viewModel.pageState.collect { pageState ->
             if (pageState.isShowAlert) {
                 setIsShowAlert(true)
             }
+            setUsers(pageState.users)
         }
     }
 
@@ -73,14 +75,12 @@ fun RoomPage(
         )
     }
 
-    val pageState by viewModel.pageState.collectAsState()
     Column(
         modifier = modifier.fillMaxSize()
     ) {
         InputSheet(inputUser, setInputUser)
         ButtonSheet(viewModel, inputUser, isAction, setIsAction)
         LazyColumn {
-            val users = pageState.users
             items(users.size) { index ->
                 UserCard(
                     viewModel, users[index],

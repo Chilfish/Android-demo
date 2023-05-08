@@ -1,7 +1,7 @@
 package top.chilfish.compose.ui.room
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,9 +28,13 @@ class RoomViewModel(
     }
 
     fun addUser(user: UserEntity) = viewModelScope.launch {
+        if (repository.queryByName(user) != null) {
+            showToast("user already exist")
+            return@launch
+        }
+
         val res = repository.addUser(user)
         if (res > 0) {
-            loadUsers()
             showToast("addUser success")
         } else {
             showToast("addUser failed")
@@ -38,7 +42,11 @@ class RoomViewModel(
     }
 
     fun queryUser(user: UserEntity) = viewModelScope.launch {
-        val res = repository.queryUser(user)
+        val res = repository.queryByName(user) ?: run {
+            showToast("user not exist")
+            return@launch
+        }
+
         _pageState.value = RoomPageState(users = listOf(res))
     }
 
@@ -50,7 +58,6 @@ class RoomViewModel(
         val user = _pageState.value.selectedUser ?: return@launch
         val res = repository.deleteUser(user)
         if (res > 0) {
-            loadUsers()
             showToast("deleteUser success")
         } else {
             showToast("deleteUser failed")
@@ -60,11 +67,22 @@ class RoomViewModel(
     fun editUser(user: UserEntity) = viewModelScope.launch {
         val res = repository.editUser(user)
         if (res > 0) {
-            loadUsers()
             showToast("editUser success")
         } else {
             showToast("editUser failed")
         }
+    }
+}
+
+class RoomViewModelFactory(
+    private val repository: RoomRepository
+) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(RoomViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return RoomViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
 

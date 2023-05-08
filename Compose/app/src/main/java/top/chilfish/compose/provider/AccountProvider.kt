@@ -13,16 +13,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-const val ACCOUNT_SP = "Account"
+private const val ACCOUNT_SP = "Account"
+private val KEY_IS_LOGIN = booleanPreferencesKey("isLogin")
+private val KEY_UID = stringPreferencesKey("uid")
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = ACCOUNT_SP)
 var curUid: String = ""
 var isLoggedIn = MutableStateFlow(false)
 
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = ACCOUNT_SP)
+
 object AccountProvider {
     private lateinit var dataStore: DataStore<Preferences>
-    private val KEY_IS_LOGIN = booleanPreferencesKey("isLogin")
-    private val KEY_UID = stringPreferencesKey("uid")
 
     fun init(context: Context) {
         dataStore = context.dataStore

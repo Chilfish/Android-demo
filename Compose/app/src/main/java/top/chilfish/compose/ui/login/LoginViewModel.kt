@@ -9,6 +9,7 @@ import top.chilfish.compose.data.ProfileProp
 import top.chilfish.compose.data.fake.Accounts
 import top.chilfish.compose.provider.AccountProvider
 import top.chilfish.compose.provider.curUid
+import top.chilfish.compose.provider.isLoggedIn
 import top.chilfish.compose.utils.showToast
 
 class LoginViewModel : ViewModel() {
@@ -29,7 +30,8 @@ class LoginViewModel : ViewModel() {
     }
 
     fun login() {
-        if (curUid.isBlank()) return
+        if (curUid.isBlank() || !isLoggedIn.value)
+            return
 
         viewModelScope.launch {
             _loginState.emit(LoginState.Success)

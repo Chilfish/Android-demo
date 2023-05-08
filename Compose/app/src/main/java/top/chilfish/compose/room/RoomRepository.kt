@@ -2,13 +2,17 @@ package top.chilfish.compose.room
 
 class RoomRepository(private val UserDao: UserDao) {
 
-    suspend fun addUser(user: UserEntity) = UserDao.insertUser(user)
+    suspend fun addUser(user: UserEntity) = UserDao.insert(user)
 
-    suspend fun queryUser(user: UserEntity) = UserDao.queryUserByName(user.name)
+    suspend fun queryByName(user: UserEntity) = UserDao.queryByName(user.name)
 
-    suspend fun editUser(user: UserEntity) = UserDao.updateUser(user)
+    suspend fun queryUser(user: UserEntity) = UserDao.queryById(user.id)
 
-    suspend fun deleteUser(user: UserEntity) = UserDao.deleteUser(user)
+    suspend fun editUser(user: UserEntity) = UserDao.update(user)
 
-    val users = UserDao.queryAllUser()
+    suspend fun deleteUser(user: UserEntity) = UserDao.delete(user)
+
+    suspend fun deleteAll() = UserDao.deleteAll()
+
+    val users = UserDao.queryAll()
 }

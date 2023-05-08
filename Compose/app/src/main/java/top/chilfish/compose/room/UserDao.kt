@@ -11,23 +11,26 @@ import kotlinx.coroutines.flow.Flow
 interface UserDao {
 
     @Insert
-    suspend fun insertUser(user: UserEntity): Long
+    suspend fun insert(user: UserEntity): Long
 
     @Delete
-    suspend fun deleteUser(user: UserEntity): Int
+    suspend fun delete(user: UserEntity): Int
 
     @Update
-    suspend fun updateUser(user: UserEntity): Int
+    suspend fun update(user: UserEntity): Int
 
-    @Query("SELECT * FROM user ORDER BY name")
-    fun queryAllUser(): Flow<List<UserEntity>>
+    @Query("DELETE FROM $TABLE_NAME")
+    suspend fun deleteAll(): Int
 
-    @Query("SELECT * FROM user WHERE id = :id")
-    suspend fun queryUserById(id: Int): UserEntity
+    @Query("SELECT * FROM $TABLE_NAME ORDER BY name")
+    fun queryAll(): Flow<List<UserEntity>>
 
-    @Query("SELECT * FROM user WHERE name like :name")
-    suspend fun queryUserByName(name: String): UserEntity
+    @Query("SELECT * FROM $TABLE_NAME WHERE id = :id")
+    suspend fun queryById(id: Long): UserEntity?
 
-    @Query("SELECT * FROM user WHERE age like :age")
-    suspend fun queryUserByAge(age: Int): UserEntity
+    @Query("SELECT * FROM $TABLE_NAME WHERE name like :name")
+    suspend fun queryByName(name: String): UserEntity?
+
+    @Query("SELECT * FROM $TABLE_NAME WHERE age like :age")
+    suspend fun queryByAge(age: Int): UserEntity?
 }
