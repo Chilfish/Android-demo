@@ -1,5 +1,6 @@
 package top.chilfish.compose.notepad.data
 
+import androidx.compose.runtime.saveable.listSaver
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
@@ -8,7 +9,7 @@ import java.util.Date
 import java.util.Locale
 
 const val NOTE_TABLE_NAME = "note"
-const val NEW_NOTE_ID = -1L
+const val NEW_NOTE_ID = 0L
 
 @Entity(tableName = NOTE_TABLE_NAME)
 data class NoteEntity(
@@ -26,7 +27,25 @@ data class NoteEntity(
             return sdf.format(date)
         }
 
-    @get:Ignore
-    val isNew: Boolean
-        get() = id == NEW_NOTE_ID
+    companion object {
+        fun update(note: NoteEntity) = NoteEntity(
+            id = note.id,
+            title = note.title,
+            content = note.content,
+        )
+    }
 }
+
+val NoteSaver = listSaver<NoteEntity, Any>(
+    save = {
+        listOf(it.id, it.title, it.content, it.createTime)
+    },
+    restore = {
+        NoteEntity(
+            id = it[0] as Long,
+            title = it[1] as String,
+            content = it[2] as String,
+            createTime = it[3] as Long,
+        )
+    }
+)

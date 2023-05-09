@@ -20,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -28,6 +29,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,8 +55,10 @@ fun NotepadPage(
         }
     ) { padding ->
         NotepadList(
-            modifier = modifier,
-            padding = padding,
+            modifier = modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(padding),
             viewModel = viewModel,
             noteState = noteState
         )
@@ -69,12 +73,13 @@ fun HomeAppBar() {
             Text(
                 text = stringResource(R.string.title_notepad),
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface,
+                color = MaterialTheme.colorScheme.onPrimary,
                 textAlign = TextAlign.Center,
                 fontWeight = MaterialTheme.typography.titleLarge.fontWeight,
                 modifier = Modifier.fillMaxWidth()
             )
-        }
+        },
+        colors = TopAppBarDefaults.topAppBarColors(MaterialTheme.colorScheme.primary)
     )
 }
 
@@ -93,22 +98,17 @@ private fun FAB(
 @Composable
 fun NotepadList(
     modifier: Modifier = Modifier,
-    padding: PaddingValues,
     viewModel: NotepadViewModel,
     noteState: NoteState
 ) {
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(padding)
-            .background(MaterialTheme.colorScheme.background)
-    ) {
+    LazyColumn(modifier) {
         val notes = noteState.Notes
         items(notes.size) { index ->
             NotepadItem(notes[index],
                 onClick = {
                     viewModel.processEvent(NoteEvent.ToDetail(notes[index]))
-                })
+                }
+            )
         }
     }
 }
@@ -133,6 +133,7 @@ fun NotepadItem(
             Text(
                 text = note.title,
                 style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.fillMaxWidth(),
                 maxLines = 1,

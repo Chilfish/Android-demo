@@ -35,6 +35,7 @@
     <string name="query">Query</string>
     <string name="remove">Remove</string>
     <string name="load">Load</string>
+    <string name="back">Back</string>
 
     <!--  Input  -->
     <string name="name">Name</string>

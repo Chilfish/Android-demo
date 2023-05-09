@@ -10,7 +10,7 @@ object Routers {
 }
 
 class NavigationActions(private val navController: NavHostController) {
-    fun navigateTo(route: String, id: Long) {
+    fun navigateTo(route: String, id: Long? = null) {
         val router = when (route) {
             Routers.Detail -> route.replace("{noteId}", id.toString())
             else -> route

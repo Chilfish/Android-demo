@@ -6,6 +6,8 @@ class NotepadRepository(private val dao: NotepadDao) {
 
     suspend fun insert(note: NoteEntity) = dao.insert(note)
 
+    suspend fun update(note: NoteEntity) = dao.update(note)
+
     suspend fun delete(note: NoteEntity) = dao.delete(note)
 
     suspend fun deleteAll() = dao.deleteAll()
