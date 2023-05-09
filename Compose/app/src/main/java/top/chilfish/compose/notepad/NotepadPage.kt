@@ -2,6 +2,7 @@ package top.chilfish.compose.notepad
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,11 +16,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -29,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import top.chilfish.compose.R
 import top.chilfish.compose.notepad.data.NoteEntity
 
@@ -36,30 +40,24 @@ import top.chilfish.compose.notepad.data.NoteEntity
 @Composable
 fun NotepadPage(
     modifier: Modifier = Modifier,
-    viewModel: NotepadViewModel
+    viewModel: NotepadViewModel,
 ) {
-    val (notes, setNotes) = rememberSaveable {
-        mutableStateOf(listOf<NoteEntity>())
-    }
+    val noteState = viewModel.noteState.collectAsState(initial = NoteState()).value
 
-    LaunchedEffect(viewModel.noteState) {
-        viewModel.noteState.collect {
-            setNotes(it.Notes)
+    Scaffold(
+        topBar = { HomeAppBar() },
+        floatingActionButton = {
+            FAB() {
+                viewModel.processEvent(NoteEvent.ToNewNote)
+            }
         }
-    }
-
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(8.dp)
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        items(notes.size) { index ->
-            NotepadItem(notes[index],
-                onClick = {
-                    viewModel.toDetail(notes[index])
-                })
-        }
+    ) { padding ->
+        NotepadList(
+            modifier = modifier,
+            padding = padding,
+            viewModel = viewModel,
+            noteState = noteState
+        )
     }
 }
 
@@ -81,7 +79,7 @@ fun HomeAppBar() {
 }
 
 @Composable
-fun FAB(
+private fun FAB(
     onClick: () -> Unit
 ) {
     FloatingActionButton(
@@ -89,6 +87,29 @@ fun FAB(
         onClick = onClick
     ) {
         Icon(Icons.Default.Add, stringResource(R.string.add))
+    }
+}
+
+@Composable
+fun NotepadList(
+    modifier: Modifier = Modifier,
+    padding: PaddingValues,
+    viewModel: NotepadViewModel,
+    noteState: NoteState
+) {
+    LazyColumn(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(padding)
+            .background(MaterialTheme.colorScheme.background)
+    ) {
+        val notes = noteState.Notes
+        items(notes.size) { index ->
+            NotepadItem(notes[index],
+                onClick = {
+                    viewModel.processEvent(NoteEvent.ToDetail(notes[index]))
+                })
+        }
     }
 }
 
@@ -134,36 +155,6 @@ fun NotepadItem(
                 textAlign = TextAlign.End,
                 modifier = Modifier.fillMaxWidth()
             )
-        }
-    }
-}
-
-@Preview(backgroundColor = 0xFFFFFFFF)
-@Composable
-fun NotepadPreview() {
-    val notes = listOf(
-        NoteEntity(
-            title = "Title 1",
-            content = "Content 1",
-        ),
-        NoteEntity(
-            title = "Title 2",
-            content = "Content 2",
-        ),
-        NoteEntity(
-            title = "Title 3",
-            content = "Content 3",
-        ),
-    )
-
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(12.dp)
-            .background(MaterialTheme.colorScheme.background)
-    ) {
-        items(notes.size) { index ->
-            NotepadItem(notes[index])
         }
     }
 }

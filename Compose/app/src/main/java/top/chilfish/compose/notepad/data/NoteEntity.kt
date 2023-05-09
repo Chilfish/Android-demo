@@ -8,6 +8,7 @@ import java.util.Date
 import java.util.Locale
 
 const val NOTE_TABLE_NAME = "note"
+const val NEW_NOTE_ID = -1L
 
 @Entity(tableName = NOTE_TABLE_NAME)
 data class NoteEntity(
@@ -24,4 +25,8 @@ data class NoteEntity(
             val sdf = SimpleDateFormat("MM-dd HH:mm", Locale.getDefault())
             return sdf.format(date)
         }
+
+    @get:Ignore
+    val isNew: Boolean
+        get() = id == NEW_NOTE_ID
 }

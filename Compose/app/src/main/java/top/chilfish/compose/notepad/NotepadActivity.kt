@@ -1,12 +1,10 @@
 package top.chilfish.compose.notepad
 
 import android.os.Bundle
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
 import top.chilfish.compose.BaseActivity
 import top.chilfish.compose.ChatApplication
+import top.chilfish.compose.notepad.navigation.NoteNavHost
 
 class NotepadActivity : BaseActivity() {
 
@@ -19,18 +17,7 @@ class NotepadActivity : BaseActivity() {
         )[NotepadViewModel::class.java]
 
         setContent {
-            Scaffold(
-                topBar = { HomeAppBar() },
-                floatingActionButton = {
-                    FAB { notepadViewModel.toNewNote() }
-                }
-            ) { padding ->
-                NotepadPage(
-                    modifier = Modifier.padding(padding),
-                    viewModel = notepadViewModel
-                )
-            }
-
+            NoteNavHost(viewModel = notepadViewModel)
         }
     }
 }
