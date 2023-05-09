@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Labs</string>
+
+    <string name="title_sqlite">SQLite Lab</string>
+
+    <string name="name">Name: %s</string>
+    <string name="phone">Phone: %s</string>
+
+    <string name="query">Query</string>
+    <string name="insert">Insert</string>
+    <string name="update">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="all">All</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="label_name">Name</string>
+    <string name="label_phone">Phone</string>
+    <string name="place_name">the name of contact</string>
+    <string name="place_phone">the phone number of contact</string>
+
+    <string name="alert_title_delete">Confirm to Delete?</string>
+    <string name="alert_subtitle_delete">This action cannot be undone.</string>
+
+    <string name="toast_success">%s Success</string>
+    <string name="toast_failed">%s Failed</string>
+
+    <string name="toast_isEmpty">Empty %s!</string>
+    <string name="toast_isExist">%s is Exist!</string>
+    <string name="toast_items_found">Found %d items</string>
+
+
+    <string name="title_notepad">Notepad Lab</string>
+    <string name="label_title">Title</string>
+    <string name="label_content">Content</string>
+    <string name="label_time">Time</string>
+
+    <string name="place_title">the title of note</string>
+    <string name="place_content">the content of note</string>
+    <string name="place_long_content">the long content of note,  the long content of note,
+        the long content of note, the long content of note,the long content of note,
+        the long content of note, the long content of note,
+    </string>
+    <string name="place_time">03–04 12:00</string>
+
+    <string name="new_title">New Title</string>
+    <string name="new_content">New Content</string>
+
+    <string name="add">Add</string>
+    <string name="check">Check</string>
+
+    <string name="start_typing">Start typing</string>
+</resources>
