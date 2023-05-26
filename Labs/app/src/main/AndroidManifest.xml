@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission
+        android:name="android.permission.READ_SMS"
+        tools:ignore="PermissionImpliesUnsupportedChromeOsHardware" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -30,6 +35,20 @@
         <activity
             android:name=".notepad.NotepadActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".sms.SMSActivity"
+            android:exported="true" />
+
+        <receiver
+            android:name=".MyBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="top.chilfish.labs.BROADCAST" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
