@@ -1,4 +1,4 @@
-package top.chilfish.labs
+package top.chilfish.labs.utils
 
 import android.os.Handler
 import android.os.Looper

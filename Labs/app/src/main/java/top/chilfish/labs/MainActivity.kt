@@ -5,10 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import top.chilfish.labs.base.BaseActivity
 import top.chilfish.labs.databinding.ActivityMainBinding
 import top.chilfish.labs.notepad.NotepadActivity
 import top.chilfish.labs.sms.SMSActivity
 import top.chilfish.labs.sqlite.SqliteActivity
+import top.chilfish.labs.utils.ContextHolder
 
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding

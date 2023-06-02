@@ -7,13 +7,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
-import top.chilfish.labs.BaseActivity
-import top.chilfish.labs.BaseAdapter
+import top.chilfish.labs.base.BaseActivity
+import top.chilfish.labs.base.BaseAdapter
 import top.chilfish.labs.MainApplication
 import top.chilfish.labs.R
 import top.chilfish.labs.databinding.ActivityNotepadBinding
 import top.chilfish.labs.notepad.data.NoteEntity
-import top.chilfish.labs.notepad.data.NotesLog
 
 class NotepadActivity : BaseActivity(), BaseAdapter.OnItemClickListener<NoteEntity> {
     private lateinit var binding: ActivityNotepadBinding

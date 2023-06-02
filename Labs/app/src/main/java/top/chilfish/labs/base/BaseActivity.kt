@@ -1,4 +1,4 @@
-package top.chilfish.labs
+package top.chilfish.labs.base
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

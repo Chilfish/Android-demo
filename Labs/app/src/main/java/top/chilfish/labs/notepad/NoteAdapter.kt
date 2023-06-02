@@ -1,6 +1,6 @@
 package top.chilfish.labs.notepad
 
-import top.chilfish.labs.BaseAdapter
+import top.chilfish.labs.base.BaseAdapter
 import top.chilfish.labs.R
 import top.chilfish.labs.databinding.ItemNoteBinding
 import top.chilfish.labs.notepad.data.NoteEntity

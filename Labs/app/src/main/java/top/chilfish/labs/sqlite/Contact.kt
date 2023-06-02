@@ -1,7 +1,7 @@
 package top.chilfish.labs.sqlite
 
 import android.util.Log
-import top.chilfish.labs.Diffable
+import top.chilfish.labs.base.Diffable
 
 data class Contact(
     var id: Long = 0,

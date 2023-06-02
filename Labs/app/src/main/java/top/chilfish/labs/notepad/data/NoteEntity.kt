@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import top.chilfish.labs.Diffable
+import top.chilfish.labs.base.Diffable
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

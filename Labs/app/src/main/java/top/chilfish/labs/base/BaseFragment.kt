@@ -1,4 +1,4 @@
-package top.chilfish.labs
+package top.chilfish.labs.base
 
 import android.content.Context
 import android.os.Bundle

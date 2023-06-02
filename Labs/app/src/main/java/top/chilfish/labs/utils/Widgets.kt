@@ -1,4 +1,4 @@
-package top.chilfish.labs
+package top.chilfish.labs.utils
 
 import android.content.Context
 import android.content.DialogInterface

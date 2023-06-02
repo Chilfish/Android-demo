@@ -1,16 +1,14 @@
 package top.chilfish.labs.notepad
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import top.chilfish.labs.BaseFragment
+import top.chilfish.labs.base.BaseFragment
 import top.chilfish.labs.R
-import top.chilfish.labs.alert
+import top.chilfish.labs.utils.alert
 import top.chilfish.labs.databinding.FragNewNoteBinding
 import top.chilfish.labs.notepad.data.NoteEntity
-import top.chilfish.labs.notepad.data.NotesLog
 
 class NewNoteFragment(
     private val isNew: Boolean = false,

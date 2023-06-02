@@ -1,6 +1,6 @@
 package top.chilfish.labs.sms
 
-import top.chilfish.labs.BaseAdapter
+import top.chilfish.labs.base.BaseAdapter
 import top.chilfish.labs.R
 import top.chilfish.labs.databinding.ItemSmsBinding
 

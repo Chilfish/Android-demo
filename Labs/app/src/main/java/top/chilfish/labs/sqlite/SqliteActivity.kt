@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import top.chilfish.labs.R
 import top.chilfish.labs.databinding.ActivitySqliteBinding
-import top.chilfish.labs.showToast
+import top.chilfish.labs.utils.showToast
 import top.chilfish.labs.sqlite.ViewProvider.clearInput
 import top.chilfish.labs.sqlite.ViewProvider.nameInput
 import top.chilfish.labs.sqlite.ViewProvider.phoneInput

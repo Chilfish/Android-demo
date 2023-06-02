@@ -1,10 +1,10 @@
 package top.chilfish.labs.sqlite
 
-import top.chilfish.labs.BaseAdapter
+import top.chilfish.labs.base.BaseAdapter
 import top.chilfish.labs.R
-import top.chilfish.labs.alert
+import top.chilfish.labs.utils.alert
 import top.chilfish.labs.databinding.ItemContactBinding
-import top.chilfish.labs.showToast
+import top.chilfish.labs.utils.showToast
 import top.chilfish.labs.sqlite.ViewProvider.cancelBtn
 import top.chilfish.labs.sqlite.ViewProvider.clearInput
 import top.chilfish.labs.sqlite.ViewProvider.confirmBtn

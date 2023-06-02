@@ -1,6 +1,6 @@
 package top.chilfish.labs.sms
 
-import top.chilfish.labs.Diffable
+import top.chilfish.labs.base.Diffable
 
 data class SMSEntity(
     val address: String,

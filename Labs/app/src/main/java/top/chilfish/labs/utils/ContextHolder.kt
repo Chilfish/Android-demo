@@ -1,4 +1,4 @@
-package top.chilfish.labs
+package top.chilfish.labs.utils
 
 import android.app.Application
 
@@ -7,6 +7,6 @@ object ContextHolder {
         private set
 
     fun init(application: Application) {
-        this.context = application
+        context = application
     }
 }

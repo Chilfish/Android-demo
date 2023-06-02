@@ -1,15 +1,12 @@
-package top.chilfish.labs
+package top.chilfish.labs.base
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListUpdateCallback
 import androidx.recyclerview.widget.RecyclerView
-import top.chilfish.labs.notepad.data.NotesLog
 
 abstract class BaseAdapter<T : Diffable, VB : ViewDataBinding>(
     private val itemLayout: Int

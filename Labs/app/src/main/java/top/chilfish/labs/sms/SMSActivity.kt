@@ -8,7 +8,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import top.chilfish.labs.BaseActivity
+import top.chilfish.labs.base.BaseActivity
 import top.chilfish.labs.databinding.ActivitySmsBinding
 
 class SMSActivity : BaseActivity() {

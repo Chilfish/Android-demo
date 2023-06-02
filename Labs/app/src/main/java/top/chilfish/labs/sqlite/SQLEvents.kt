@@ -1,8 +1,6 @@
 package top.chilfish.labs.sqlite
 
 import android.content.Context
-import android.util.Log
-import top.chilfish.labs.showToast
 
 object SQLEvents {
     private lateinit var db: ContactDB
