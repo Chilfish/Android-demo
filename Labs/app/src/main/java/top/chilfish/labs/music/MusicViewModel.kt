@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -17,14 +18,18 @@ import top.chilfish.labs.utils.LoadFile
 import kotlin.random.Random
 
 
-const val BaseURL = "http://music.163.com/song/media/outer/url?id="
+private const val BaseURL = "http://music.163.com/song/media/outer/url?id="
 
-class MusicViewModel : ViewModel() {
+class MusicViewModel(
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+) : ViewModel() {
     private var _musicState = MutableStateFlow(MusicState())
     val musicState: StateFlow<MusicState> = _musicState
 
     private var _curPos = MutableStateFlow(0)
     val curPos: StateFlow<Int> = _curPos
+
+    private val allSongs: MutableList<MusicListItem> = LoadFile.assetsJson("music.json")
 
     private var curSongDuration: Int = 0
     private var progressJob: Job? = null
@@ -40,15 +45,11 @@ class MusicViewModel : ViewModel() {
     }
 
     init {
-        _musicState.update {
-            it.copy(allSongs = LoadFile.assetsJson("music.json"))
-        }
-
-        load(Random.nextInt(_musicState.value.allSongs.size))
+        load(Random.nextInt(allSongs.size))
     }
 
-    private fun load(index: Int) = viewModelScope.launch {
-        val music = _musicState.value.allSongs[index]
+    private fun load(index: Int) = viewModelScope.launch(ioDispatcher) {
+        val music = allSongs[index]
 
         if (music.id == _musicState.value.curSong.id) {
             mediaPlayer.seekTo(0)
@@ -80,14 +81,16 @@ class MusicViewModel : ViewModel() {
             )
         }
         Log.d("Music", "${_musicState.value.curSong}")
+        playSong()
     }
 
     private fun startProgressUpdates() {
         progressJob?.cancel()
-        progressJob = CoroutineScope(Dispatchers.Default).launch {
+        progressJob = CoroutineScope(ioDispatcher).launch {
             while (true) {
                 val curPosition = mediaPlayer.currentPosition
                 if (curPosition >= curSongDuration) {
+                    nextSong()
                     stopProgressUpdates()
                 }
                 _curPos.value = curPosition
@@ -103,14 +106,13 @@ class MusicViewModel : ViewModel() {
 
     fun togglePlay() = if (mediaPlayer.isPlaying) pauseSong() else playSong()
 
-
-    private fun playSong() {
+    fun playSong() {
         mediaPlayer.start()
         _musicState.update { it.copy(isPlaying = true) }
         startProgressUpdates()
     }
 
-    private fun pauseSong() {
+    fun pauseSong() {
         mediaPlayer.pause()
         _musicState.update { it.copy(isPlaying = false) }
         stopProgressUpdates()
@@ -119,8 +121,8 @@ class MusicViewModel : ViewModel() {
     private fun move(step: Int) {
         var curIndex = 0
         _musicState.update {
-            curIndex = (it.curIndex + step) % it.allSongs.size
-            if (curIndex == -1) curIndex = it.allSongs.size - 1
+            curIndex = (it.curIndex + step) % allSongs.size
+            if (curIndex == -1) curIndex = allSongs.size - 1
             it.copy(curIndex = curIndex)
         }
         load(curIndex)
@@ -130,17 +132,18 @@ class MusicViewModel : ViewModel() {
     fun nextSong() = move(1)
     fun prevSong() = move(-1)
 
-    fun release() = mediaPlayer.release()
+    fun seekTo(pos: Int) {
+        mediaPlayer.seekTo(pos)
+        _curPos.value = pos
+    }
 
     override fun onCleared() {
         super.onCleared()
-        release()
+        mediaPlayer.release()
     }
 }
 
 data class MusicState(
-    val allSongs: MutableList<MusicListItem> = mutableListOf(),
-
     val curSong: Song = Song(),
     val curIndex: Int = 0,
 
