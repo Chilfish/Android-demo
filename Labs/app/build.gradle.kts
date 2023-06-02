@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("kotlinx-serialization")
     kotlin("android")
     kotlin("kapt")
 }
@@ -49,14 +50,16 @@ dependencies {
     implementation(libs.androidx.ktx)
     implementation(libs.kotlin.stdlib)
     implementation(libs.coroutines)
-    kapt(libs.kapt)
-    implementation(libs.activity)
+    implementation(libs.coroutines.core)
+    implementation(libs.serialization)
 
     //UI
     implementation(libs.material)
     implementation(libs.material3)
+
     implementation(libs.coil)
     implementation(libs.appcompat)
+
 
     // Jetpack
     implementation(libs.lifecycle)
@@ -69,10 +72,20 @@ dependencies {
     implementation(libs.dataStore)
     implementation(libs.dataStore.preferences)
 
+    // room
     implementation(libs.room)
     annotationProcessor(libs.room.compiler)
     kapt(libs.room.compiler)
     implementation(libs.room.ktx)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.androidx.hilt.compiler)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    implementation(libs.okhttp)
+    implementation(libs.liangjingkanji.net)
 
     // Test
     testImplementation(libs.junit)

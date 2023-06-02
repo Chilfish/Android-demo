@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="music"
+            type="top.chilfish.labs.music.MusicEntity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                style="@style/TextAppearance.Material3.TitleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{music.title}" />
+
+            <TextView
+                style="@style/TextAppearance.Material3.BodySmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{music.artist}" />
+        </LinearLayout>
+
+
+        <com.google.android.material.card.MaterialCardView
+            style="?attr/materialCardViewFilledStyle"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginVertical="50dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="500dp">
+
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/cover"
+                android:scaleType="centerCrop"
+                android:src="@drawable/avatar" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:indeterminate="true"
+            android:padding="8dp" />
+
+        <LinearLayout
+            android:id="@+id/buttons_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/prev"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/baseline_skip_previous_24" />
+
+            <ImageButton
+                android:id="@+id/pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/baseline_play_arrow_24" />
+
+            <ImageButton
+                android:id="@+id/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/baseline_skip_next_24" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

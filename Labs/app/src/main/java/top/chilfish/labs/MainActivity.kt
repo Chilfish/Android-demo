@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import top.chilfish.labs.base.BaseActivity
 import top.chilfish.labs.databinding.ActivityMainBinding
+import top.chilfish.labs.music.MusicActivity
 import top.chilfish.labs.notepad.NotepadActivity
 import top.chilfish.labs.sms.SMSActivity
 import top.chilfish.labs.sqlite.SqliteActivity
@@ -31,10 +32,12 @@ class MainActivity : BaseActivity() {
             sendBroadcast(intent)
         }
 
-        val sqlite = Intent(this, SqliteActivity::class.java)
-        val notepad = Intent(this, NotepadActivity::class.java)
-        val sms = Intent(this, SMSActivity::class.java)
-        startActivity(notepad)
+        val sqlite = SqliteActivity::class.java
+        val notepad = NotepadActivity::class.java
+        val sms = SMSActivity::class.java
+        val music = MusicActivity::class.java
+
+        startActivity(Intent(this, music))
         finish()
     }
 }

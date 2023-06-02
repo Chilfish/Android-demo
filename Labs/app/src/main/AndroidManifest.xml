@@ -40,6 +40,10 @@
             android:name=".sms.SMSActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".music.MusicActivity"
+            android:exported="true" />
+
         <receiver
             android:name=".MyBroadcastReceiver"
             android:enabled="true"
