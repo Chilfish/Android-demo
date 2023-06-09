@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("dagger.hilt.android.plugin")
     id("kotlinx-serialization")
     kotlin("android")
     kotlin("kapt")
@@ -46,6 +47,10 @@ android {
     buildToolsVersion = "33.0.2"
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementation(libs.androidx.ktx)
     implementation(libs.kotlin.stdlib)
@@ -57,9 +62,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.material3)
 
-    implementation(libs.coil)
     implementation(libs.appcompat)
-
+    implementation(libs.activity)
 
     // Jetpack
     implementation(libs.lifecycle)
@@ -86,6 +90,7 @@ dependencies {
 
     implementation(libs.okhttp)
     implementation(libs.liangjingkanji.net)
+    implementation(libs.coil)
 
     // Test
     testImplementation(libs.junit)

@@ -6,8 +6,9 @@ import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.disk.DiskCache
 import coil.memory.MemoryCache
-import top.chilfish.labs.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 open class BaseActivity : AppCompatActivity(), ImageLoaderFactory {
     fun replaceFragment(fragment: Fragment, id: Int) {
         supportFragmentManager.beginTransaction()

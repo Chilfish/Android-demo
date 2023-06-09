@@ -5,7 +5,7 @@
 
         <variable
             name="message"
-            type="top.chilfish.labs.gpt.Message" />
+            type="top.chilfish.labs.gpt.data.Message" />
     </data>
 
     <LinearLayout
