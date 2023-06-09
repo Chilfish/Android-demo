@@ -6,7 +6,7 @@ import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [Message::class],
+    entities = [MessageEntity::class],
     version = 1,
     exportSchema = false
 )

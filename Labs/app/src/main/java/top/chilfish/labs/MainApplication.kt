@@ -1,11 +1,10 @@
 package top.chilfish.labs
 
 import android.app.Application
+import com.drake.brv.utils.BRV
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
-import top.chilfish.labs.gpt.data.GPTDao
 import top.chilfish.labs.gpt.data.GPTDatabase
 import top.chilfish.labs.gpt.data.GPTRepository
 import top.chilfish.labs.module.ApplicationScope
@@ -32,4 +31,9 @@ class MainApplication : Application() {
 
     @Inject
     lateinit var gptRepo: GPTRepository
+
+    override fun onCreate() {
+        super.onCreate()
+        BRV.modelId = BR.m
+    }
 }

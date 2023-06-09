@@ -89,8 +89,10 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(libs.okhttp)
-    implementation(libs.liangjingkanji.net)
     implementation(libs.coil)
+
+    implementation(libs.liangjingkanji.net)
+    implementation(libs.liangjingkanji.brv)
 
     // Test
     testImplementation(libs.junit)

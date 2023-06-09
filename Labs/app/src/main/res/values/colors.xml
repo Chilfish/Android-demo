@@ -15,6 +15,8 @@
     <color name="primary_1">#86A0FC</color>
     <color name="primary_2">#FF3700B3</color>
 
+    <color name="on_primary">#FFFFFFFF</color>
+
     <color name="secondary">#5079E6</color>
 
     <color name="error">#D22F2E</color>

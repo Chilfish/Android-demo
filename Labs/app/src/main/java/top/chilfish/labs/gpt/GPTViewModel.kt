@@ -2,28 +2,50 @@ package top.chilfish.labs.gpt
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
-import top.chilfish.labs.gpt.data.Message
+import kotlinx.coroutines.launch
+import top.chilfish.labs.gpt.data.GPTRepository
+import top.chilfish.labs.gpt.data.MessageEntity
+import top.chilfish.labs.module.IODispatcher
+import javax.inject.Inject
 
-class GPTViewModel(
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
+@HiltViewModel
+class GPTViewModel @Inject constructor(
+    private val repo: GPTRepository,
+
+    @IODispatcher
+    private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
     private var _uiState = MutableStateFlow(UIState())
     val uiState: StateFlow<UIState> = _uiState
 
-    fun send(content: String) {
-        val message = Message(content = content)
+    init {
+        load()
+    }
+
+    private fun load() = viewModelScope.launch(ioDispatcher) {
+        repo.allMessages.collect { messages ->
+            _uiState.update {
+                it.copy(messages = messages.toMutableList())
+            }
+        }
+    }
+
+    fun send(content: String) = viewModelScope.launch(ioDispatcher) {
+        val message = MessageEntity(content = content)
         _uiState.update {
             it.copy(messages = it.messages.apply { add(message) })
         }
+        repo.insert(message)
         Log.d("GPT", "messages: ${uiState.value.messages}")
     }
 }
 
 data class UIState(
-    val messages: MutableList<Message> = mutableListOf(),
+    val messages: MutableList<MessageEntity> = mutableListOf(),
 )

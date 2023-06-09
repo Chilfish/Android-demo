@@ -21,7 +21,9 @@
             android:background="@color/primary"
             android:paddingVertical="16dp"
             android:text="@string/gpt"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/on_primary"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mess_list"

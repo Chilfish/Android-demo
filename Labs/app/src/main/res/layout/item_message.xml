@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="message"
-            type="top.chilfish.labs.gpt.data.Message" />
+            name="m"
+            type="top.chilfish.labs.gpt.data.MessageEntity" />
     </data>
 
     <LinearLayout
@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="4dp"
-                android:text="@{message.content}"
+                android:text="@{m.content}"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -41,7 +41,7 @@
 
                 android:paddingHorizontal="4dp"
                 android:paddingBottom="4dp"
-                android:text="@{message.timeString}"
+                android:text="@{m.timeString}"
                 android:textSize="12sp" />
         </LinearLayout>
 
