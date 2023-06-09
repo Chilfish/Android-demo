@@ -1,6 +1,7 @@
 package top.chilfish.labs
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import coil.load
 import top.chilfish.labs.base.BaseActivity
@@ -26,7 +27,16 @@ class MainActivity : BaseActivity() {
 
         binding.btn.setOnClickListener {
             val url = binding.urlEdit.text.toString()
-            binding.image.load(url)
+            binding.image.load(url) {
+                placeholder(R.drawable.ic_launcher_background)
+                error(R.drawable.ic_launcher_background)
+            }
+        }
+
+        val videoUri = Uri.parse("android.resource://${packageName}/${R.raw.temp}")
+        binding.video.setVideoURI(videoUri)
+        binding.btnVideo.setOnClickListener {
+            binding.video.start()
         }
 
         val sqlite = SqliteActivity::class.java
@@ -34,8 +44,8 @@ class MainActivity : BaseActivity() {
         val sms = SMSActivity::class.java
         val music = MusicActivity::class.java
 
-        startActivity(Intent(this, music))
-        finish()
+//        startActivity(Intent(this, music))
+//        finish()
     }
 }
 

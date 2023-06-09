@@ -30,8 +30,6 @@ open class BaseActivity : AppCompatActivity(), ImageLoaderFactory {
                     .build()
             }
             .crossfade(true)
-            .placeholder(R.drawable.ic_launcher_background)
-            .error(R.drawable.ic_launcher_background)
             .build()
     }
 }
