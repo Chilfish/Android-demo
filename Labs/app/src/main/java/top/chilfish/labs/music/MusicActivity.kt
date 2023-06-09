@@ -4,11 +4,7 @@ import android.os.Bundle
 import android.widget.SeekBar
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
-import coil.ImageLoader
-import coil.ImageLoaderFactory
-import coil.disk.DiskCache
 import coil.load
-import coil.memory.MemoryCache
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import top.chilfish.labs.R
@@ -16,8 +12,7 @@ import top.chilfish.labs.base.BaseActivity
 import top.chilfish.labs.databinding.ActivityMusicBinding
 import top.chilfish.labs.utils.formattedTime
 
-
-class MusicActivity : BaseActivity(), ImageLoaderFactory {
+class MusicActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMusicBinding
     private val viewModel by viewModels<MusicViewModel>()
@@ -92,21 +87,5 @@ class MusicActivity : BaseActivity(), ImageLoaderFactory {
                 binding.elapsedTime.text = formattedTime(it)
             }
         }
-    }
-
-    override fun newImageLoader(): ImageLoader {
-        return ImageLoader.Builder(this)
-            .memoryCache {
-                MemoryCache.Builder(this)
-                    .maxSizePercent(0.25)
-                    .build()
-            }
-            .diskCache {
-                DiskCache.Builder()
-                    .directory(this.cacheDir.resolve("image_cache"))
-                    .maxSizePercent(0.02)
-                    .build()
-            }
-            .build()
     }
 }

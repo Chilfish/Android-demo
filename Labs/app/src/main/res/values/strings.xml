@@ -52,4 +52,6 @@
     <string name="start_typing">Start typing</string>
 
     <string name="cover">Cover</string>
+    <string name="url">URL</string>
+    <string name="place_url">The URL of the Image</string>
 </resources>

@@ -1,10 +1,8 @@
 package top.chilfish.labs
 
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
+import coil.load
 import top.chilfish.labs.base.BaseActivity
 import top.chilfish.labs.databinding.ActivityMainBinding
 import top.chilfish.labs.music.MusicActivity
@@ -27,9 +25,8 @@ class MainActivity : BaseActivity() {
         init()
 
         binding.btn.setOnClickListener {
-            val intent = Intent("top.chilfish.labs.BROADCAST")
-            intent.setPackage(packageName)
-            sendBroadcast(intent)
+            val url = binding.urlEdit.text.toString()
+            binding.image.load(url)
         }
 
         val sqlite = SqliteActivity::class.java
@@ -42,8 +39,3 @@ class MainActivity : BaseActivity() {
     }
 }
 
-class MyBroadcastReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context?, intent: Intent?) {
-        Toast.makeText(context, "Received broadcast!", Toast.LENGTH_SHORT).show()
-    }
-}
