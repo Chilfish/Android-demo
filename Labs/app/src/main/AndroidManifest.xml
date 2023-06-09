@@ -44,14 +44,9 @@
             android:name=".music.MusicActivity"
             android:exported="true" />
 
-        <receiver
-            android:name=".MyBroadcastReceiver"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="top.chilfish.labs.BROADCAST" />
-            </intent-filter>
-        </receiver>
+        <activity
+            android:name=".gpt.GPTActivity"
+            android:exported="true" />
 
     </application>
 

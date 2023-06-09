@@ -54,4 +54,10 @@
     <string name="cover">Cover</string>
     <string name="url">URL</string>
     <string name="place_url">The URL of the Image</string>
+
+    <string name="gpt">Chat Bot</string>
+    <string name="default_string">Default String</string>
+    <string name="default_time">Mon 12:00</string>
+    <string name="default_uid">uid: 233</string>
+    <string name="hint_mess_input">Type a message</string>
 </resources>

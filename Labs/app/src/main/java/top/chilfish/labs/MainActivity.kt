@@ -6,6 +6,7 @@ import android.os.Bundle
 import coil.load
 import top.chilfish.labs.base.BaseActivity
 import top.chilfish.labs.databinding.ActivityMainBinding
+import top.chilfish.labs.gpt.GPTActivity
 import top.chilfish.labs.music.MusicActivity
 import top.chilfish.labs.notepad.NotepadActivity
 import top.chilfish.labs.sms.SMSActivity
@@ -25,6 +26,17 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         init()
 
+        val sqlite = SqliteActivity::class.java
+        val notepad = NotepadActivity::class.java
+        val sms = SMSActivity::class.java
+        val music = MusicActivity::class.java
+        val gpt = GPTActivity::class.java
+
+        startActivity(Intent(this, gpt))
+        finish()
+    }
+
+    private fun main() {
         binding.btn.setOnClickListener {
             val url = binding.urlEdit.text.toString()
             binding.image.load(url) {
@@ -38,14 +50,6 @@ class MainActivity : BaseActivity() {
         binding.btnVideo.setOnClickListener {
             binding.video.start()
         }
-
-        val sqlite = SqliteActivity::class.java
-        val notepad = NotepadActivity::class.java
-        val sms = SMSActivity::class.java
-        val music = MusicActivity::class.java
-
-//        startActivity(Intent(this, music))
-//        finish()
     }
 }
 
