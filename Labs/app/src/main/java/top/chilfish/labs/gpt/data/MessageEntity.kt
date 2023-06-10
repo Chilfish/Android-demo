@@ -2,8 +2,8 @@ package top.chilfish.labs.gpt.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Required
 import kotlinx.serialization.Serializable
-import top.chilfish.labs.base.Diffable
 import top.chilfish.labs.utils.formattedTime
 
 const val GPT_Table = "messages"
@@ -14,13 +14,28 @@ data class MessageEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val time: Long = System.currentTimeMillis(),
-    val content: String = "",
     val isMe: Boolean = true,
-) : Diffable {
+    val content: String = "",
+    val role: String = Role.user,
+) {
     val timeString: String
         get() = formattedTime(time, "MM-dd hh:mm")
+}
 
-    override fun itemId() = time
-    override fun sameContent(other: Diffable) =
-        other is MessageEntity && time == other.time && content == other.content && isMe == other.isMe
+@Serializable
+data class ChatMessage(
+    val content: String = "",
+    val role: String = Role.user,
+)
+
+@Serializable
+data class RequestBody(
+    val model: String = "gpt-3.5-turbo",
+    val messages: List<ChatMessage> = listOf(),
+)
+
+object Role {
+    @Required
+    const val user: String = "user"
+    const val assistant: String = "assistant"
 }

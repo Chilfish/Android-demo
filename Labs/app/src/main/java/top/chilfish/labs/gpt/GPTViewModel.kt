@@ -1,6 +1,5 @@
 package top.chilfish.labs.gpt
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -9,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import top.chilfish.labs.gpt.data.ChatMessage
 import top.chilfish.labs.gpt.data.GPTRepository
 import top.chilfish.labs.gpt.data.MessageEntity
 import top.chilfish.labs.module.IODispatcher
@@ -42,7 +42,10 @@ class GPTViewModel @Inject constructor(
             it.copy(messages = it.messages.apply { add(message) })
         }
         repo.insert(message)
-        Log.d("GPT", "messages: ${uiState.value.messages}")
+
+        val mess = listOf(ChatMessage(content))
+        repo.send(mess)
+//        Log.d("GPT", "messages: ${json.encodeToString(mess)}, $mess")
     }
 }
 
