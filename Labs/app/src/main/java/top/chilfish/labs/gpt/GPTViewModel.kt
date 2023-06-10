@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import top.chilfish.labs.gpt.data.ChatMessage
 import top.chilfish.labs.gpt.data.GPTRepository
 import top.chilfish.labs.gpt.data.MessageEntity
 import top.chilfish.labs.module.IODispatcher
@@ -40,12 +39,14 @@ class GPTViewModel @Inject constructor(
 
     fun send(content: String) = viewModelScope.launch(ioDispatcher) {
         val message = MessageEntity(content = content)
+        val lastMessage = _uiState.value.messages.last()
+        val mess = listOf(lastMessage.toChat(), message.toChat())
+
         _uiState.update {
             it.copy(messages = it.messages.apply { add(message) })
         }
         repo.insert(message)
 
-        val mess = listOf(ChatMessage(content))
         val (_, key, host) = _uiState.value
         val resMessage = repo.send(key, host, mess) ?: return@launch
 
@@ -66,6 +67,7 @@ class GPTViewModel @Inject constructor(
         _uiState.update { it.copy(key = key, bastHost = host) }
     }
 
+    fun deleteAll() = viewModelScope.launch(ioDispatcher) { repo.deleteAll() }
 }
 
 data class UIState(

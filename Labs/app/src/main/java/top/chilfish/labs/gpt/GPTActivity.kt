@@ -16,6 +16,7 @@ import top.chilfish.labs.databinding.ActivityGptBinding
 import top.chilfish.labs.databinding.ItemMessageBinding
 import top.chilfish.labs.gpt.data.MessageEntity
 import top.chilfish.labs.gpt.data.Role
+import top.chilfish.labs.utils.alert
 
 class GPTActivity : BaseActivity() {
     private lateinit var binding: ActivityGptBinding
@@ -61,7 +62,6 @@ class GPTActivity : BaseActivity() {
     }
 
     private fun events() {
-
         binding.btnSend.setOnClickListener {
             val content = binding.chatInput.text.toString()
             binding.chatInput.text.clear()
@@ -77,6 +77,20 @@ class GPTActivity : BaseActivity() {
 
                 else -> false
             }
+        }
+
+        binding.topAppBar.setNavigationOnClickListener {
+            alert(
+                context = this,
+                title = getString(R.string.alert_title_delete),
+                subtitle = getString(R.string.alert_subtitle_delete),
+                cancel = getString(R.string.cancel),
+                confirm = getString(R.string.confirm),
+                cancelAction = {},
+                confirmAction = {
+                    viewModel.deleteAll()
+                }
+            ).show()
         }
     }
 }

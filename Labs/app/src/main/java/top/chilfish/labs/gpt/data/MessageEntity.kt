@@ -19,7 +19,9 @@ data class MessageEntity(
     val role: String = Role.user,
 ) {
     val timeString: String
-        get() = formattedTime(time, "MM-dd hh:mm")
+        get() = formattedTime(time, "MM-dd HH:mm")
+
+    fun toChat() = ChatMessage(content, role)
 }
 
 @Serializable
