@@ -5,16 +5,12 @@ import com.drake.net.Post
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import org.json.JSONObject
 import top.chilfish.labs.JSON
 import top.chilfish.labs.base.BaseRequest
 import top.chilfish.labs.module.IODispatcher
 import javax.inject.Inject
 import javax.inject.Singleton
-
-const val base = ""
-const val key = ""
 
 @Singleton
 class GPTRepository @Inject constructor(
@@ -29,12 +25,17 @@ class GPTRepository @Inject constructor(
     suspend fun insert(message: MessageEntity) = dao.insert(message)
     suspend fun deleteAll() = dao.deleteAll()
 
-    suspend fun send(messages: List<ChatMessage>) = withContext(ioDispatcher) {
+    suspend fun send(
+        key: String,
+        baseHost: String,
+        messages: List<ChatMessage>,
+    ): ChatMessage? = withContext(ioDispatcher) {
         val body = JSON.encodeToString(RequestBody(messages = messages))
+        Log.d("GPT", "request: $body\n $key")
 
         val res = try {
             api.request {
-                Post<String>("$base/v1/chat/completions") {
+                Post<String>("$baseHost/v1/chat/completions") {
                     addHeader("Authorization", "Bearer $key")
                     json(body)
                 }
@@ -42,9 +43,9 @@ class GPTRepository @Inject constructor(
         } catch (e: Exception) {
             e.printStackTrace()
             null
-        } ?: return@withContext
-        val resJson = JSONObject(res)
+        } ?: return@withContext null
 
+        val resJson = JSONObject(res)
         try {
             val messageObject = resJson
                 .getJSONArray("choices")
@@ -55,10 +56,12 @@ class GPTRepository @Inject constructor(
                 role = Role.assistant,
                 content = messageObject.getString("content")
             )
+            Log.d("GPT", "res: $resMessage")
 
-            Log.d("GPT", "res: $resMessage\n body: $body")
+            resMessage
         } catch (e: Exception) {
             e.printStackTrace()
+            null
         }
     }
 }

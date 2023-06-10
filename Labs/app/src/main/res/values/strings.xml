@@ -25,6 +25,7 @@
 
     <string name="toast_success">%s Success</string>
     <string name="toast_failed">%s Failed</string>
+    <string name="toast_save_success">Save Success</string>
 
     <string name="toast_isEmpty">Empty %s!</string>
     <string name="toast_isExist">%s is Exist!</string>

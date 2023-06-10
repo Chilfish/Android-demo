@@ -29,6 +29,8 @@ class GPTViewModel @Inject constructor(
     }
 
     private fun load() = viewModelScope.launch(ioDispatcher) {
+        launch { getSetting() }
+
         repo.allMessages.collect { messages ->
             _uiState.update {
                 it.copy(messages = messages.toMutableList())
@@ -44,11 +46,31 @@ class GPTViewModel @Inject constructor(
         repo.insert(message)
 
         val mess = listOf(ChatMessage(content))
-//        repo.send(mess)
-//        Log.d("GPT", "messages: ${json.encodeToString(mess)}, $mess")
+        val (_, key, host) = _uiState.value
+        val resMessage = repo.send(key, host, mess) ?: return@launch
+
+        val botMessage = MessageEntity(
+            content = resMessage.content,
+            role = resMessage.role
+        )
+        repo.insert(botMessage)
     }
+
+    fun saveSetting(newKey: String, newHost: String) = viewModelScope.launch {
+        _uiState.update { it.copy(key = newKey, bastHost = newHost) }
+        SettingsProvider.saveSettings(newKey, newHost)
+    }
+
+    private suspend fun getSetting() {
+        val (key, host) = SettingsProvider.getSettings()
+        _uiState.update { it.copy(key = key, bastHost = host) }
+    }
+
 }
 
 data class UIState(
     val messages: MutableList<MessageEntity> = mutableListOf(),
+
+    val key: String = "",
+    val bastHost: String = "https://api.openai.com",
 )

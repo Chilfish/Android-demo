@@ -1,7 +1,8 @@
 package top.chilfish.labs.gpt
 
 import android.os.Bundle
-import android.util.Log
+import android.view.Gravity
+import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +13,9 @@ import kotlinx.coroutines.launch
 import top.chilfish.labs.R
 import top.chilfish.labs.base.BaseActivity
 import top.chilfish.labs.databinding.ActivityGptBinding
+import top.chilfish.labs.databinding.ItemMessageBinding
 import top.chilfish.labs.gpt.data.MessageEntity
+import top.chilfish.labs.gpt.data.Role
 
 class GPTActivity : BaseActivity() {
     private lateinit var binding: ActivityGptBinding
@@ -27,7 +30,21 @@ class GPTActivity : BaseActivity() {
         rv = binding.messList
         rv.linear().setup {
             addType<MessageEntity>(R.layout.item_message)
-        }.models = mutableListOf()
+            models = mutableListOf()
+            onBind {
+                val bind = getBinding<ItemMessageBinding>()
+                val item = getModel<MessageEntity>()
+
+                val layoutParams = bind.messBody.layoutParams as LinearLayout.LayoutParams
+                if (item.role == Role.user) {
+                    layoutParams.gravity = Gravity.END
+                    bind.messBody.setBackgroundResource(R.drawable.message_r)
+                } else {
+                    layoutParams.gravity = Gravity.START
+                    bind.messBody.setBackgroundResource(R.drawable.message_l)
+                }
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,12 +56,12 @@ class GPTActivity : BaseActivity() {
 
     private fun watch() = lifecycleScope.launch {
         viewModel.uiState.collect {
-            Log.d("GPT", "all: ${it.messages}")
             rv.setDifferModels(it.messages)
         }
     }
 
     private fun events() {
+
         binding.btnSend.setOnClickListener {
             val content = binding.chatInput.text.toString()
             binding.chatInput.text.clear()
@@ -54,7 +71,7 @@ class GPTActivity : BaseActivity() {
         binding.topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.setting -> {
-                    replaceFragment(SettingFragment(), R.id.frag_gpt)
+                    replaceFragment(SettingFragment(viewModel), R.id.frag_gpt)
                     true
                 }
 
