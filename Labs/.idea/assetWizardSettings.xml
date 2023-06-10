@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../../Coding/Android/AndroidSDK/icons/material/materialicons/skip_previous/baseline_skip_previous_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../../Coding/Android/AndroidSDK/icons/material/materialicons/settings/baseline_settings_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,7 +33,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="baseline_skip_previous_24" />
+                            <entry key="outputName" value="baseline_settings_24" />
                             <entry key="sourceFile" value="D:\Chilling\Android\Android-demo\Labs" />
                           </map>
                         </option>

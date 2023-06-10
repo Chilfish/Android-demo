@@ -7,65 +7,96 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_bg"
-        android:fitsSystemWindows="true"
-        android:orientation="vertical">
+        android:background="@color/surface"
+        android:fitsSystemWindows="true">
 
-        <TextView
-            style="@style/TextAppearance.Material3.TitleLarge"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/primary"
-            android:paddingVertical="16dp"
-            android:text="@string/gpt"
-            android:textAlignment="center"
-            android:textColor="@color/on_primary"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mess_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            tools:listitem="@layout/item_message" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:paddingHorizontal="12dp">
-
-            <EditText
-                android:id="@+id/chat_input"
+            <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autofillHints="aa"
-                android:background="@null"
-                android:hint="@string/hint_mess_input"
-                android:inputType="textMultiLine"
-                android:maxLines="5"
-                android:minLines="1"
-                android:padding="16dp"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@+id/btn_send"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:background="@color/primary">
 
-            <ImageButton
-                android:id="@+id/btn_send"
-                android:layout_width="24dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:src="@drawable/baseline_send_24"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/primary_1" />
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/topAppBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:menu="@menu/gpt"
+                    app:title="@string/gpt"
+                    app:titleCentered="true"
+                    app:titleTextColor="@color/on_primary" />
+            </com.google.android.material.appbar.AppBarLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/mess_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    tools:listitem="@layout/item_message" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:paddingHorizontal="12dp">
+
+                    <EditText
+                        android:id="@+id/chat_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="aa"
+                        android:background="@null"
+                        android:hint="@string/hint_mess_input"
+                        android:inputType="textMultiLine"
+                        android:maxLines="5"
+                        android:minLines="1"
+                        android:padding="16dp"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_send"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/btn_send"
+                        android:layout_width="24dp"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/baseline_send_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/primary_1" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/frag_gpt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

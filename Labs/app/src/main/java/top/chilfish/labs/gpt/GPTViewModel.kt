@@ -44,7 +44,7 @@ class GPTViewModel @Inject constructor(
         repo.insert(message)
 
         val mess = listOf(ChatMessage(content))
-        repo.send(mess)
+//        repo.send(mess)
 //        Log.d("GPT", "messages: ${json.encodeToString(mess)}, $mess")
     }
 }

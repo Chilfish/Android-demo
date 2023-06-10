@@ -28,25 +28,38 @@ class GPTActivity : BaseActivity() {
         rv.linear().setup {
             addType<MessageEntity>(R.layout.item_message)
         }.models = mutableListOf()
-
-        binding.btnSend.setOnClickListener {
-            val content = binding.chatInput.text.toString()
-            binding.chatInput.text.clear()
-            viewModel.send(content)
-        }
-
-        watch()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
+        events()
+        watch()
     }
 
     private fun watch() = lifecycleScope.launch {
         viewModel.uiState.collect {
             Log.d("GPT", "all: ${it.messages}")
             rv.setDifferModels(it.messages)
+        }
+    }
+
+    private fun events() {
+        binding.btnSend.setOnClickListener {
+            val content = binding.chatInput.text.toString()
+            binding.chatInput.text.clear()
+            viewModel.send(content)
+        }
+
+        binding.topAppBar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.setting -> {
+                    replaceFragment(SettingFragment(), R.id.frag_gpt)
+                    true
+                }
+
+                else -> false
+            }
         }
     }
 }

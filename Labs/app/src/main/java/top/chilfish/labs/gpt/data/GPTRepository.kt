@@ -13,9 +13,8 @@ import top.chilfish.labs.module.IODispatcher
 import javax.inject.Inject
 import javax.inject.Singleton
 
-const val model = "gpt-3.5-turbo"
-const val base = " "
-const val key = " "
+const val base = ""
+const val key = ""
 
 @Singleton
 class GPTRepository @Inject constructor(

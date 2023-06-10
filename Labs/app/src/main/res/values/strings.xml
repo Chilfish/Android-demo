@@ -13,6 +13,7 @@
     <string name="all">All</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 
     <string name="label_name">Name</string>
     <string name="label_phone">Phone</string>
@@ -60,4 +61,10 @@
     <string name="default_time">Mon 12:00</string>
     <string name="default_uid">uid: 233</string>
     <string name="hint_mess_input">Type a message</string>
+
+    <string name="settings">Settings</string>
+    <string name="setting_title_host">OpenAI API Endpoint</string>
+    <string name="setting_title_key">OpenAI API Key</string>
+
+    <string name="setting_hint_host">https://api.openai.com</string>
 </resources>
